@@ -14,9 +14,9 @@ router.get('/eventList', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get('/eventDetails/:event_id', (req, res, next) => {
+router.get('/eventDetails/:id', (req, res, next) => {
 
-    Event.findById(req.params.event_id)
+    Event.findById(req.params.id)
         .then(response => res.json(response))
         .catch(err => next(err))
 })

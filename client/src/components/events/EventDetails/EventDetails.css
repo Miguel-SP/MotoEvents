@@ -1,0 +1,9 @@
+
+.details-btn{
+    display: flex;
+    justify-content: space-between;
+}
+
+.col-details{
+    margin: 20px 0;
+}

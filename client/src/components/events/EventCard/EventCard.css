@@ -1,0 +1,31 @@
+.card-buttons {
+    display:flex;
+    justify-content: space-between;
+
+}
+
+.join-btn {
+    background-color: #F37F00;
+    border-color: #F37F00;
+    color: white
+}
+
+.card-footer{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card-img-top{
+    height: 200px;
+    object-fit: cover;
+}
+
+.event-card{
+    width: 22rem;
+    margin-bottom: 20px;
+}
+
+.card-col{
+    display: flex;
+    justify-content: center;
+}

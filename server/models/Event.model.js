@@ -7,7 +7,7 @@ const eventSchema = new Schema({
     description: { type: String, maxlength: 200 },
     location: {type: String},
     image_url: { type: String},
-    date: { type: Date, default: Date.now },
+    date: { type: Date, default: Date.now, required: true },
     created_by: { type: Schema.Types.ObjectId, ref: 'User' }
     
 }, {

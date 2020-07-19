@@ -5,12 +5,23 @@ import './App.css'
 import { Switch, Route } from 'react-router-dom'
 
 import EventList from './events/EventList/EventList'
+import EventDetails from './events/EventDetails/EventDetails'
+import Navigation from './UI/Navbar/Navbar'
+import Home from './home/Home'
+
 
 function App() {
   return (
-    <Switch>
-      <Route path="/eventList" render = {() => <EventList />} />
-    </Switch>
+    <>
+      <Navigation />
+
+
+      <Switch>
+        <Route exact path="/" render={() => <Home />} />
+        <Route exact path="/eventList" render={() => <EventList />} />
+        <Route path="/eventDetails/:id" render={props => <EventDetails {...props} />} />
+      </Switch>
+    </>
   )
 }
 

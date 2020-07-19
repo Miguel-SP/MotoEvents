@@ -1,0 +1,18 @@
+.events-page{
+    
+    align-items: center;
+}
+
+.create-btn{
+    background-color: #F37F00;
+    border-color: #F37F00;
+    margin-bottom: 25px;
+}
+
+.create-btn:hover, .create-btn:focus  {
+    color: #fff;
+    background-color: #F37F00;
+    border-color: #F37F00;
+    box-shadow: none;
+    
+}
