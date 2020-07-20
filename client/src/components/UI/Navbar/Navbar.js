@@ -21,10 +21,10 @@ const Navigation = () => {
                         <NavLink to="/eventList" exact activeStyle={{ color: 'white' }}>Eventos</NavLink>
                     </Nav.Link>
                     <Nav.Link as="span">
-                        <NavLink to="/" exact activeStyle={{ color: 'white' }}>Registro</NavLink>
+                        <NavLink to="/signup" exact activeStyle={{ color: 'white' }}>Registro</NavLink>
                     </Nav.Link>
                     <Nav.Link as="span">
-                        <NavLink to="/" exact activeStyle={{ color: 'white' }}>Iniciar sesión</NavLink>
+                        <NavLink to="/login" exact activeStyle={{ color: 'white' }}>Iniciar sesión</NavLink>
                     </Nav.Link>
 
                 </Nav>

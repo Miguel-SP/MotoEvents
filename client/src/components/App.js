@@ -8,6 +8,8 @@ import EventList from './events/EventList/EventList'
 import EventDetails from './events/EventDetails/EventDetails'
 import Navigation from './UI/Navbar/Navbar'
 import Home from './home/Home'
+import SignupForm from './auth/SignupForm'
+import LoginForm from './auth/LoginForm'
 
 
 function App() {
@@ -18,8 +20,10 @@ function App() {
 
       <Switch>
         <Route exact path="/" render={() => <Home />} />
-        <Route exact path="/eventList" render={() => <EventList />} />
+        <Route path="/eventList" render={() => <EventList />} />
         <Route path="/eventDetails/:id" render={props => <EventDetails {...props} />} />
+        <Route path="/signup" render={props => <SignupForm {...props}/>} />
+        <Route path="/login" render={props => <LoginForm {...props}/>} />
       </Switch>
     </>
   )

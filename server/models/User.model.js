@@ -9,7 +9,7 @@ const userSchema = new Schema({
 
     events: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
 
-    motorbikes: [{ type: Schema.Types.ObjectId, ref: 'Moto' }],
+    motorbike: { type: Schema.Types.ObjectId, ref: 'Moto' },
 
     comments: [{
         event: { type: Schema.Types.ObjectId, ref: 'Event', required: true },
