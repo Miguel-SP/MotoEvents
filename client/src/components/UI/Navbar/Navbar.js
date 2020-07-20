@@ -3,19 +3,29 @@ import React from 'react'
 
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import { Link, NavLink } from 'react-router-dom'
+
 
 const Navigation = () => {
 
     return (
         <Navbar bg="dark" variant="dark" expand="lg" sticky="top" >
-            <Navbar.Brand href="/">Moto Events</Navbar.Brand>
+            <Navbar.Brand><Link to="/">Moto Events</Link></Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <Nav.Link href="/">Inicio</Nav.Link>
-                    <Nav.Link href="/eventList">Eventos</Nav.Link>
-                    <Nav.Link href="/eventList">Registro</Nav.Link>
-                    <Nav.Link href="/eventList">Iniciar sesión</Nav.Link>
+                    <Nav.Link as="span">
+                        <NavLink to="/" exact activeStyle={{ color: 'white' }}>Inicio</NavLink>
+                    </Nav.Link>
+                    <Nav.Link as="span">
+                        <NavLink to="/eventList" exact activeStyle={{ color: 'white' }}>Eventos</NavLink>
+                    </Nav.Link>
+                    <Nav.Link as="span">
+                        <NavLink to="/" exact activeStyle={{ color: 'white' }}>Registro</NavLink>
+                    </Nav.Link>
+                    <Nav.Link as="span">
+                        <NavLink to="/" exact activeStyle={{ color: 'white' }}>Iniciar sesión</NavLink>
+                    </Nav.Link>
 
                 </Nav>
             </Navbar.Collapse>
