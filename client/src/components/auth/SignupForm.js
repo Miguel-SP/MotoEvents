@@ -18,7 +18,6 @@ class SignupForm extends Component {
             motorbike:''
         }
         this.AuthService = new AuthService()
-        console.log(this.props)
     }
 
 
@@ -32,8 +31,7 @@ class SignupForm extends Component {
         this.AuthService
             .signup(this.state)
             .then(response => {
-                console.log(response)
-                // this.props.setTheUser(response.data)
+                this.props.setTheUser(response.data)
                 // this.props.handleToast(true, 'Registro completado')
                 this.props.history.push('/eventList')
             })

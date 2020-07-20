@@ -12,8 +12,8 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
 class EventList extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             events: [],
             showModal: false
@@ -44,7 +44,9 @@ class EventList extends Component {
 
                     <h1>Eventos activos</h1>
 
-                    <Button onClick={() => this.handleModal(true)} className="create-btn">Crear nuevo evento</Button>
+                    {
+                        this.props.loggedInUser && <Button onClick={() => this.handleModal(true)} className="create-btn">Crear nuevo evento</Button>
+                    }
 
                     {
                         this.state.events.length === 0
@@ -53,7 +55,7 @@ class EventList extends Component {
                             :
 
                             <Row>
-                                {this.state.events.map(elm => <EventCard key={elm._id} {...elm} />)}
+                                {this.state.events.map(elm => <EventCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} />)}
                             </Row>
                     }
 

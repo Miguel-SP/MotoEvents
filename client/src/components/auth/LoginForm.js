@@ -16,7 +16,7 @@ class LoginForm extends Component {
             username: '',
             password: ''
         }
-        this.authService = new AuthService()
+        this.AuthService = new AuthService()
     }
 
 
@@ -27,14 +27,14 @@ class LoginForm extends Component {
 
     handleFormSubmit = e => {
         e.preventDefault()
-        this.authService
+        this.AuthService
             .login(this.state)
             .then(response => {
-                // this.props.setTheUser(response.data)
-                // this.props.handleToast(true, 'Sesión inciada')
+                this.props.setTheUser(response.data)
+                // this.props.handleToast(true, 'Registro completado')
                 this.props.history.push('/eventList')
             })
-            .catch(err => console.log(err.response.data.message))  
+            .catch(err => console.log(err.response.data.message))
     }
 
     render() {
