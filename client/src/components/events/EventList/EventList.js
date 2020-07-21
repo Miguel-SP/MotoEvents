@@ -5,14 +5,12 @@ import EventService from '../../../service/EventService'
 
 import EventCard from '../EventCard/EventCard'
 import EventForm from '../EventForm/EventForm'
+import SearchForm from './../../UI/SearchBar/SearchBar'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
 import Modal from 'react-bootstrap/Modal'
-import Col from 'react-bootstrap/Col'
 
 
 class EventList extends Component {
@@ -41,22 +39,22 @@ class EventList extends Component {
         this.handleModal(false)
         this.updateEventList()
     }
+
+    handleSearchSubmit = () => {
+        this.EventService
+            .filteredEvents()
+            .then(response => this.setState({ events: response.data }))
+            .catch(err => console.log(err))
+    }
+
+
     render() {
         return (
             <>
                 <Container as='main' className='events-page'>
                     
-                    <Form as={Row} className="search-bar">
-
-                        <Col xs={9} md={10} lg={11}>
-                            <FormControl type="text" placeholder="Buscar evento" />
-                        </Col>
-                            
-                        <Col xs={2} md={2} lg={1}>
-                            <Button variant="outline-success">Buscar</Button>
-                        </Col>
-                    </Form>
-
+                    <SearchForm handleSearchSubmit={this.handleSearchSubmit}/>
+                    
                     <h1>Eventos activos</h1>
 
                     {
