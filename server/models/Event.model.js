@@ -8,7 +8,7 @@ const eventSchema = new Schema({
     location: {type: String},
     image_url: { type: String},
     date: { type: Date, default: Date.now, required: true },
-    created_by: { type: Schema.Types.ObjectId, ref: 'User' }
+    created_by: { type: String }
     
 }, {
     timestamps: true

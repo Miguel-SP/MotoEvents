@@ -8,8 +8,6 @@ import ListGroup from 'react-bootstrap/esm/ListGroup'
 
 const Profile = props => {
 
-    console.log(props.loggedInUser)
-
     return (props.loggedInUser && (
 
         <Container as='main'>

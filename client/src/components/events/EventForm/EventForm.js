@@ -5,14 +5,15 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 class EventForm extends Component {
-    constructor (){
-        super ()
+    constructor (props){
+        super (props)
         this.state = {
             name: '',
             description: '',
             location: '',
             image_url: '',
             date: '',
+            created_by: this.props.props.loggedInUser.username
         }
         this.EventService = new EventService()
     }

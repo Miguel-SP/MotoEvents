@@ -76,7 +76,7 @@ class EventList extends Component {
 
                 <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
                     <Modal.Body>
-                        <EventForm handleEventSubmit={this.handleEventSubmit} />
+                        <EventForm props={this.props} handleEventSubmit={this.handleEventSubmit} />
                     </Modal.Body>
                 </Modal>
             </>
