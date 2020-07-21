@@ -53,6 +53,9 @@ class LoginForm extends Component {
                                 <Form.Label>Nombre de usuario</Form.Label>
                                 <Form.Control onChange={this.handleInputChange} value={this.state.username} name="username" type="text" />
                             </Form.Group>
+                            <Form.Control.Feedback type="invalid">
+                                Please choose a username.
+                            </Form.Control.Feedback>
 
                             <Form.Group>
                                 <Form.Label>Contraseña</Form.Label>
