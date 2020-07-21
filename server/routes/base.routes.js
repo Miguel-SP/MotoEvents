@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const Event = require('../models/Event.model')
-// const User = require('../models/User.model')
+const User = require('../models/User.model')
 // const Moto = require('../models/Moto.model')
 const { response } = require('express')
 
@@ -40,10 +40,10 @@ router.post('/search', (req, res, next) => {
 })
 
 
-router.get('/filter', (req, res, next) => {
+router.get('/search', (req, res, next) => {
     const name = req.query.name
     const regex = new RegExp('^[a-zA-Z0-9 \',]*' + name + '[a-zA-Z0-9 \',]*', 'i')
-
+    
     if (req.query.name) {
         Event
             .find({ name: { $regex: regex } })
@@ -57,17 +57,17 @@ router.get('/filter', (req, res, next) => {
     }
 })
 
-// router.get('/myEvents', (req, res, next) => {
+router.get('/myEvents', (req, res, next) => {           //corregir respuesta
 
-//     User                                                     //De momento no tengo usuarios
-//         .findById(req.user._id)
-//         .populate('events')
-//         .then(user => {
-//             let array = user.events
-//             res.json(response, { array, user: req.user })
-//         })
-//         .catch(err => next(err))
-// })
+    User                                                    
+        .findById(req.user._id)
+        .populate('events')
+        .then(user => {
+            let array = user.events
+            res.json(response, { array, user: req.user })
+        })
+        .catch(err => next(err))
+})
 
 // router.post('/myEvents/add/:event_id', (req, res, next) => {
 

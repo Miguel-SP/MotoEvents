@@ -49,10 +49,10 @@ class App extends Component {
           <Route path="/eventDetails/:id" render={props => <EventDetails {...props} />} />
           <Route path="/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser}/>} />
           <Route path="/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} />} />
-          <Route path="/profile" render={() =>
+          <Route path="/profile" render={props =>
             this.state.loggedInUser
               ?
-              <Profile loggedInUser={this.state.loggedInUser} />
+              <Profile {...props} loggedInUser={this.state.loggedInUser} />
               :
               <Redirect to='/signup' />} />
           

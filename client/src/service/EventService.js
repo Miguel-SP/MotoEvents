@@ -9,11 +9,11 @@ class EventService {
         })
     }
 
-    getAllEvents = () => this.service.get('/eventList')
     getEventDetails = id => this.service.get(`/eventDetails/${id}`)
     createEvent = event => this.service.post('/newEvent', event)
-    searchEvents = events => this.service.post('/search', events)
-    filteredEvents = events => this.service.get('/filter', events)
+    searchEvents = name => this.service.post('/search', name)
+    filteredEvents = name => this.service.get('/search', name)
+    getAllEvents = () => this.service.get('/eventList')
 }
 
 export default EventService

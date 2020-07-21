@@ -7,7 +7,7 @@ class SearchForm extends Component {
     constructor() {
         super()
         this.state = {
-            name: ''
+            events:[]
         }
         this.EventService = new EventService()
     }
@@ -18,22 +18,25 @@ class SearchForm extends Component {
     }
 
     handleFormSubmit = e => {
-        console.log(this.state)
         e.preventDefault()
         this.EventService
             .searchEvents(this.state)
-            .then(() => this.props.handleSearchSubmit())
+            .then(response => this.setState({ events: response.data}))
             .catch(err => console.log(err))
+        console.log(this.state)
     }
 
+
+
     render() {
+
         return (
             <>
 
                 <Form onSubmit={this.handleFormSubmit} className="search-bar">
-                            <Form.Group>
-                                <Form.Control onChange={this.handleInputChange} value={this.state.name} name="name" type="text" placeholder="Buscar evento" />
-                            </Form.Group>
+                    <Form.Group>
+                        <Form.Control onChange={this.handleInputChange} value={this.state.name} name="name" type="text" placeholder="Buscar evento" />
+                    </Form.Group>
                 </Form>
 
             </>

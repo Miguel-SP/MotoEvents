@@ -43,7 +43,7 @@ class EventList extends Component {
     handleSearchSubmit = () => {
         this.EventService
             .filteredEvents()
-            .then(response => this.setState({ events: response.data }))
+            .then(response => console.log(response.data))
             .catch(err => console.log(err))
     }
 
@@ -53,7 +53,7 @@ class EventList extends Component {
             <>
                 <Container as='main' className='events-page'>
                     
-                    <SearchForm handleSearchSubmit={this.handleSearchSubmit}/>
+                    <SearchForm events={this.state.events} handleSearchSubmit={this.handleSearchSubmit}/>
                     
                     <h1>Eventos activos</h1>
 
