@@ -4,9 +4,10 @@ import EventService from './../../../service/EventService'
 import Form from 'react-bootstrap/Form'
 
 class SearchForm extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
+            name:'',
             filteredEvents:[]
         }
         this.EventService = new EventService()
@@ -15,15 +16,19 @@ class SearchForm extends Component {
     handleInputChange = e => {
         const { name, value } = e.target
         this.setState({ [name]: value })
+        this.EventService
+            .searchEvents(this.state)
+            .then(response => this.setState({ filteredEvents: response.data }, this.props.filterEventList(response.data)))
+            .catch(err => console.log(err))
+
     }
 
     handleFormSubmit = e => {
         e.preventDefault()
         this.EventService
             .searchEvents(this.state)
-            .then(response => this.setState({ filteredEvents: response.data}, console.log('pasar aquí polizón a eventlist')))
+            .then(response => this.setState({ filteredEvents: response.data}, this.props.filterEventList(response.data)))
             .catch(err => console.log(err))
-        console.log(this.state)
     }
 
 
@@ -35,7 +40,7 @@ class SearchForm extends Component {
 
                 <Form onSubmit={this.handleFormSubmit} className="search-bar">
                     <Form.Group>
-                        <Form.Control onChange={this.handleInputChange} value={this.props.name} name="name" type="text" placeholder="Buscar evento" />
+                        <Form.Control onKeyUp={this.handleInputChange} value={this.props.name} name="name" type="text" placeholder="Buscar evento" />
                     </Form.Group>
                 </Form>
 

@@ -18,7 +18,6 @@ class EventList extends Component {
         super(props)
         this.state = {
             events: [],
-            filteredEvents: [],
             showModal: false
         }
         this.EventService = new EventService()
@@ -41,11 +40,8 @@ class EventList extends Component {
         this.updateEventList()
     }
 
-    handleSearchSubmit = () => {
-        this.EventService
-            .filteredEvents()
-            .then(response => console.log(response.data)) //this.setState.
-            .catch(err => console.log(err))
+    handleSearchSubmit = (filteredEvents) => {
+        this.setState({events: filteredEvents})
     }
 
 
@@ -54,7 +50,7 @@ class EventList extends Component {
             <>
                 <Container as='main' className='events-page'>
                     
-                    <SearchForm events={this.state.events} handleSearchSubmit={this.handleSearchSubmit}/>
+                    <SearchForm events={this.state.events} filterEventList={this.handleSearchSubmit}/>
                     
                     <h1>Eventos activos</h1>
 
