@@ -27,7 +27,10 @@ class EventForm extends Component {
         e.preventDefault()
         this.EventService
             .createEvent(this.state)
-            .then(() => this.props.handleEventSubmit())
+            .then(() => {
+                this.props.handleEventSubmit()
+                this.props.props.handleToast(true, 'Evento creado!')
+            })
             .catch(err => console.log(err))
     }
 

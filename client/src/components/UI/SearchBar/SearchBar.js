@@ -23,22 +23,14 @@ class SearchForm extends Component {
 
     }
 
-    handleFormSubmit = e => {
-        e.preventDefault()
-        this.EventService
-            .searchEvents(this.state)
-            .then(response => this.setState({ filteredEvents: response.data}, this.props.filterEventList(response.data)))
-            .catch(err => console.log(err))
-    }
-
-
+    onSubmit = e => e.preventDefault()
 
     render() {
 
         return (
             <>
 
-                <Form onSubmit={this.handleFormSubmit} className="search-bar">
+                <Form onSubmit={this.onSubmit} className="search-bar">
                     <Form.Group>
                         <Form.Control onKeyUp={this.handleInputChange} value={this.props.name} name="name" type="text" placeholder="Buscar evento" />
                     </Form.Group>

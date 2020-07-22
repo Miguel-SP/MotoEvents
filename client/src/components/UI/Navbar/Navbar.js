@@ -20,7 +20,7 @@ class Navigation extends Component {
             .logout()
             .then(() => {
                 this.props.setTheUser(false)
-                this.props.handleToast(true, 'Usuario desconectado')
+                this.props.handleToast(`Hasta la próxima!`)
             })
             .catch(err => console.log(err))
     }
@@ -58,7 +58,7 @@ class Navigation extends Component {
                         }
 
                         <Nav.Link as="span">
-                            <NavLink to="/profile" activeStyle={{ color: 'white' }}>{this.props.loggedInUser && `Hola, ${this.props.loggedInUser.username}`}</NavLink>
+                            <NavLink to="/profile" activeStyle={{ color: 'white' }}>{this.props.loggedInUser && `Perfil de ${this.props.loggedInUser.username}`}</NavLink>
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>

@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
 import AuthService from './../service/AuthService'
 
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import EventList from './events/EventList/EventList'
 import EventDetails from './events/EventDetails/EventDetails'
@@ -23,14 +25,13 @@ class App extends Component {
     this.state = {
       loggedInUser: null,
       toast: {
-        visible: false,
         text: ''
       }
     }
     this.AuthService = new AuthService()
   }
 
-  setTheUser = user => this.setState({loggedInUser: user}, () => console.log('El estado de App ha cambiado', this.state))
+  setTheUser = user => this.setState({loggedInUser: user})
 
   fetchUser = () => {
     this.AuthService
@@ -39,11 +40,8 @@ class App extends Component {
       .catch(err => console.log({ err }))
   }
 
-  handleToast = (visible, text = '') => {
-    let toastCopy = { ...this.state.toast }
-    toastCopy = { visible, text }
-    this.setState({ toast: toastCopy })
-  }
+  handleToast = (text) => toast.dark(text)
+
 
   render() {
 
@@ -56,22 +54,18 @@ class App extends Component {
   
         <Switch>
           <Route exact path="/" render={() => <Home />} />
-          <Route path="/eventList" render={() => <EventList loggedInUser={this.state.loggedInUser}/>} />
-          <Route path="/eventDetails/:id" render={props => <EventDetails {...props} />} />
+          <Route path="/eventList" render={() => <EventList loggedInUser={this.state.loggedInUser} handleToast={this.handleToast}/>} />
+          <Route path="/eventDetails/:id" render={props => <EventDetails {...props} loggedInUser={this.state.loggedInUser}/>} />
           <Route path="/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
           <Route path="/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
-          <Route path="/profile" render={props =>
-            this.state.loggedInUser
-              ?
-              <Profile {...props} loggedInUser={this.state.loggedInUser} />
-              :
-              <Redirect to='/signup' />} />
+          <Route path="/profile" render={props =><Profile {...props} loggedInUser={this.state.loggedInUser} />} />
         </Switch>
 
         <OurToast {...this.state.toast} handleToast={this.handleToast} />
 
       </>
-    )
+    ) 
+    
 
   }
 }

@@ -1,14 +1,19 @@
 import React from 'react'
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 import Toast from 'react-bootstrap/Toast'
 
-const OurToast = ({ visible, text, handleToast }) => {
+
+
+const OurToast = ({ text }) => {
     return (
-        <Toast style={{ position: 'fixed', right: '10px', bottom: '10px', width: '300px' }} show={visible} onClose={() => handleToast(false)} delay={3000} autohide>
+
+        <ToastContainer position="bottom-left" autoClose={2500} hideProgressBar newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover>
             <Toast.Header> <strong className="mr-auto">MotoEvents</strong> </Toast.Header>
             <Toast.Body>{text}</Toast.Body>
-        </Toast>
+        </ToastContainer>
     )
 }
 
 export default OurToast
+
