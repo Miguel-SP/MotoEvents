@@ -7,7 +7,7 @@ class SearchForm extends Component {
     constructor() {
         super()
         this.state = {
-            events:[]
+            filteredEvents:[]
         }
         this.EventService = new EventService()
     }
@@ -21,7 +21,7 @@ class SearchForm extends Component {
         e.preventDefault()
         this.EventService
             .searchEvents(this.state)
-            .then(response => this.setState({ events: response.data}))
+            .then(response => this.setState({ filteredEvents: response.data}, console.log('pasar aquí polizón a eventlist')))
             .catch(err => console.log(err))
         console.log(this.state)
     }
@@ -35,7 +35,7 @@ class SearchForm extends Component {
 
                 <Form onSubmit={this.handleFormSubmit} className="search-bar">
                     <Form.Group>
-                        <Form.Control onChange={this.handleInputChange} value={this.state.name} name="name" type="text" placeholder="Buscar evento" />
+                        <Form.Control onChange={this.handleInputChange} value={this.props.name} name="name" type="text" placeholder="Buscar evento" />
                     </Form.Group>
                 </Form>
 

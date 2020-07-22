@@ -13,6 +13,7 @@ import Home from './home/Home'
 import SignupForm from './auth/SignupForm'
 import LoginForm from './auth/LoginForm'
 import Profile from './profile/Profile'
+import OurToast from './UI/Toast/Toast'
 
 
 class App extends Component {
@@ -20,7 +21,11 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      loggedInUser: null
+      loggedInUser: null,
+      toast: {
+        visible: false,
+        text: ''
+      }
     }
     this.AuthService = new AuthService()
   }
@@ -34,29 +39,37 @@ class App extends Component {
       .catch(err => console.log({ err }))
   }
 
+  handleToast = (visible, text = '') => {
+    let toastCopy = { ...this.state.toast }
+    toastCopy = { visible, text }
+    this.setState({ toast: toastCopy })
+  }
+
   render() {
 
     this.fetchUser()
     
     return (
       <>
-        <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser}/>
+        <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast} />
   
   
         <Switch>
           <Route exact path="/" render={() => <Home />} />
           <Route path="/eventList" render={() => <EventList loggedInUser={this.state.loggedInUser}/>} />
           <Route path="/eventDetails/:id" render={props => <EventDetails {...props} />} />
-          <Route path="/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser}/>} />
-          <Route path="/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} />} />
+          <Route path="/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
+          <Route path="/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
           <Route path="/profile" render={props =>
             this.state.loggedInUser
               ?
               <Profile {...props} loggedInUser={this.state.loggedInUser} />
               :
               <Redirect to='/signup' />} />
-          
         </Switch>
+
+        <OurToast {...this.state.toast} handleToast={this.handleToast} />
+
       </>
     )
 

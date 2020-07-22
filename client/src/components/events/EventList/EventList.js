@@ -18,6 +18,7 @@ class EventList extends Component {
         super(props)
         this.state = {
             events: [],
+            filteredEvents: [],
             showModal: false
         }
         this.EventService = new EventService()
@@ -43,7 +44,7 @@ class EventList extends Component {
     handleSearchSubmit = () => {
         this.EventService
             .filteredEvents()
-            .then(response => console.log(response.data))
+            .then(response => console.log(response.data)) //this.setState.
             .catch(err => console.log(err))
     }
 

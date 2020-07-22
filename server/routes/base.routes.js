@@ -40,22 +40,22 @@ router.post('/search', (req, res, next) => {
 })
 
 
-router.get('/search', (req, res, next) => {
-    const name = req.query.name
-    const regex = new RegExp('^[a-zA-Z0-9 \',]*' + name + '[a-zA-Z0-9 \',]*', 'i')
+// router.get('/search', (req, res, next) => {
+//     const name = req.query.name
+//     const regex = new RegExp('^[a-zA-Z0-9 \',]*' + name + '[a-zA-Z0-9 \',]*', 'i')
     
-    if (req.query.name) {
-        Event
-            .find({ name: { $regex: regex } })
-            .then(response => res.json(response))
-            .catch(err => next(err))
-    } else {
-        Event
-            .find()
-            .then(response => res.json(response))
-            .catch(err => next(err))
-    }
-})
+//     if (req.query.name) {
+//         Event
+//             .find({ name: { $regex: regex } })
+//             .then(response => res.json(response))
+//             .catch(err => next(err))
+//     } else {
+//         Event
+//             .find()
+//             .then(response => res.json(response))
+//             .catch(err => next(err))
+//     }
+// })
 
 router.get('/myEvents', (req, res, next) => {           //corregir respuesta
 
