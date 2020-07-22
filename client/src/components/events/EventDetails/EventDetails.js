@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Link, Redirect } from 'react-router-dom'
+import SimpleMap from './../../UI/Map/Map'
 
 
 
@@ -39,6 +40,7 @@ class EventDetails extends Component {
 
                     (<Container as='main'>
                         <h3>Aquí va el mapa</h3>
+
                         {this.state.eventDetails.location}
                         <p>Nº de usuarios que asistirán</p>
                         <Row>
@@ -59,6 +61,9 @@ class EventDetails extends Component {
                                 <img src={this.state.eventDetails.image_url} alt={this.state.eventDetails.name} />
                             </Col>
                         </Row>
+
+                        <SimpleMap />
+
                         <Link className="btn btn-dark btn-md" to='/eventList'>Volver</Link>
                     </Container>
                     )
