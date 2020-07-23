@@ -3,14 +3,13 @@ import './EventList.css'
 
 import EventService from '../../../../service/EventService'
 
-import EventCard from '../EventCard/EventCard'
-import EventForm from '../EventForm/EventForm'
-import SearchForm from './../../../UI/SearchBar/SearchBar'
+import EventCard from '../EventCard'
+import SearchForm from '../../../UI/SearchBar/SearchBar'
+import CustomModal from './CustomModal'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
 
 
 class EventList extends Component {
@@ -54,28 +53,15 @@ class EventList extends Component {
                     
                     <h1>Eventos activos</h1>
 
-                    {
-                        this.props.loggedInUser && <Button onClick={() => this.handleModal(true)} className="create-btn">Crear nuevo evento</Button>
-                    }
+                    {this.props.loggedInUser && <Button onClick={() => this.handleModal(true)} className="create-btn">Crear nuevo evento</Button>}
 
-                    {
-                        this.state.events.length === 0
-                            ?
-                            <h3>No hay eventos activos en este momento, crea uno!</h3>
-                            :
+                    {this.state.events.length === 0 ? <h3>No hay eventos activos en este momento, crea uno!</h3> :
 
-                            <Row>
-                                {this.state.events.map(elm => <EventCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} />)}
-                            </Row>
-                    }
+                    <Row>{this.state.events.map(elm => <EventCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} />)}</Row>}
 
                 </Container>
 
-                <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
-                    <Modal.Body>
-                        <EventForm {...this.props} handleEventSubmit={this.handleEventSubmit} />
-                    </Modal.Body>
-                </Modal>
+                <CustomModal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)} handleEventSubmit={this.handleEventSubmit} {...this.props} />
             </>
         )
     }
