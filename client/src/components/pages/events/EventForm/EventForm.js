@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import EventService from './../../../service/EventService'
+import EventService from './../../../../service/EventService'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -13,7 +13,7 @@ class EventForm extends Component {
             location: '',
             image_url: '',
             date: '',
-            created_by: this.props.props.loggedInUser.username
+            created_by: this.props.loggedInUser.username
         }
         this.EventService = new EventService()
     }
@@ -29,7 +29,7 @@ class EventForm extends Component {
             .createEvent(this.state)
             .then(() => {
                 this.props.handleEventSubmit()
-                this.props.props.handleToast(true, 'Evento creado!')
+                this.props.handleToast(true, 'Evento creado!')
             })
             .catch(err => console.log(err))
     }

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import './EventList.css'
 
-import EventService from '../../../service/EventService'
+import EventService from '../../../../service/EventService'
 
 import EventCard from '../EventCard/EventCard'
 import EventForm from '../EventForm/EventForm'
-import SearchForm from './../../UI/SearchBar/SearchBar'
+import SearchForm from './../../../UI/SearchBar/SearchBar'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -73,7 +73,7 @@ class EventList extends Component {
 
                 <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
                     <Modal.Body>
-                        <EventForm props={this.props} handleEventSubmit={this.handleEventSubmit} />
+                        <EventForm {...this.props} handleEventSubmit={this.handleEventSubmit} />
                     </Modal.Body>
                 </Modal>
             </>

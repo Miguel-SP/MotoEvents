@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import './EventDetails.css'
-import EventService from './../../../service/EventService'
+import EventService from './../../../../service/EventService'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { Link, Redirect } from 'react-router-dom'
-import MapWithAMarker from './../../UI/Map/Map'
+import { Link } from 'react-router-dom'
+import MapWithAMarker from './../../../UI/Map/Map'
 
 
 
@@ -34,9 +34,7 @@ class EventDetails extends Component {
     render() {
         return (
 
-            this.props.loggedInUser ?
-
-                (!this.state.eventDetails ? <h3>Cargando...</h3> :
+                !this.state.eventDetails ? <h3>Cargando...</h3> :
 
                     (<Container as='main'>
 
@@ -70,9 +68,8 @@ class EventDetails extends Component {
                         <Link className="btn btn-dark btn-md" to='/eventList'>Volver</Link>
                     </Container>
                     )
-                )
                 
-            : <Redirect to='/login' />)
+        )
     }
 }
 

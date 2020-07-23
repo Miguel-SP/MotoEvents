@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import AuthService from './../../service/AuthService'
+import AuthService from './../../../service/AuthService'
 
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -9,13 +9,12 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 
-class SignupForm extends Component {
+class LoginForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
             username: '',
-            password: '',
-            motorbike:''
+            password: ''
         }
         this.AuthService = new AuthService()
     }
@@ -29,10 +28,10 @@ class SignupForm extends Component {
     handleFormSubmit = e => {
         e.preventDefault()
         this.AuthService
-            .signup(this.state)
+            .login(this.state)
             .then(response => {
                 this.props.setTheUser(response.data)
-                this.props.handleToast(`${this.state.username} registrado!`)
+                this.props.handleToast(`Bienvenido ${this.state.username}!`)
                 this.props.history.push('/eventList')
             })
             .catch(err => console.log(err.response.data.message))
@@ -44,7 +43,7 @@ class SignupForm extends Component {
 
                 <Row>
                     <Col md={{ offset: 3, span: 6 }}>
-                        <h3>Registro de usuario</h3>
+                        <h3>Inicio de sesión</h3>
 
                         <hr></hr>
 
@@ -54,21 +53,16 @@ class SignupForm extends Component {
                                 <Form.Label>Nombre de usuario</Form.Label>
                                 <Form.Control onChange={this.handleInputChange} value={this.state.username} name="username" type="text" />
                             </Form.Group>
+                            <Form.Control.Feedback type="invalid">
+                                Please choose a username.
+                            </Form.Control.Feedback>
 
                             <Form.Group>
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control onChange={this.handleInputChange} value={this.state.password} name="password" type="password" />
-                                <Form.Text className="text-muted">Mínimo cuatro caracteres.</Form.Text>
                             </Form.Group>
 
-                            <Form.Group controlId="exampleForm.ControlSelect1">
-                                <Form.Label>¿Qué moto tienes?</Form.Label>
-                                <Form.Control as="select" onChange={this.handleInputChange} value={this.state.motorbike} name="motorbike">
-                                    <option>1</option>
-                                </Form.Control>
-                            </Form.Group>
-
-                            <Button variant="dark" type="submit">Registrarme</Button>
+                            <Button variant="dark" type="submit">Iniciar sesión</Button>
                         </Form>
 
                     </Col>
@@ -80,4 +74,4 @@ class SignupForm extends Component {
     }
 }
 
-export default SignupForm
+export default LoginForm

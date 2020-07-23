@@ -6,15 +6,15 @@ import './App.css'
 
 import AuthService from './../service/AuthService'
 
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
-import EventList from './events/EventList/EventList'
-import EventDetails from './events/EventDetails/EventDetails'
+import EventList from './pages/events/EventList/EventList'
+import EventDetails from './pages/events/EventDetails/EventDetails'
 import Navigation from './UI/Navbar/Navbar'
-import Home from './home/Home'
-import SignupForm from './auth/SignupForm'
-import LoginForm from './auth/LoginForm'
-import Profile from './profile/Profile'
+import Home from './pages/home/Home'
+import SignupForm from './pages/auth/SignupForm'
+import LoginForm from './pages/auth/LoginForm'
+import Profile from './pages/profile/Profile'
 import OurToast from './UI/Toast/Toast'
 
 
@@ -55,10 +55,17 @@ class App extends Component {
         <Switch>
           <Route exact path="/" render={() => <Home />} />
           <Route path="/eventList" render={() => <EventList loggedInUser={this.state.loggedInUser} handleToast={this.handleToast}/>} />
-          <Route path="/eventDetails/:id" render={props => <EventDetails {...props} loggedInUser={this.state.loggedInUser}/>} />
+          <Route path="/eventDetails/:id" render={props => this.state.loggedInUser
+            ? (<EventDetails {...props} loggedInUser={this.state.loggedInUser} />)
+            : <Redirect to='/login' />}
+          />
           <Route path="/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
           <Route path="/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
-          <Route path="/profile" render={props =><Profile {...props} loggedInUser={this.state.loggedInUser} />} />
+          <Route path="/profile" render={props => this.state.loggedInUser 
+            ? (<Profile {...props} loggedInUser={this.state.loggedInUser} />)
+            : <Redirect to='/login' />} 
+          />
+          
         </Switch>
 
         <OurToast {...this.state.toast} handleToast={this.handleToast} />
