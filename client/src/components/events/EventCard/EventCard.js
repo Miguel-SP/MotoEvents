@@ -13,7 +13,7 @@ const EventCard = props => {
 
         return (
             <Col className="card-col" sm={12} md={6} lg={4}>
-                <Card className="event-card" >
+                <Card border="light" className="event-card" >
                     <Card.Img variant="top" src={props.image_url} />
                     <Card.Body>
                         <Card.Title>{props.name}</Card.Title>

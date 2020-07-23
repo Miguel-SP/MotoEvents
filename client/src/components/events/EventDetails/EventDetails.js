@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Link, Redirect } from 'react-router-dom'
-import SimpleMap from './../../UI/Map/Map'
+import MapWithAMarker from './../../UI/Map/Map'
 
 
 
@@ -39,7 +39,6 @@ class EventDetails extends Component {
                 (!this.state.eventDetails ? <h3>Cargando...</h3> :
 
                     (<Container as='main'>
-                        <h3>Aquí va el mapa</h3>
 
                         {this.state.eventDetails.location}
                         <p>Nº de usuarios que asistirán</p>
@@ -62,8 +61,12 @@ class EventDetails extends Component {
                             </Col>
                         </Row>
 
-                        <SimpleMap />
-
+                        <MapWithAMarker
+                            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHrgPHA7BELu_lBj8LSDBoIrS9y9vsKK8&v=3.exp&libraries=geometry,drawing,places"
+                            loadingElement={<div style={{ height: `100%` }} />}
+                            containerElement={<div style={{ height: `30vh` }} />}
+                            mapElement={<div style={{ height: `100%` }} />}
+                        />
                         <Link className="btn btn-dark btn-md" to='/eventList'>Volver</Link>
                     </Container>
                     )
