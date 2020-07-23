@@ -17,5 +17,5 @@ const motoSchema = new Schema({
     timestamps: true
 })
 
-const Event = mongoose.model('Moto', motoSchema)
-module.exports = Event
+const Moto = mongoose.model('Moto', motoSchema)
+module.exports = Moto

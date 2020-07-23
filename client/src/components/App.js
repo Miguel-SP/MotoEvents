@@ -10,12 +10,12 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 
 import EventList from './pages/events/EventList'
 import EventDetails from './pages/events/EventDetails'
-import Navigation from './UI/Navbar/Navbar'
+import Navigation from './UI/Navbar'
 import Home from './pages/home'
 import SignupForm from './pages/auth/SignupForm'
 import LoginForm from './pages/auth/LoginForm'
 import Profile from './pages/profile'
-import OurToast from './UI/Toast/Toast'
+import OurToast from './UI/Toast'
 
 
 class App extends Component {

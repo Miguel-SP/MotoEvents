@@ -3,8 +3,8 @@ import './EventList.css'
 
 import EventService from '../../../../service/EventService'
 
-import EventCard from '../EventCard'
-import SearchForm from '../../../UI/SearchBar/SearchBar'
+import EventCard from './EventCard'
+import SearchForm from '../../../UI/SearchBar'
 import CustomModal from './CustomModal'
 
 import Container from 'react-bootstrap/Container'

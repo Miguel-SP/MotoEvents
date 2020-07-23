@@ -1,6 +1,6 @@
 import React from 'react'
 import Modal from 'react-bootstrap/Modal'
-import EventForm from '../EventForm'
+import EventForm from './EventForm'
 
 
 

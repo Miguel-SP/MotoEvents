@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import EventService from '../../../../service/EventService'
+import EventService from '../../../../../service/EventService'
+import CityAutocomplete from './../../../../UI/Map/CityAutocomplete'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -10,13 +11,28 @@ class EventForm extends Component {
         this.state = {
             name: '',
             description: '',
-            location: '',
+            location: {
+                city: '',
+                coordinates: []
+            },
             image_url: '',
             date: '',
-            created_by: this.props.loggedInUser.username
+            ownerId: this.props.loggedInUser._id
         }
         this.EventService = new EventService()
     }
+
+
+    getTheCity = (theCity) => this.setState({
+            ...this.state,
+        location: {
+            city: theCity.city,
+            coordinates: [theCity.coordinates.lat, theCity.coordinates.lng]
+        }
+    })
+    
+
+    
 
     handleInputChange = e => {
         const { name, value } = e.target
@@ -53,7 +69,7 @@ class EventForm extends Component {
 
                     <Form.Group>
                         <Form.Label>Ubicación</Form.Label>
-                        <Form.Control onChange={this.handleInputChange} value={this.state.location} name="location" type="text" />
+                        <CityAutocomplete getTheCity={(theCity => this.getTheCity(theCity))}/>
                     </Form.Group>
 
                     <Form.Group>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EventService from './../../../service/EventService'
+import EventService from '../../../service/EventService'
 
 import Form from 'react-bootstrap/Form'
 

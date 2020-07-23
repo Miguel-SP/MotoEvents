@@ -27,7 +27,7 @@ const EventCard = props => {
                             </>)
                         }
                     </Card.Body>
-                    <Card.Footer>Iniciado por {props.created_by}</Card.Footer>
+                    <Card.Footer>Iniciado por {props.ownerId}</Card.Footer>
                 </Card>
             </Col>
     
