@@ -1,1 +1,0 @@
-export default { KEY: 'AIzaSyCHrgPHA7BELu_lBj8LSDBoIrS9y9vsKK8' }
