@@ -38,7 +38,6 @@ class EventDetails extends Component {
                 (<Container as='main'>
 
                     {this.state.eventDetails.location.city}
-                    <p>Y el owner id es:{this.state.eventDetails.ownerId}</p>
                     <p>Nº de usuarios que asistirán</p>
                     <Row>
                         <Col className="col-details" md={{ span: 6, offset: 1 }}>
@@ -47,7 +46,7 @@ class EventDetails extends Component {
                             <p><b>Detalles:</b> {this.state.eventDetails.description}</p>
                             <p><b>Fecha:</b> {this.state.eventDetails.date}</p>
                             <hr></hr>
-                            <p>Creado por {this.state.eventDetails.created_by}</p>
+                            <p>Creado por {this.state.eventDetails.ownerId.username}</p>
                             <hr></hr>
                             <div className="details-btn">
                                 <Link className="join-btn btn btn-light" to='/profile/add/myEvents'>Unirse</Link>

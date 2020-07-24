@@ -9,6 +9,7 @@ const Event = require('../models/Event.model')
 router.get('/eventList', (req, res, next) => {
 
     Event.find()
+        .populate('ownerId')
         .then(response => res.json(response))
         .catch(err => next(err))
 })
@@ -16,6 +17,7 @@ router.get('/eventList', (req, res, next) => {
 router.get('/eventDetails/:id', checkAuthenticated, (req, res, next) => {
 
     Event.findById(req.params.id)
+        .populate('ownerId')
         .then(response => res.json(response))
         .catch(err => next(err))
 })

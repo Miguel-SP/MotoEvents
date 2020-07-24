@@ -9,17 +9,17 @@ const User = require('../models/User.model')
 // Endpoints
 
 
-router.get('/myEvents', checkAuthenticated, (req, res, next) => {           //corregir respuesta
+// router.get('/profile', checkAuthenticated, (req, res, next) => {           //corregir respuesta
 
-    User                                                    
-        .findById(req.user._id)
-        .populate('events')
-        .then(user => {
-            let array = user.events
-            res.json(response, { array, user: req.user })
-        })
-        .catch(err => next(err))
-})
+//     User                                                    
+//         .findById(req.user._id)
+//         .populate('events')
+//         .populate('motorbike')
+//         .populate('comments')
+//         .then(response => res.json(response))
+//         .catch(err => next(err))
+
+// })
 
 // router.post('/myEvents/add/:event_id', checkAuthenticated, (req, res, next) => {
 

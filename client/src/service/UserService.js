@@ -9,7 +9,7 @@ class UserService {
         })
     }
 
-    myEvents = () => this.service.get(`/myEvents`)
+    // getProfile = _id => this.service.get(`/profile`, _id)
 }
 
 export default UserService
