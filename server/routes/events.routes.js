@@ -4,6 +4,8 @@ const router = express.Router()
 const checkAuthenticated = (req, res, next) => req.isAuthenticated() ? next() : res.redirect('/login')
 
 const Event = require('../models/Event.model')
+const User = require('../models/User.model')
+
 
 // Endpoints
 router.get('/eventList', (req, res, next) => {
@@ -39,6 +41,15 @@ router.post('/search', (req, res, next) => {
         .then(response => res.json(response))
         .catch(err => next(err))
 })
+
+
+router.post('/eventDetails/delete/:id', checkAuthenticated, (req, res, next) => {
+
+    Event.findByIdAndRemove(req.params.id)
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
+
 
 
 module.exports = router
