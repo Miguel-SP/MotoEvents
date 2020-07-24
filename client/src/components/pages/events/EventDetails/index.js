@@ -30,6 +30,13 @@ class EventDetails extends Component {
             .catch(err => console.log(err))
     }
 
+    deleteEvent = (id) => {
+        this.EventService.deleteEvent(id)
+            .then((response) => {
+                const updateEvent = this.props.remove()
+            })
+    }
+
     render() {
         return (
 
@@ -51,6 +58,7 @@ class EventDetails extends Component {
                             <div className="details-btn">
                                 <Link className="join-btn btn btn-light" to='/profile/add/myEvents'>Unirse</Link>
                                 <Link className="join-btn btn btn-light" to='/profile/add/myEvents'>Comentar</Link>
+                                <Link className="join-btn btn btn-light" to='/profile/add/myEvents'>Borrar</Link>
                             </div>
                         </Col>
                         <Col className="col-details" md={{ span: 5, offset: 1 }}>
