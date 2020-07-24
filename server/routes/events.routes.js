@@ -4,7 +4,6 @@ const router = express.Router()
 const checkAuthenticated = (req, res, next) => req.isAuthenticated() ? next() : res.redirect('/login')
 
 const Event = require('../models/Event.model')
-const User = require('../models/User.model')
 
 
 // Endpoints

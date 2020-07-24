@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './EventDetails.css'
 import EventService from '../../../../service/EventService'
-
+import UserService from './../../../../service/UserService'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -18,6 +18,7 @@ class EventDetails extends Component {
 
         }
         this.EventService = new EventService()
+        this.UserService = new UserService()
 
     }
 
@@ -40,6 +41,20 @@ class EventDetails extends Component {
 
     }
 
+    joiningEvent = () => {                                      // Nos está llegando null en la promise del Event Id.
+        const eventId = this.props.match.params.id
+        const userId = this.props.loggedInUser._id
+        this.UserService
+            .joinEvent(userId, eventId)
+            .then((response) => {
+                if (!response.data[0].events.some(elm => elm === response.data[1]._id)) {
+                    response.data[0].events.push(response.data[1])
+                }
+            }).then (console.log(this.props.loggedInUser))
+            .catch(err => console.log(err))
+    }
+
+
     render() {
         return (
 
@@ -59,7 +74,7 @@ class EventDetails extends Component {
                             <p>Creado por {this.state.eventDetails.ownerId.username}</p>
                             <hr></hr>
                             <div className="details-btn">
-                                <Link className="join-btn btn btn-light" onClick={() => this.deletingEvent()} to='/profile/add/myEvents'>Unirse</Link>
+                                <Link className="join-btn btn btn-light" onClick={() => this.joiningEvent()}>Unirse</Link>
                                 <Link className="join-btn btn btn-light" to='/profile/add/myEvents'>Comentar</Link>
 
                                 {(this.props.loggedInUser._id === this.state.eventDetails.ownerId._id) &&
