@@ -59,10 +59,10 @@ class EventDetails extends Component {
                             <p>Creado por {this.state.eventDetails.ownerId.username}</p>
                             <hr></hr>
                             <div className="details-btn">
-                                <Link className="join-btn btn btn-light" to='/profile/add/myEvents'>Unirse</Link>
+                                <Link className="join-btn btn btn-light" onClick={() => this.deletingEvent()} to='/profile/add/myEvents'>Unirse</Link>
                                 <Link className="join-btn btn btn-light" to='/profile/add/myEvents'>Comentar</Link>
 
-                                {(this.props.loggedInUser._id == this.state.eventDetails.ownerId._id) &&
+                                {(this.props.loggedInUser._id === this.state.eventDetails.ownerId._id) &&
                                 <Link className="join-btn btn btn-light" onClick={() => this.deletingEvent()} to='/eventList'>Borrar</Link>}
                                 
                             </div>
@@ -72,7 +72,7 @@ class EventDetails extends Component {
                         </Col>
                     </Row>
 
-                    <MapWithAMarker location={this.state.eventDetails.location} googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHrgPHA7BELu_lBj8LSDBoIrS9y9vsKK8&v=3.exp&libraries=geometry,drawing,places"
+                    <MapWithAMarker location={this.state.eventDetails.location} googleMapURL={`${process.env.MAPS_API_URL}`}
                         loadingElement={<div style={{ height: `30vh` }} />}
                         containerElement={<div style={{ height: `30vh` }} />}
                         mapElement={<div style={{ height: `30vh` }} />} />
