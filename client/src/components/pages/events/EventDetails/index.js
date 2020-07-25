@@ -15,6 +15,7 @@ class EventDetails extends Component {
         super(props)
         this.state = {
             eventDetails: undefined,
+            joinedEvents:[],
 
         }
         this.EventService = new EventService()
@@ -38,19 +39,14 @@ class EventDetails extends Component {
         this.EventService
             .deleteEvent(id)
             .catch(err => console.log(err))
-
     }
 
     joiningEvent = () => {                                      // Nos está llegando null en la promise del Event Id.
-        const eventId = this.props.match.params.id
-        const userId = this.props.loggedInUser._id
+        const id = this.props.match.params.id
+        
         this.UserService
-            .joinEvent(userId, eventId)
-            .then((response) => {
-                if (!response.data[0].events.some(elm => elm === response.data[1]._id)) {
-                    response.data[0].events.push(response.data[1])
-                }
-            }).then (console.log(this.props.loggedInUser))
+            .joinEvent(id)
+            .then(response => console.log(response))
             .catch(err => console.log(err))
     }
 

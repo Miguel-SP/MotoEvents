@@ -6,6 +6,7 @@ const checkAuthenticated = (req, res, next) => req.isAuthenticated() ? next() : 
 
 const User = require('../models/User.model')
 const Event = require('../models/Event.model')
+const { response } = require('express')
 
 
 // Endpoints
@@ -40,13 +41,10 @@ const Event = require('../models/Event.model')
 //         .catch(err => next(err))
 // })
 
-router.post('/eventDetails/add/:event_id', checkAuthenticated, (req, res, next) => {
+router.post('/eventDetails/:id', checkAuthenticated, (req, res, next) => {
 
-    const eventPromise = Event.findById(req.params.id)
-    const userPromise = User.findById(req.user._id) 
-
-    Promise
-        .all([userPromise, eventPromise])
+    User
+        .findByIdAndUpdate(req.user._id, { $push: { events: req.params.id } })
         .then(response => res.json(response))
         .catch(err => next(err))
 })

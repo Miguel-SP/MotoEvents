@@ -20,12 +20,7 @@ const EventCard = props => {
                         <Card.Text>{props.date.slice(0, 10)}</Card.Text>
                     </Card.Body>
                     <Card.Body className="card-buttons">
-                        {props.loggedInUser && (
-                            <>
-                                <Link to="/profile/add/myEvents" className="join-btn btn btn-light">Unirme</Link>
-                                <Link to={`/eventDetails/${props._id}`} className="join-btn btn btn-light">Detalles</Link>
-                            </>)
-                        }
+                        {props.loggedInUser && <Link to={`/eventDetails/${props._id}`} className="join-btn btn btn-light">Detalles</Link>}
                     </Card.Body>
                     <Card.Footer>Iniciado por {props.ownerId.username}</Card.Footer>
                 </Card>
