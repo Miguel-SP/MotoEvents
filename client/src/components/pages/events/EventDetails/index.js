@@ -14,9 +14,7 @@ class EventDetails extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            eventDetails: undefined,
-            joinedEvents:[],
-
+            eventDetails: undefined
         }
         this.EventService = new EventService()
         this.UserService = new UserService()
@@ -34,20 +32,35 @@ class EventDetails extends Component {
     }
 
     deletingEvent = () => {
-        const id = this.props.match.params.id
+        let id = this.props.match.params.id
 
         this.EventService
             .deleteEvent(id)
             .catch(err => console.log(err))
     }
 
-    joiningEvent = () => {                                      // Nos está llegando null en la promise del Event Id.
-        const id = this.props.match.params.id
+    joiningEvent = () => {                                      
+        let id = this.props.match.params.id
+        let actualUser = this.props.loggedInUser
         
-        this.UserService
-            .joinEvent(id)
-            .then(response => console.log(response))
-            .catch(err => console.log(err))
+        if (!this.state.eventDetails.joinedUsers.some(us => us === actualUser._id)) {
+
+            this.UserService
+                .joinEvent(id)
+                .catch(err => console.log(err))
+        } 
+    }
+
+    userJoin = () => {
+        let id = this.props.match.params.id
+        let actualUser = this.props.loggedInUser
+
+        if (!this.state.eventDetails.joinedUsers.some(us => us === actualUser._id)) {
+
+            this.EventService
+                .userJoined(id)
+                .catch(err => console.log(err))
+        }
     }
 
 
@@ -57,8 +70,6 @@ class EventDetails extends Component {
             !this.state.eventDetails ? <h3>Cargando...</h3> :
 
                 (<Container as='main'>
-
-                    {this.state.eventDetails.location.city}
                     <p>Nº de usuarios que asistirán</p>
                     <Row>
                         <Col className="col-details" md={{ span: 6, offset: 1 }}>
@@ -66,11 +77,16 @@ class EventDetails extends Component {
                             <hr></hr>
                             <p><b>Detalles:</b> {this.state.eventDetails.description}</p>
                             <p><b>Fecha:</b> {this.state.eventDetails.date}</p>
+                            <p><b>Lugar:</b> {this.state.eventDetails.location.city}</p>
                             <hr></hr>
                             <p>Creado por {this.state.eventDetails.ownerId.username}</p>
                             <hr></hr>
                             <div className="details-btn">
-                                <Link className="join-btn btn btn-light" onClick={() => this.joiningEvent()}>Unirse</Link>
+                                <Link className="join-btn btn btn-light" onClick={() => {
+                                    this.joiningEvent()
+                                    this.userJoin()
+                                }}>Unirse</Link>
+
                                 <Link className="join-btn btn btn-light" to='/profile/add/myEvents'>Comentar</Link>
 
                                 {(this.props.loggedInUser._id === this.state.eventDetails.ownerId._id) &&
@@ -88,7 +104,7 @@ class EventDetails extends Component {
                         containerElement={<div style={{ height: `30vh` }} />}
                         mapElement={<div style={{ height: `30vh` }} />} />
 
-                    <Link className="btn btn-dark btn-md" to='/eventList'>Volver</Link>
+                    <Link className="btn btn-dark btn-md btn-back" to='/eventList'>Volver</Link>
                 </Container>
                 )
 

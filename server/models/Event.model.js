@@ -11,7 +11,8 @@ const eventSchema = new Schema({
     },
     image_url: { type: String },
     date: { type: Date, default: Date.now, required: true },
-    ownerId: { type: Schema.Types.ObjectId, ref: 'User' }
+    ownerId: { type: Schema.Types.ObjectId, ref: 'User' },
+    joinedUsers: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 
 }, {
     timestamps: true

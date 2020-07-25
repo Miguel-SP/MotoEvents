@@ -14,6 +14,8 @@ class EventService {
     searchEvents = name => this.service.post('/search', name)
     getAllEvents = () => this.service.get('/eventList')
     deleteEvent = id => this.service.post(`eventDetails/delete/${id}`)
+    userJoined = id => this.service.post(`/eventDetails/join/${id}`)
+
 }
 
 export default EventService

@@ -6,7 +6,6 @@ import ListGroup from 'react-bootstrap/esm/ListGroup'
 
 
 const Profile = props => {
-    console.log(props)
 
     return (
             
