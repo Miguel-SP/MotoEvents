@@ -70,7 +70,6 @@ class EventDetails extends Component {
             !this.state.eventDetails ? <h3>Cargando...</h3> :
 
                 (<Container as='main'>
-                    <p>Nº de usuarios que asistirán</p>
                     <Row>
                         <Col className="col-details" md={{ span: 6, offset: 1 }}>
                             <h3> {this.state.eventDetails.name}</h3>
@@ -78,6 +77,7 @@ class EventDetails extends Component {
                             <p><b>Detalles:</b> {this.state.eventDetails.description}</p>
                             <p><b>Fecha:</b> {this.state.eventDetails.date}</p>
                             <p><b>Lugar:</b> {this.state.eventDetails.location.city}</p>
+                            <p><b>{this.state.eventDetails.joinedUsers.length}</b> usuarios asistirán este evento</p>
                             <hr></hr>
                             <p>Creado por {this.state.eventDetails.ownerId.username}</p>
                             <hr></hr>

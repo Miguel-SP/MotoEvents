@@ -61,7 +61,7 @@ class App extends Component {
           />
           <Route path="/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
           <Route path="/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
-          <Route path="/profile" render={props => this.state.loggedInUser 
+          <Route path="/profile/:id" render={props => this.state.loggedInUser 
             ? (<Profile {...props} loggedInUser={this.state.loggedInUser} />)
             : <Redirect to='/login' />} 
           />

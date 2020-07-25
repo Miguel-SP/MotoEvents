@@ -4,7 +4,7 @@ import EventForm from './EventForm'
 
 
 
-const CustomModal = (props) => 
+const CustomModal = props => 
 
         <Modal show={props.show} onHide={props.onHide}>
             <Modal.Body>

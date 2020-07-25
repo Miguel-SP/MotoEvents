@@ -9,9 +9,11 @@ class UserService {
         })
     }
 
-    // getProfile = _id => this.service.get(`/profile`, _id)
+    getProfile = (id) => this.service.get(`/profile/${id}`)
 
-    joinEvent = (id) => this.service.post(`/eventDetails/${id}`)
+    joinEvent = id => this.service.post(`/eventDetails/${id}`)
+
+    unjoinEvent = (id, event) => this.service.post(`/eventDetails/delete/${id}`, event)
 }
 
 export default UserService

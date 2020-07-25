@@ -1,5 +1,5 @@
 
-import React, {Component } from 'react'
+import React, { Component } from 'react'
 import AuthService from '../../../service/AuthService'
 
 
@@ -39,12 +39,17 @@ class Navigation extends Component {
                         <Nav.Link as="span">
                             <NavLink to="/eventList" exact activeStyle={{ color: 'white' }}>Eventos</NavLink>
                         </Nav.Link>
-                        
+
                         {this.props.loggedInUser ?
                             (
-                                <Nav.Link as="span">
-                                    <span onClick={this.logout}>Cerrar sesión</span>
-                                </Nav.Link>
+                                <>
+                                    <Nav.Link as="span">
+                                        <span onClick={this.logout}>Cerrar sesión</span>
+                                    </Nav.Link>
+                                    <Nav.Link as="span">
+                                        <NavLink to={`/profile/${this.props.loggedInUser._id}`} activeStyle={{ color: 'white' }}>Perfil de {this.props.loggedInUser.username}</NavLink>
+                                    </Nav.Link>
+                                </>
                             ) : (
                                 <>
                                     <Nav.Link as="span">
@@ -57,9 +62,7 @@ class Navigation extends Component {
                             )
                         }
 
-                        <Nav.Link as="span">
-                            <NavLink to="/profile" activeStyle={{ color: 'white' }}>{this.props.loggedInUser && `Perfil de ${this.props.loggedInUser.username}`}</NavLink>
-                        </Nav.Link>
+
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

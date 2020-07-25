@@ -5,24 +5,20 @@ const checkAuthenticated = (req, res, next) => req.isAuthenticated() ? next() : 
 
 
 const User = require('../models/User.model')
-const Event = require('../models/Event.model')
-const { response } = require('express')
 
 
 // Endpoints
 
 
-// router.get('/profile', checkAuthenticated, (req, res, next) => {           //corregir respuesta
+router.get('/profile/:id', checkAuthenticated, (req, res, next) => {           
 
-//     User                                                    
-//         .findById(req.user._id)
-//         .populate('events')
-//         .populate('motorbike')
-//         .populate('comments')
-//         .then(response => res.json(response))
-//         .catch(err => next(err))
+    User                                                    
+        .findById(req.params.id)
+        .populate('events')
+        .then(response => res.json(response))
+        .catch(err => next(err))
 
-// })
+})
 
 // router.post('/myEvents/add/:event_id', checkAuthenticated, (req, res, next) => {
 
@@ -49,7 +45,13 @@ router.post('/eventDetails/:id', checkAuthenticated, (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.post('/eventDetails/delete/:id', checkAuthenticated, (req, res, next) => {
 
+    User
+        .findByIdAndUpdate(req.user._id, { $pull: { events: req.params.id } })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
 
 
 module.exports = router

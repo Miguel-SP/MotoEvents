@@ -30,9 +30,6 @@ class EventForm extends Component {
             coordinates: [theCity.coordinates.lat, theCity.coordinates.lng]
         }
     })
-    
-
-    
 
     handleInputChange = e => {
         const { name, value } = e.target
