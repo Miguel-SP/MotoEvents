@@ -89,12 +89,11 @@ class Profile extends Component {
                             {this.props.loggedInUser.motorbike}
                             <Button className="create-btn btn btn-primary" onClick={() => this.handleModal(true)}>Marca y modelo</Button>
 
-                            <Modal size="md" show={this.state.showModal} onHide={() => this.handleModal(false)}>
-                                <Modal.Body>
-                                    <p>Modal con gráfico de nivo.rocks</p>
-                                    <Radar/>
-                                </Modal.Body>
-                            </Modal>
+                                <Modal size="md" show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                                    <Modal.Body>
+                                        <Radar />
+                                    </Modal.Body>
+                                </Modal>
 
                         </Col>
 

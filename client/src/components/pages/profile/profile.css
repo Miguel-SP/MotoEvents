@@ -21,3 +21,12 @@ text-align: center;
     justify-content: flex-end;
 
 }
+
+.modal-body {
+    height: 650px;
+    background-color: rgba(200, 200, 200, 0.2);
+}
+
+.modal-content {
+    opacity: 0.9;
+}

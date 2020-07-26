@@ -1,32 +1,32 @@
 [
     {
-        "taste": "fruity",
-        "chardonay": 24,
-        "carmenere": 48,
-        "syrah": 39
+        "taste": "price",
+        "power": 24,
+        "weight": 48,
+        "price": 39
     },
     {
-        "taste": "bitter",
-        "chardonay": 90,
-        "carmenere": 113,
-        "syrah": 84
+        "taste": "weight",
+        "power": 90,
+        "weight": 113,
+        "price": 84
     },
     {
-        "taste": "heavy",
-        "chardonay": 97,
-        "carmenere": 111,
-        "syrah": 53
+        "taste": "power",
+        "power": 97,
+        "weight": 111,
+        "price": 53
     },
     {
-        "taste": "strong",
-        "chardonay": 118,
-        "carmenere": 74,
-        "syrah": 69
+        "taste": "displacement",
+        "power": 118,
+        "weight": 74,
+        "price": 69
     },
     {
-        "taste": "sunny",
-        "chardonay": 60,
-        "carmenere": 25,
-        "syrah": 27
+        "taste": "torque",
+        "power": 60,
+        "weight": 25,
+        "price": 27
     }
 ]
