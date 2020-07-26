@@ -42,7 +42,7 @@ class LoginForm extends Component {
             <Container as="main">
 
                 <Row>
-                    <Col md={{ offset: 3, span: 6 }}>
+                    <Col md={{ offset: 2, span: 8 }}>
                         <h3>Inicio de sesión</h3>
 
                         <hr></hr>

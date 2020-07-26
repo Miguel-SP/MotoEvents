@@ -48,7 +48,7 @@ router.post('/eventDetails/:id', checkAuthenticated, (req, res, next) => {
 router.post('/eventDetails/delete/:id', checkAuthenticated, (req, res, next) => {
 
     User
-        .findByIdAndUpdate(req.user._id, { $pull: { events: req.params.id } })
+        .findByIdAndUpdate(req.user._id, { $pull: { events: req.body } })
         .then(response => res.json(response))
         .catch(err => next(err))
 })

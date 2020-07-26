@@ -1,0 +1,23 @@
+.list-group-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(177, 193, 199);
+    border: none;
+}
+.list-group-item:last-child, .list-group-item:first-child{
+    border-radius: unset;
+}
+
+.col {
+display: flex;
+flex-direction: column;
+justify-content: center;
+text-align: center;
+}
+
+.edit-btn-div {
+    display: flex;
+    justify-content: flex-end;
+
+}

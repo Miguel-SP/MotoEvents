@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import AuthService from '../../../service/AuthService'
+import './navbar.css'
 
 
 import Navbar from 'react-bootstrap/Navbar'
@@ -28,7 +29,7 @@ class Navigation extends Component {
     render() {
 
         return (
-            <Navbar bg="dark" variant="dark" expand="lg" sticky="top" >
+            <Navbar bg="dark" variant="dark" expand="lg" sticky="top" className="navbar">
                 <Navbar.Brand><Link to="/">Moto Events</Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

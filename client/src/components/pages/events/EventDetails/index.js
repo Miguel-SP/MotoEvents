@@ -75,7 +75,7 @@ class EventDetails extends Component {
                             <h3> {this.state.eventDetails.name}</h3>
                             <hr></hr>
                             <p><b>Detalles:</b> {this.state.eventDetails.description}</p>
-                            <p><b>Fecha:</b> {this.state.eventDetails.date}</p>
+                            <p><b>Fecha:</b> {this.state.eventDetails.date.slice(0, 10)}</p>
                             <p><b>Lugar:</b> {this.state.eventDetails.location.city}</p>
                             <p><b>{this.state.eventDetails.joinedUsers.length}</b> usuarios asistirán este evento</p>
                             <hr></hr>
@@ -94,7 +94,7 @@ class EventDetails extends Component {
                                 
                             </div>
                         </Col>
-                        <Col className="col-details" md={{ span: 5, offset: 1 }}>
+                        <Col className="col-details col-img" md={{ span: 6, offset: 1 }}>
                             <img src={this.state.eventDetails.image_url} alt={this.state.eventDetails.name} />
                         </Col>
                     </Row>

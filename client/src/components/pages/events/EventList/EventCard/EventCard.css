@@ -4,15 +4,20 @@
 
 }
 
+.card{
+    background-color: #f8f9fa;
+}
+
 .join-btn {
-    background-color: #F37F00;
-    border-color: #F37F00;
+    background-color: #f77f00;
+    border-color: #f77f00;
     color: white
 }
 
 .card-footer{
     display: flex;
     justify-content: flex-end;
+    background-color: #e9ecef;
 }
 
 .card-img-top{

@@ -8,6 +8,11 @@
     margin: 20px 0;
 }
 
+.col-img{
+    display: flex;
+    align-items: center;
+}
+
 .btn-back{
     margin-top: 20px;
 }

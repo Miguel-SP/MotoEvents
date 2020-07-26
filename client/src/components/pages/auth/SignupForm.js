@@ -43,8 +43,8 @@ class SignupForm extends Component {
             <Container as="main">
 
                 <Row>
-                    <Col md={{ offset: 3, span: 6 }}>
-                        <h3>Registro de usuario</h3>
+                    <Col md={{ offset: 2, span: 8 }}>
+                        <h3>Regístrate para ver los detalles de los eventos!</h3>
 
                         <hr></hr>
 

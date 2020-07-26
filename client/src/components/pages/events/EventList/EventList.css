@@ -4,15 +4,15 @@
 }
 
 .create-btn{
-    background-color: #F37F00;
-    border-color: #F37F00;
+    background-color: #f77f00;
+    border: none;
     margin-bottom: 25px;
 }
 
 .create-btn:hover, .create-btn:focus  {
     color: #fff;
-    background-color: #F37F00;
-    border-color: #F37F00;
+    background-color: #f77f00;
+    border-color: #f77f00;
     box-shadow: none;
     
 }

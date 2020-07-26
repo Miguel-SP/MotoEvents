@@ -14,7 +14,7 @@ const EventCard = props => {
     return (
         <Col className="card-col" sm={12} md={6} lg={4}>
             
-            <Link to={props.loggedInUser ? `/eventDetails/${props._id}` : `/login`}>
+            <Link to={props.loggedInUser ? `/eventDetails/${props._id}` : `/signup`}>
 
                 <Card border="light" className="event-card" >
                     <Card.Img variant="top" src={props.image_url} />
