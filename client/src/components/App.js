@@ -56,7 +56,7 @@ class App extends Component {
           <Route exact path="/" render={() => <Home />} />
           <Route path="/eventList" render={() => <EventList loggedInUser={this.state.loggedInUser} handleToast={this.handleToast}/>} />
           <Route path="/eventDetails/:id" render={props => this.state.loggedInUser
-            ? (<EventDetails {...props} loggedInUser={this.state.loggedInUser} />)
+            ? (<EventDetails {...props} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast}/>)
             : <Redirect to='/login' />}
           />
           <Route path="/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />

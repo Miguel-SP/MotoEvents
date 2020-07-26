@@ -45,7 +45,7 @@ router.post('/eventDetails/:id', checkAuthenticated, (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.post('/eventDetails/delete/:id', checkAuthenticated, (req, res, next) => {
+router.post('/eventDetails/deletefromuser/:id', checkAuthenticated, (req, res, next) => {
 
     User
         .findByIdAndUpdate(req.user._id, { $pull: { events: req.body } })

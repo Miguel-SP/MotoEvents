@@ -59,7 +59,7 @@ class EventList extends Component {
 
                     {this.state.events.length === 0 ? <h3>No hay eventos activos en este momento, crea uno!</h3> :
 
-                    <Row>{this.state.events.map(elm => <EventCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} />)}</Row>}
+                        <Row>{this.state.events.map(elm => <EventCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} />)}</Row>}
 
                 </Container>
 

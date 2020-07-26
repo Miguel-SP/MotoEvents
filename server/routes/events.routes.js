@@ -57,6 +57,15 @@ router.post('/eventDetails/join/:id', checkAuthenticated, (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.post('/eventDetails/deletefromevent/:id', checkAuthenticated, (req, res, next) => {
+
+    Event
+        .findByIdAndUpdate(req.body, { $pull: { joinedUsers: req.user._id } })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
+
+
 
 
 module.exports = router

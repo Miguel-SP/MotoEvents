@@ -14,7 +14,8 @@ class LoginForm extends Component {
         super(props)
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            errorMessage: ''
         }
         this.AuthService = new AuthService()
     }
@@ -34,7 +35,10 @@ class LoginForm extends Component {
                 this.props.handleToast(`Bienvenido ${this.state.username}!`)
                 this.props.history.push('/eventList')
             })
-            .catch(err => console.log(err.response.data.message))
+            .catch(err => {
+                console.log(err.response.data.message)
+                err && this.setState({ errorMessage: err.response.data.message })
+            } )
     }
 
     render() {
@@ -61,6 +65,8 @@ class LoginForm extends Component {
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control onChange={this.handleInputChange} value={this.state.password} name="password" type="password" />
                             </Form.Group>
+                            
+                            {this.state.errorMessage && <p style={{ color: 'red' }}>{this.state.errorMessage}</p>}
 
                             <Button variant="dark" type="submit">Iniciar sesión</Button>
                         </Form>

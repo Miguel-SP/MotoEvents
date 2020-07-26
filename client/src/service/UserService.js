@@ -13,7 +13,7 @@ class UserService {
 
     joinEvent = id => this.service.post(`/eventDetails/${id}`)
 
-    unjoinEvent = (id, key) => this.service.post(`/eventDetails/delete/${id}`, key)
+    unjoinEvent = (id, key) => this.service.post(`/eventDetails/deletefromuser/${id}`, key)
 }
 
 export default UserService

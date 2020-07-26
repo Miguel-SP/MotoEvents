@@ -15,7 +15,8 @@ class SignupForm extends Component {
         this.state = {
             username: '',
             password: '',
-            motorbike:''
+            motorbike: '',
+            errorMessage: ''
         }
         this.AuthService = new AuthService()
     }
@@ -35,7 +36,10 @@ class SignupForm extends Component {
                 this.props.handleToast(`${this.state.username} registrado!`)
                 this.props.history.push('/eventList')
             })
-            .catch(err => console.log(err.response.data.message))
+            .catch(err => {
+                console.log(err.response.data.message)  
+                err && this.setState({ errorMessage: err.response.data.message })
+            })
     }
 
     render() {
@@ -67,6 +71,8 @@ class SignupForm extends Component {
                                     <option>1</option>
                                 </Form.Control>
                             </Form.Group>
+
+                            {this.state.errorMessage && <p style={{ color: 'red' }}>{this.state.errorMessage}</p>}
 
                             <Button variant="dark" type="submit">Registrarme</Button>
                         </Form>

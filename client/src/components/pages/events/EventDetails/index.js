@@ -37,6 +37,8 @@ class EventDetails extends Component {
         this.EventService
             .deleteEvent(id)
             .catch(err => console.log(err))
+        
+        this.props.handleToast('Evento eliminado')
     }
 
     joiningEvent = () => {                                      
@@ -48,20 +50,15 @@ class EventDetails extends Component {
             this.UserService
                 .joinEvent(id)
                 .catch(err => console.log(err))
-        } 
-    }
-
-    userJoin = () => {
-        let id = this.props.match.params.id
-        let actualUser = this.props.loggedInUser
-
-        if (!this.state.eventDetails.joinedUsers.some(us => us === actualUser._id)) {
-
+            
             this.EventService
                 .userJoined(id)
                 .catch(err => console.log(err))
-        }
+            
+            this.props.handleToast('Te has unido!')
+        } 
     }
+
 
 
     render() {
@@ -82,15 +79,16 @@ class EventDetails extends Component {
                             <p>Creado por {this.state.eventDetails.ownerId.username}</p>
                             <hr></hr>
                             <div className="details-btn">
-                                <Link className="join-btn btn btn-light" onClick={() => {
-                                    this.joiningEvent()
-                                    this.userJoin()
-                                }}>Unirse</Link>
+                                <Link className="join-btn btn btn-light" onClick={() => this.joiningEvent()}>Unirse</Link>
 
                                 <Link className="join-btn btn btn-light" to='/profile/add/myEvents'>Comentar</Link>
 
                                 {(this.props.loggedInUser._id === this.state.eventDetails.ownerId._id) &&
-                                <Link className="join-btn btn btn-light" onClick={() => this.deletingEvent()} to='/eventList'>Borrar</Link>}
+                                    <>
+                                    <Link className="join-btn btn btn-light" onClick={() => this.deletingEvent()} to='/eventList'>Editar</Link>
+                                    <Link className="btn-danger btn" onClick={() => this.deletingEvent()} to='/eventList'>Borrar</Link>
+                                    </>
+                                }
                                 
                             </div>
                         </Col>
