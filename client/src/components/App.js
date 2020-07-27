@@ -15,6 +15,7 @@ import Home from './pages/home'
 import SignupForm from './pages/auth/SignupForm'
 import LoginForm from './pages/auth/LoginForm'
 import Profile from './pages/profile'
+import EditProfile from './pages/profile/editProfile'
 import OurToast from './UI/Toast'
 
 
@@ -61,6 +62,10 @@ class App extends Component {
           />
           <Route path="/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
           <Route path="/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
+          <Route path="/profile/edit/:id" render={props => this.state.loggedInUser
+            ? (<EditProfile {...props} loggedInUser={this.state.loggedInUser} />)
+            : <Redirect to='/login' />}
+          />
           <Route path="/profile/:id" render={props => this.state.loggedInUser 
             ? (<Profile {...props} loggedInUser={this.state.loggedInUser} />)
             : <Redirect to='/login' />} 

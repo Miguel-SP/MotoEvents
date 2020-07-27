@@ -20,7 +20,7 @@ class Profile extends Component {
         super(props)
         this.state = {
             profile: undefined,
-            showModal: false
+            showModal: false,
         }
 
         this.UserService = new UserService()
@@ -39,8 +39,6 @@ class Profile extends Component {
     }
 
     handleModal = status => this.setState({ showModal: status })
-
-
 
     unjoinEvent = e => {                               // Cómo pasar el id del evento sobre el que estamos clickando? e.target??
         const id = this.props.match.params.id
@@ -65,7 +63,7 @@ class Profile extends Component {
                 (<Container as='main'>
                     <h1>¡Hola, {this.props.loggedInUser.username}!</h1>
                     <div className="edit-btn-div">
-                        <Link className="create-btn btn btn-primary" to='#'>Editar mi perfil</Link>
+                        <Link className="create-btn btn btn-primary" to={`/profile/edit/${this.props.loggedInUser._id}`}>Editar mi perfil</Link>
                     </div>
 
 

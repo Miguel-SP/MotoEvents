@@ -23,10 +23,7 @@ class Radar extends Component {
 
         this.MotoService
             .getMoto()
-            .then(response => {
-                this.setState({ motorbike: response.data })
-                console.log(response.data)
-            })
+            .then(response => this.setState({ motorbike: response.data }))
             .catch(err => console.log(err))
     }
 

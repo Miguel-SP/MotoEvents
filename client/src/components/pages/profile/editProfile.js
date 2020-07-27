@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import AuthService from '../../../service/AuthService'
+import UserService from '../../../service/UserService'
 import MotoService from '../../../service/MotoService'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 
-class SignupForm extends Component {
+class EditProfile extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -19,7 +19,7 @@ class SignupForm extends Component {
             motorbikes: [],
             errorMessage: ''
         }
-        this.AuthService = new AuthService()
+        this.UserService = new UserService()
         this.MotoService = new MotoService()
     }
 
@@ -38,30 +38,23 @@ class SignupForm extends Component {
 
     handleFormSubmit = e => {
         e.preventDefault()
-        this.AuthService
-            .signup(this.state)
-            .then(response => {
-                this.props.setTheUser(response.data)
-                this.props.handleToast(`${this.state.username} registrado!`)
-                this.props.history.push('/eventList')
-            })
-            .catch(err => {
-                console.log(err.response.data.message)
-                err && this.setState({ errorMessage: err.response.data.message })
-            })
+        const id = this.props.match.params.id
+
+            this.UserService
+                .editProfile(id, this.state)
+                this.props.history.push(`/profile/${this.props.loggedInUser._id}`)
+            
     }
 
     render() {
         return (
             !this.state ? <h3>Cargando...</h3> :
 
-
                 (<Container as="main">
-
 
                     <Row>
                         <Col md={{ offset: 2, span: 8 }}>
-                            <h3>Regístrate para ver los detalles de los eventos!</h3>
+                            <h3>Editar información de usuario</h3>
 
                             <hr></hr>
 
@@ -80,7 +73,7 @@ class SignupForm extends Component {
 
                                 <Form.Group controlId="exampleForm.ControlSelect1">
                                     <Form.Label>¿Qué moto tienes?</Form.Label>
-                                    <select onChange={this.handleInputChange}  name="userMotorbike">
+                                    <select onChange={this.handleInputChange} name="userMotorbike">
                                         {this.state.motorbikes.map(moto => <option key={moto._id} value={moto._id}>{moto.brand} {moto.model}</option>)}
                                     </select>
                                 </Form.Group>
@@ -88,16 +81,15 @@ class SignupForm extends Component {
 
                                 {this.state.errorMessage && <p style={{ color: 'red' }}>{this.state.errorMessage}</p>}
 
-                                <Button variant="dark" type="submit">Registrarme</Button>
+                                <Button variant="dark" type="submit">Confirmar</Button>
                             </Form>
 
                         </Col>
                     </Row>
-
 
                 </Container>)
         )
     }
 }
 
-export default SignupForm
+export default EditProfile

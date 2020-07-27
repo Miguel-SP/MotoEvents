@@ -1,5 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const bcrypt = require("bcrypt")
+const bcryptSalt = 10
+
 
 const checkAuthenticated = (req, res, next) => req.isAuthenticated() ? next() : res.redirect('/login')
 
@@ -18,6 +21,19 @@ router.get('/profile/:id', checkAuthenticated, (req, res, next) => {
         .then(response => res.json(response))
         .catch(err => next(err))
 
+})
+
+router.post('/profile/edit/:id', checkAuthenticated, (req, res, next) => {
+
+    const username = req.body.username
+    const password = req.body.password
+    const userMotorbike = req.body.userMotorbike
+
+    const salt = bcrypt.genSaltSync(bcryptSalt)
+    const hashPass = bcrypt.hashSync(password, salt)
+
+    User.
+        findByIdAndUpdate(req.user._id, { username: username, password: hashPass, userMotorbike: userMotorbike})
 })
 
 // router.post('/myEvents/add/:event_id', checkAuthenticated, (req, res, next) => {
