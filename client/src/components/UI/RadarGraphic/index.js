@@ -23,15 +23,19 @@ class Radar extends Component {
 
         this.MotoService
             .getMoto()
-            .then(response => console.log(response))
+            .then(response => {
+                this.setState({ motorbike: response.data })
+            console.log(response.data)})
             .catch(err => console.log(err))
     }
 
     render() {
+        
         return (
+            !this.state ? <h2>Cargando...</h2> :
 
             <ResponsiveRadar
-                data={this.state.motorbike}
+                data={[this.state.motorbike]}
                 keys={['power', 'torque', 'displacement', 'weight', 'price']}
                 indexBy="model"
                 maxValue="auto"

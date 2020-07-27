@@ -15,7 +15,7 @@ router.get('/motorbikes', (req, res, next) => {
 
 router.get('/usermoto', (req, res, next) => {
 
-    Moto.findById('5f1ea2c9ca95e15e90ca8eaa')
+    Moto.findById(req.user.userMotorbike)
         .then(response => res.json(response))
         .catch(err => next(err))
 })
