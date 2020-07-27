@@ -91,7 +91,7 @@ class Profile extends Component {
 
                                 <Modal size="md" show={this.state.showModal} onHide={() => this.handleModal(false)}>
                                     <Modal.Body>
-                                        <Radar />
+                                    <Radar {...this.props}/>
                                     </Modal.Body>
                                 </Modal>
 

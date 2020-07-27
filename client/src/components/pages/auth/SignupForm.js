@@ -5,6 +5,7 @@ import MotoService from '../../../service/MotoService'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
+// import Select from 'react-bootstrap/Select'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
@@ -32,6 +33,7 @@ class SignupForm extends Component {
     }
 
     handleInputChange = e => {
+        console.log(this.state.userMotorbike)
         const { name, value } = e.target
         this.setState({ [name]: value })
     }
@@ -80,10 +82,11 @@ class SignupForm extends Component {
 
                                 <Form.Group controlId="exampleForm.ControlSelect1">
                                     <Form.Label>¿Qué moto tienes?</Form.Label>
-                                    <select onChange={this.handleInputChange} value={this.state.userMotorbike} name="userMotorbike">
-                                        {this.state.motorbikes.map(moto => <option key={moto._id}>{moto.brand} {moto.model}</option>)}
+                                    <select onChange={this.handleInputChange} value={this.state.userMotorbike._id} name="userMotorbike" >
+                                        {this.state.motorbikes.map(moto => <option  key={moto._id} >{moto.brand} {moto.model}</option>)}
                                     </select>
                                 </Form.Group>
+
 
                                 {this.state.errorMessage && <p style={{ color: 'red' }}>{this.state.errorMessage}</p>}
 
