@@ -1,5 +1,15 @@
 
-[
+require('dotenv').config()
+const mongoose = require('mongoose');
+const Moto = require('./../models/Moto.model');
+
+
+ 
+
+mongoose
+    .connect(`${process.env.DB_REMOTE}`, { useNewUrlParser: true, useUnifiedTopology: true})
+ 
+const motorbikes = [
     {   "brand": "Ducati",
         "model": "Panigale",
         "power": 214,
@@ -8,7 +18,8 @@
         "weight": 175,
         "price": 25500,
         "image_url": "https://a.mcdn.es/mnet_ft//DUCATI/Panigale_V4/32708MG.jpg/660x/"
-    },{
+    },
+    {
         "brand": "Honda",
         "model": "CBR 650R",
         "power": 95,
@@ -91,3 +102,10 @@
         "image_url": "https://a.mcdn.es/mnet_ft//BMW/R_1250_GS_Adventure/33787MG.jpg/660x/"
     }
 ]
+
+Moto.create(motorbikes)
+    .then(allTheMotorbikes => {
+        console.log(`${allTheMotorbikes.length} motorbikes created!`)
+        mongoose.connection.close();
+    })
+    .catch(err => console.log(`An error ocurred: ${err}`))

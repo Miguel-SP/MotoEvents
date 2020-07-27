@@ -12,8 +12,13 @@ const eventSchema = new Schema({
     image_url: { type: String },
     date: { type: Date, default: Date.now, required: true },
     ownerId: { type: Schema.Types.ObjectId, ref: 'User' },
-    joinedUsers: [{ type: Schema.Types.ObjectId, ref: 'User' }]
-
+    joinedUsers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    comments: [{
+        user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+        date: { type: Date, default: Date.now },
+        text: { type: String, maxlength: 200 }
+    }]
+    
 }, {
     timestamps: true
 })

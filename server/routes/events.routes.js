@@ -35,8 +35,7 @@ router.post('/search', (req, res, next) => {
     const { name } = req.body
     const regex = new RegExp('^[a-zA-Z0-9 \',]*' + name + '[a-zA-Z0-9 \',]*', 'i')
     
-    Event
-        .find({ name: { $regex: regex } })
+    Event.find({ name: { $regex: regex } })
         .then(response => res.json(response))
         .catch(err => next(err))
 })
@@ -51,16 +50,14 @@ router.post('/eventDetails/delete/:id', checkAuthenticated, (req, res, next) => 
 
 router.post('/eventDetails/join/:id', checkAuthenticated, (req, res, next) => {
 
-    Event
-        .findByIdAndUpdate(req.params.id, { $push: { joinedUsers: req.user._id } })
+    Event.findByIdAndUpdate(req.params.id, { $push: { joinedUsers: req.user._id } })
         .then(response => res.json(response))
         .catch(err => next(err))
 })
 
 router.post('/eventDetails/deletefromevent/:id', checkAuthenticated, (req, res, next) => {
 
-    Event
-        .findByIdAndUpdate(req.body, { $pull: { joinedUsers: req.user._id } })
+    Event.findByIdAndUpdate(req.body, { $pull: { joinedUsers: req.user._id } })
         .then(response => res.json(response))
         .catch(err => next(err))
 })

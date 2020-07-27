@@ -48,10 +48,10 @@ class App extends Component {
     this.fetchUser()
     
     return (
-      <>
+      <div className='background-style'>
         <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast} />
   
-  
+       
         <Switch>
           <Route exact path="/" render={() => <Home />} />
           <Route path="/eventList" render={() => <EventList loggedInUser={this.state.loggedInUser} handleToast={this.handleToast}/>} />
@@ -70,7 +70,7 @@ class App extends Component {
 
         <OurToast {...this.state.toast} handleToast={this.handleToast} />
 
-      </>
+      </div>
     ) 
     
 

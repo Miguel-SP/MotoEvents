@@ -12,8 +12,8 @@ import data from './../../../motorbikes.json'
 const Radar = () => (
     <ResponsiveRadar
         data={data}
-        keys={['power', 'weight', 'price']}
-        indexBy="taste"
+        keys={['power', 'torque', 'displacement', 'weight', 'price']}
+        indexBy="model"
         maxValue="auto"
         margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
         curve="linearClosed"

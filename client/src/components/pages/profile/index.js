@@ -42,18 +42,18 @@ class Profile extends Component {
 
 
 
-    // unjoinEvent = (e) => {                               // Cómo pasar el id del evento sobre el que estamos clickando? e.target??
-    //     const id = this.props.match.params.id
-    //     console.log(e)
+    unjoinEvent = (key) => {                               // Cómo pasar el id del evento sobre el que estamos clickando? e.target??
+        const id = this.props.match.params.id
+        console.log(key)
 
-    //     this.UserService
-    //         .unjoinEvent(id, key)
-    //         .catch(err => console.log(err))
+        this.UserService
+            .unjoinEvent(id, key)
+            .catch(err => console.log(err))
 
-    //     this.EventService
-    //         .userUnjoin(id, key)
-    //         .catch(err => console.log(err))
-    // }
+        this.EventService
+            .userUnjoin(id, key)
+            .catch(err => console.log(err))
+    }
 
 
     render() {
@@ -77,7 +77,7 @@ class Profile extends Component {
                             <ListGroup>
                                 {this.state.profile.events.map(event =>
                                     <ListGroup.Item key={event._id}>{event.name}
-                                        <Button className="delete-btn btn btn-danger" onClick={() => this.unjoinEvent()}>X</Button>
+                                        <Button className="delete-btn btn btn-danger" onClick={(key) => this.unjoinEvent(key)}>X</Button>
                                     </ListGroup.Item>)}
                             </ListGroup>
 

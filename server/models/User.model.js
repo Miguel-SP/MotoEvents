@@ -9,13 +9,8 @@ const userSchema = new Schema({
 
     events: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
 
-    motorbike: { type: Schema.Types.ObjectId, ref: 'Moto' },
-
-    comments: [{
-        event: { type: Schema.Types.ObjectId, ref: 'Event', required: true },
-        date: { type: Date, default: Date.now },
-        text: { type: String, maxlength: 200 }
-    }]
+    userMotorbike: { type: Schema.Types.ObjectId, ref: 'Moto' }
+    
 }, {
     timestamps: true
 })
