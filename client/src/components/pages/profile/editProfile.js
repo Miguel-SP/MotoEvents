@@ -41,11 +41,18 @@ class EditProfile extends Component {
         e.preventDefault()
         const id = this.props.match.params.id
 
-            this.UserService
-                .editProfile(id, this.state)
-                .then(response => this.setState({ loggedInUser: response.data }))
-                this.props.history.push(`/profile/${this.props.loggedInUser._id}`)
-            
+        this.UserService
+            .editProfile(id, this.state)
+            .then(response => {
+                this.setState({ loggedInUser: response.data })
+                this.props.handleToast(`Perfil actualizado!`)
+                this.props.history.push('/eventList')
+            })
+            .catch(err => {
+                console.log(err.response.data.message)
+                err && this.setState({ errorMessage: err.response.data.message })
+            })
+
     }
 
     render() {

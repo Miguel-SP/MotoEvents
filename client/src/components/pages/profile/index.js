@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './profile.css'
 
 import UserService from './../../../service/UserService'
-import EventService from './../../../service/EventService'
 
 import Radar from './../../UI/RadarGraphic'
 
@@ -10,7 +9,6 @@ import Container from 'react-bootstrap/esm/Container'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
 import ListGroup from 'react-bootstrap/esm/ListGroup'
-import Button from 'react-bootstrap/esm/Button'
 import Modal from 'react-bootstrap/esm/Modal'
 import { Link } from 'react-router-dom'
 
@@ -20,12 +18,11 @@ class Profile extends Component {
         super(props)
         this.state = {
             profile: undefined,
-            showModal: false,
+            showModal: false
         }
 
         this.UserService = new UserService()
-        this.EventService = new EventService()
-
+        
 
     }
 
@@ -42,10 +39,10 @@ class Profile extends Component {
 
 
     render() {
-
         return (
 
             !this.state.profile ? <h3>Cargando...</h3> :
+                
 
                 (<Container as='main'>
                     <h1>¡Hola, {this.props.loggedInUser.username}!</h1>
@@ -69,14 +66,15 @@ class Profile extends Component {
                         <Col md={{ span: 7, offset: 1 }}>
                             <h3>Mi moto</h3>
 
-                            {this.props.loggedInUser.motorbike}
-                            <Button className="create-btn btn btn-primary" onClick={() => this.handleModal(true)}>Marca y modelo</Button>
+                            
+                            <Link onClick={() => this.handleModal(true)}><img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" /></Link>
+                            
 
-                                <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
-                                    <Modal.Body>
-                                    <Radar {...this.props}/>
-                                    </Modal.Body>
-                                </Modal>
+                            <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                                <Modal.Body>
+                                        <Radar {...this.props} />
+                                </Modal.Body>
+                            </Modal>
 
                         </Col>
 

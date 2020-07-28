@@ -18,6 +18,7 @@ router.get('/profile/:id', checkAuthenticated, (req, res, next) => {
     User                                                    
         .findById(req.params.id)
         .populate('events')
+        .populate('userMotorbike')
         .then(response => res.json(response))
         .catch(err => next(err))
 
@@ -28,33 +29,25 @@ router.post('/profile/edit/:id', checkAuthenticated, (req, res, next) => {
     const username = req.body.username
     const password = req.body.password
     const userMotorbike = req.body.userMotorbike
-    
-    const salt = bcrypt.genSaltSync(bcryptSalt)
-    const hashPass = bcrypt.hashSync(password, salt)
-    
-    console.log(req.body.userMotorbike)
+
+    if (!username || !password) {
+        res.status(400).json({ message: 'Introduce usuario y contraseña' })
+        return
+    }
+
+    if (password.length < 4) {
+        res.status(400).json({ message: 'Por favor, crea una contraseña de al menos 4 caracteres para mayor seguridad.' });
+        return
+    }
+
+        const salt = bcrypt.genSaltSync(10);
+        const hashPass = bcrypt.hashSync(password, salt)
+
     User.
         findByIdAndUpdate(req.user._id, { username: username, password: hashPass, userMotorbike: userMotorbike }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 })
-
-// router.post('/myEvents/add/:event_id', checkAuthenticated, (req, res, next) => {
-
-//     const userPromise = User.findOne(req.user._id)          //De momento no tengo usuarios
-//     const eventPromise = Event.findById(req.params.id)
-
-//     Promise
-//         .all([userPromise, eventPromise])
-//         .then((result) => {
-//             if (!result[0].events.some(elm => elm == result[1].id)) {
-//                 result[0].events.push(result[1])
-//                 result[0].save()
-//             }
-//             res.json(response)      // Cómo gestiono esta respuesta? 
-//         })
-//         .catch(err => next(err))
-// })
 
 router.post('/eventDetails/:id', checkAuthenticated, (req, res, next) => {
 
