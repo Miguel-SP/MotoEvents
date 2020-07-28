@@ -24,6 +24,14 @@ router.get('/profile/:id', checkAuthenticated, (req, res, next) => {
 
 })
 
+router.post('/eventDetails/:id', checkAuthenticated, (req, res, next) => {
+
+    User
+        .findByIdAndUpdate(req.user._id, { $push: { events: req.params.id } }, { new: true })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
+
 router.post('/profile/edit/:id', checkAuthenticated, (req, res, next) => {
 
     const username = req.body.username
@@ -49,13 +57,6 @@ router.post('/profile/edit/:id', checkAuthenticated, (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.post('/eventDetails/:id', checkAuthenticated, (req, res, next) => {
-
-    User
-        .findByIdAndUpdate(req.user._id, { $push: { events: req.params.id } }, { new: true })
-        .then(response => res.json(response))
-        .catch(err => next(err))
-})
 
 router.post('/eventDetails/deletefromuser/:id', checkAuthenticated, (req, res, next) => {
 
