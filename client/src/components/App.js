@@ -63,11 +63,11 @@ class App extends Component {
           <Route path="/signup" render={props => <SignupForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
           <Route path="/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
           <Route path="/profile/edit/:id" render={props => this.state.loggedInUser
-            ? (<EditProfile {...props} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast}/>)
+            ? (<EditProfile {...props} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast} fetchUser={this.fetchUser}/>)
             : <Redirect to='/login' />}
           />
           <Route path="/profile/:id" render={props => this.state.loggedInUser 
-            ? (<Profile {...props} loggedInUser={this.state.loggedInUser} />)
+            ? (<Profile {...props} loggedInUser={this.state.loggedInUser} fetchUser={this.fetchUser}/>)
             : <Redirect to='/login' />} 
           />
           

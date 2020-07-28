@@ -17,7 +17,8 @@ class EventList extends Component {
         super(props)
         this.state = {
             events: [],
-            showModal: false
+            showModal: false,
+            edit_id: undefined
         }
         this.EventService = new EventService()
     }

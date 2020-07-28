@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import './EventDetails.css'
 import CommentsForm from './CommentsForm'
+import CustomModal from './../EventList/CustomModal'
 import EventService from './../../../../service/EventService'
-
+import UserService from './../../../../service/UserService'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+import Button from 'react-bootstrap/Button'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
@@ -16,20 +18,27 @@ class EventDetails extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            eventDetails: undefined
+            eventDetails: undefined,
+            edit_id: this.props.match.params.id,
+            showModal: false
         }
         this.EventService = new EventService()
+        this.UserService = new UserService()
 
     }
 
-    componentDidMount = () => {
 
+    componentDidMount = () => this.updateDetails()
+
+
+    updateDetails = () => {
         const id = this.props.match.params.id
 
         this.EventService
             .getEventDetails(id)
             .then(response => this.setState({ eventDetails: response.data }))
             .catch(err => console.log(err))
+        this.handleModal(false)
     }
 
     deletingEvent = () => {
@@ -39,28 +48,31 @@ class EventDetails extends Component {
             .deleteEvent(id)
             .catch(err => console.log(err))
         
+        this.updateDetails()
+
         this.props.handleToast('Evento eliminado')
     }
 
-    joiningEvent = () => {                                      
+
+    joiningEvent = () => {
         let id = this.props.match.params.id
         let actualUser = this.props.loggedInUser
-        
+
         if (!this.state.eventDetails.joinedUsers.some(us => us === actualUser._id)) {
 
             this.UserService
                 .joinEvent(id)
                 .catch(err => console.log(err))
-            
+
             this.EventService
                 .userJoined(id)
                 .catch(err => console.log(err))
-            
+
             this.props.handleToast('Te has unido!')
-        } 
+        }
     }
 
-    unjoinEvent = () => {                               
+    unjoinEvent = () => {
         let id = this.props.match.params.id
 
         this.UserService
@@ -70,19 +82,19 @@ class EventDetails extends Component {
         this.EventService
             .userUnjoin(id)
             .catch(err => console.log(err))
-        
-        this.props.handleToast('Eliminado de tus eventos')
 
+        this.props.handleToast('Eliminado de tus eventos')
     }
 
+    handleModal = status => this.setState({ showModal: status })
 
 
     render() {
         return (
-            !this.state.eventDetails ? <h3>Cargando...</h3> : 
+            !this.state.eventDetails ? <h3>Cargando...</h3> :
 
                 (<Container as='main'>
-                    <Row>   
+                    <Row>
 
                         <Col className="col-details" md={{ span: 6, offset: 1 }}>
                             <h3> {this.state.eventDetails.name}</h3>
@@ -95,20 +107,18 @@ class EventDetails extends Component {
                             <p>Creado por {this.state.eventDetails.ownerId.username}</p>
                             <hr></hr>
                             <div className="details-btn">
-                                
+
                                 {this.state.eventDetails.joinedUsers.some(us => us === this.props.loggedInUser._id)
                                     ? <Link className="join-btn btn btn-light" onClick={() => this.unjoinEvent()}>Dejar de ir</Link>
                                     : <Link className="join-btn btn btn-light" onClick={() => this.joiningEvent()}>Unirse</Link>}
 
-                                <Link className="join-btn btn btn-light" to='/profile/add/myEvents'>Comentar</Link>
-
                                 {(this.props.loggedInUser._id === this.state.eventDetails.ownerId._id) &&
                                     <>
-                                    <Link className="join-btn btn btn-light" onClick={() => this.deletingEvent()} to='/eventList'>Editar</Link>
-                                    <Link className="btn-danger btn" onClick={() => this.deletingEvent()} to='/eventList'>Borrar</Link>
+                                    <Button onClick={() => this.handleModal(true)} className="join-btn btn btn-light">Editar</Button>
+                                        <Link className="btn-danger btn" onClick={() => this.deletingEvent()} to='/eventList'>Borrar</Link>
                                     </>
                                 }
-                                
+
                             </div>
                         </Col>
                         <Col className="col-details col-img" md={{ span: 6, offset: 1 }}>
@@ -120,13 +130,18 @@ class EventDetails extends Component {
                         loadingElement={<div style={{ height: `30vh` }} />}
                         containerElement={<div style={{ height: `30vh` }} />}
                         mapElement={<div style={{ height: `30vh` }} />} />
-                    
+
                     <ListGroup variant="flush">
-                        {this.state.eventDetails.comments.map(comment => 
-                            <ListGroup.Item key={comment._id}>{comment.text}</ListGroup.Item>)}
+                        {this.state.eventDetails.comments.map(comment =>
+                            <ListGroup.Item key={comment._id}>
+                                <div> Por <span style={{color: 'red'}}>{comment.user}</span>  el {comment.date.slice(0,10)}</div>
+                                <div>{comment.text}</div>
+                            </ListGroup.Item>)}
                     </ListGroup>
-                    
-                    <CommentsForm {...this.props}/>
+
+                    <CommentsForm {...this.props} updateDetails={this.updateDetails} />
+
+                    <CustomModal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)} updateDetails={this.updateDetails} edit_id={this.props.match.params.id} {...this.props} />
 
                     <Link className="btn btn-dark btn-md btn-back" to='/eventList'>Volver</Link>
                 </Container>
