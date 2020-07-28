@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EventService from '../../../../../service/EventService'
+import EventService from './../../../../service/EventService'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -8,9 +8,10 @@ class CommentsForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            text:'',
+            user: this.props.loggedInUser._id,
             date: Date.now,
-            ownerId: this.props.loggedInUser._id
+            text: '',
+            comments: undefined
         }
         this.EventService = new EventService()
     }
@@ -21,12 +22,14 @@ class CommentsForm extends Component {
         this.setState({ [name]: value })
     }
 
-    handleFormSubmit = e => {
+    handleFormSubmit = e => {                       // hacer un post con push a los comentarios del evento.
         e.preventDefault()
+
+        const id = this.props.match.params.id
         this.EventService
-            .createEvent(this.state)
-            .then(() => {
-                this.props.handleEventSubmit()
+            .createComment(id, this.state)
+            .then(response => {
+                this.setState({comments : response.data.comments})
                 this.props.handleToast('Comentario enviado!')
             })
             .catch(err => console.log(err))

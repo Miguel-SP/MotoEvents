@@ -62,6 +62,16 @@ router.post('/eventDetails/deletefromevent/:id', checkAuthenticated, (req, res, 
         .catch(err => next(err))
 })
 
+router.post('/eventDetails/newcomment/:id', checkAuthenticated, (req, res, next) => {
+
+    const {user, date, text} = req.body
+
+    Event.findByIdAndUpdate(req.params.id, { $push: { comments: {user, date, text} } }, { new: true })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
+
+
 
 
 

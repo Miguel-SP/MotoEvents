@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import './EventDetails.css'
-import EventService from '../../../../service/EventService'
-import UserService from './../../../../service/UserService'
+import CommentsForm from './CommentsForm'
+import EventService from './../../../../service/EventService'
+
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+import ListGroup from 'react-bootstrap/ListGroup'
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
 import MapWithAMarker from '../../../UI/Map'
@@ -17,7 +19,6 @@ class EventDetails extends Component {
             eventDetails: undefined
         }
         this.EventService = new EventService()
-        this.UserService = new UserService()
 
     }
 
@@ -78,11 +79,11 @@ class EventDetails extends Component {
 
     render() {
         return (
-
-            !this.state.eventDetails ? <h3>Cargando...</h3> :
+            !this.state.eventDetails ? <h3>Cargando...</h3> : 
 
                 (<Container as='main'>
-                    <Row>
+                    <Row>   
+
                         <Col className="col-details" md={{ span: 6, offset: 1 }}>
                             <h3> {this.state.eventDetails.name}</h3>
                             <hr></hr>
@@ -119,6 +120,13 @@ class EventDetails extends Component {
                         loadingElement={<div style={{ height: `30vh` }} />}
                         containerElement={<div style={{ height: `30vh` }} />}
                         mapElement={<div style={{ height: `30vh` }} />} />
+                    
+                    <ListGroup variant="flush">
+                        {this.state.eventDetails.comments.map(comment => 
+                            <ListGroup.Item key={comment._id}>{comment.text}</ListGroup.Item>)}
+                    </ListGroup>
+                    
+                    <CommentsForm {...this.props}/>
 
                     <Link className="btn btn-dark btn-md btn-back" to='/eventList'>Volver</Link>
                 </Container>

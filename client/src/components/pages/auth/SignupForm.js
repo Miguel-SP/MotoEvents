@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import { Link } from 'react-router-dom'
 
 
 class SignupForm extends Component {
@@ -88,7 +89,7 @@ class SignupForm extends Component {
 
                                 {this.state.errorMessage && <p style={{ color: 'red' }}>{this.state.errorMessage}</p>}
 
-                                <Button variant="dark" type="submit">Registrarme</Button>
+                                <Button variant="dark" type="submit">Registrarme</Button> <span style={{ color: '#003049'}}><Link to={'/login'}>Ya tienes cuenta?</Link></span>
                             </Form>
 
                         </Col>
