@@ -19,6 +19,7 @@ router.get('/eventDetails/:id', checkAuthenticated, (req, res, next) => {
 
     Event.findById(req.params.id)
         .populate('ownerId')
+        .populate("joinedUsers")
         .then(response => res.json(response))
         .catch(err => next(err))
 })

@@ -45,11 +45,13 @@ class Profile extends Component {
                 
 
                 (<Container as='main'>
+                    
                     <h1>¡Hola, {this.props.loggedInUser.username}!</h1>
+
                     <div className="edit-btn-div">
                         <Link className="create-btn btn btn-primary" to={`/profile/edit/${this.props.loggedInUser._id}`}>Editar mi perfil</Link>
                     </div>
-
+                    
 
                     <Row>
 

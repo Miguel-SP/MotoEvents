@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './EventDetails.css'
 import CommentsForm from './CommentsForm'
 import EventService from './../../../../service/EventService'
+import UserService from './../../../../service/UserService'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -19,6 +20,7 @@ class EventDetails extends Component {
             eventDetails: undefined
         }
         this.EventService = new EventService()
+        this.UserService = new UserService()
 
     }
 
@@ -78,9 +80,10 @@ class EventDetails extends Component {
 
 
     render() {
+        
         return (
             !this.state.eventDetails ? <h3>Cargando...</h3> : 
-
+                
                 (<Container as='main'>
                     <Row>   
 
@@ -90,7 +93,7 @@ class EventDetails extends Component {
                             <p><b>Detalles:</b> {this.state.eventDetails.description}</p>
                             <p><b>Fecha:</b> {this.state.eventDetails.date.slice(0, 10)}</p>
                             <p><b>Lugar:</b> {this.state.eventDetails.location.city}</p>
-                            <p><b>{this.state.eventDetails.joinedUsers.length}</b> usuarios asistirán este evento</p>
+                            <p>Usuarios asistirán este evento: <b>{this.state.eventDetails.joinedUsers.map(elm => <li><Link to={`/profile/${elm._id}`}>{elm.username}</Link></li>)}</b></p>
                             <hr></hr>
                             <p>Creado por {this.state.eventDetails.ownerId.username}</p>
                             <hr></hr>
