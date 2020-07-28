@@ -15,7 +15,7 @@ class EventService {
     getAllEvents = () => this.service.get('/eventList')
     deleteEvent = id => this.service.post(`eventDetails/delete/${id}`)
     userJoined = id => this.service.post(`/eventDetails/join/${id}`)
-    userUnjoin = (id, idEvent) => this.service.post(`/eventDetails/deletefromevent/${id}`, idEvent)
+    userUnjoin = id => this.service.post(`/eventDetails/deletefromevent/${id}`)
 
 
 }

@@ -40,19 +40,6 @@ class Profile extends Component {
 
     handleModal = status => this.setState({ showModal: status })
 
-    unjoinEvent = e => {                               // Cómo pasar el id del evento sobre el que estamos clickando? e.target??
-        const id = this.props.match.params.id
-        const idEvent = e.target.getAtributte('key')
-
-        this.UserService
-            .unjoinEvent(id, idEvent)
-            .catch(err => console.log(err))
-
-        this.EventService
-            .userUnjoin(id, idEvent)
-            .catch(err => console.log(err))
-    }
-
 
     render() {
 
@@ -74,9 +61,7 @@ class Profile extends Component {
 
                             <ListGroup>
                                 {this.state.profile.events.map(event =>
-                                    <ListGroup.Item key={event._id}>{event.name}
-                                        <Button className="delete-btn btn btn-danger" onClick={() => this.unjoinEvent()}>X</Button>
-                                    </ListGroup.Item>)}
+                                    <Link to={`/eventDetails/${event._id}`}><ListGroup.Item key={event._id}>{event.name}</ListGroup.Item></Link>)}
                             </ListGroup>
 
                         </Col>

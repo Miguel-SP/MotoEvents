@@ -13,9 +13,10 @@ class EditProfile extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: '',
+            loggedInUser: this.props.loggedInUser,
+            username: this.props.loggedInUser.username,
             password: '',
-            userMotorbike: '',
+            userMotorbike: this.props.loggedInUser.userMotorbike,
             motorbikes: [],
             errorMessage: ''
         }
@@ -42,6 +43,7 @@ class EditProfile extends Component {
 
             this.UserService
                 .editProfile(id, this.state)
+                .then(response => this.setState({ loggedInUser: response.data }))
                 this.props.history.push(`/profile/${this.props.loggedInUser._id}`)
             
     }

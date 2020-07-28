@@ -59,6 +59,21 @@ class EventDetails extends Component {
         } 
     }
 
+    unjoinEvent = () => {                               
+        let id = this.props.match.params.id
+
+        this.UserService
+            .unjoinEvent(id)
+            .catch(err => console.log(err))
+
+        this.EventService
+            .userUnjoin(id)
+            .catch(err => console.log(err))
+        
+        this.props.handleToast('Eliminado de tus eventos')
+
+    }
+
 
 
     render() {
@@ -79,7 +94,10 @@ class EventDetails extends Component {
                             <p>Creado por {this.state.eventDetails.ownerId.username}</p>
                             <hr></hr>
                             <div className="details-btn">
-                                <Link className="join-btn btn btn-light" onClick={() => this.joiningEvent()}>Unirse</Link>
+                                
+                                {this.state.eventDetails.joinedUsers.some(us => us === this.props.loggedInUser._id)
+                                    ? <Link className="join-btn btn btn-light" onClick={() => this.unjoinEvent()}>Dejar de ir</Link>
+                                    : <Link className="join-btn btn btn-light" onClick={() => this.joiningEvent()}>Unirse</Link>}
 
                                 <Link className="join-btn btn btn-light" to='/profile/add/myEvents'>Comentar</Link>
 

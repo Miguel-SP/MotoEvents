@@ -50,14 +50,14 @@ router.post('/eventDetails/delete/:id', checkAuthenticated, (req, res, next) => 
 
 router.post('/eventDetails/join/:id', checkAuthenticated, (req, res, next) => {
 
-    Event.findByIdAndUpdate(req.params.id, { $push: { joinedUsers: req.user._id } })
+    Event.findByIdAndUpdate(req.params.id, { $push: { joinedUsers: req.user._id } }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 })
 
 router.post('/eventDetails/deletefromevent/:id', checkAuthenticated, (req, res, next) => {
 
-    Event.findByIdAndUpdate(req.body, { $pull: { joinedUsers: req.user._id } })
+    Event.findByIdAndUpdate(req.params.id, { $pull: { joinedUsers: req.user._id } }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 })
