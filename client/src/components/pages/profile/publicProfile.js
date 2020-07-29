@@ -47,16 +47,20 @@ class PublicProfile extends Component {
     }
 
     render() {
+
+        console.log(this.props.loggedInUser.friends)
         return (
 
             !this.state.profile ? <h3>Cargando...</h3> :
 
 
                 (<Container as='main'>
-                                <h1>Perfil de {this.state.profile.username}</h1>
-                                <div className="edit-btn-div">
-                                    <Link className="create-btn btn btn-primary" onClick={() => this.addFriend()}>Añadir a amigos</Link>
-                                </div>
+                    <h1>Perfil de {this.state.profile.username}</h1>
+                    
+                    {this.props.loggedInUser.friends.some(friend => friend === this.state.profile._id) ? <h3 className="edit-btn-div">Sois amigos</h3> : 
+                        (<div className="edit-btn-div">
+                            <Link className="create-btn btn btn-primary" onClick={() => this.addFriend()}>Añadir a amigos</Link>
+                        </div>)}
 
                                 <Row>
 

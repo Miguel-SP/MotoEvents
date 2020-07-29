@@ -28,7 +28,7 @@ class CommentsForm extends Component {
         this.EventService
             .createComment(id, this.state)
             .then(response => {
-                this.setState({ comments: response.data.comments })
+                this.setState({ comments: response.data.comments, text: '' })
                 this.props.updateDetails()
                 this.props.handleToast('Comentario enviado!')
             })
