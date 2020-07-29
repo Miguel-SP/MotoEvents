@@ -41,14 +41,12 @@ class PublicProfile extends Component {
         const id = this.props.match.params.id
         this.UserService
             .addFriend(id)
-            .then(response => console.log(response))
+            .then(() => this.props.handleToast("Amigo añadido"))
             .catch(err => console.log(err))
-        this.props.handleToast("Amigo añadido")
     }
 
     render() {
-
-        console.log(this.props.loggedInUser.friends)
+        console.log(this.props.loggedInUser)
         return (
 
             !this.state.profile ? <h3>Cargando...</h3> :
@@ -56,38 +54,40 @@ class PublicProfile extends Component {
 
                 (<Container as='main'>
                     <h1>Perfil de {this.state.profile.username}</h1>
-                    
-                    {this.props.loggedInUser.friends.some(friend => friend === this.state.profile._id) ? <h3 className="edit-btn-div">Sois amigos</h3> : 
+
+                    {this.props.loggedInUser.friends.some(friend => friend === this.state.profile._id) ? <h3 className="edit-btn-div">Sois amigos</h3> :
                         (<div className="edit-btn-div">
                             <Link className="create-btn btn btn-primary" onClick={() => this.addFriend()}>Añadir a amigos</Link>
                         </div>)}
 
-                                <Row>
+                    <Row>
 
-                                    <Col className="events-col" md={{ span: 4 }}>
-                                        <h3>Eventos a los que está apuntado</h3>
+                        <Col className="events-col" md={{ span: 4 }}>
+                            <h3>Eventos a los que está apuntado</h3>
 
-                                        <ListGroup>
-                                            {this.state.profile.events.map(event =>
-                                                <Link to={`/eventDetails/${event._id}`}><ListGroup.Item key={event._id}>{event.name}</ListGroup.Item></Link>)}
-                                        </ListGroup>
+                            <ListGroup>
+                                {this.state.profile.events.map(event =>
+                                    <Link to={`/eventDetails/${event._id}`}><ListGroup.Item key={event._id}>{event.name}</ListGroup.Item></Link>)}
+                            </ListGroup>
 
-                                    </Col>
+                        </Col>
 
-                                    <Col md={{ span: 7, offset: 1 }}>
-                                        <h3>Moto de {this.state.profile.username}</h3>
+                        <Col md={{ span: 7, offset: 1 }}>
+                            <h3>Comparar mi moto con la de {this.state.profile.username}</h3>
 
-                                        <Link onClick={() => this.handleModal(true)}><img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" /></Link>
+                            <Link onClick={() => this.handleModal(true)}><img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" /></Link>
+                            
+                            <p>{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
 
-                                        <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
-                                            <Modal.Body>
-                                                <Radar {...this.props} />
-                                            </Modal.Body>
-                                        </Modal>
+                            <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                                <Modal.Body>
+                                    <Radar {...this.props} />
+                                </Modal.Body>
+                            </Modal>
 
-                                    </Col>
+                        </Col>
 
-                                </Row>
+                    </Row>
                 </Container>)
 
         )
