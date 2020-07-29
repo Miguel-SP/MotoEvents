@@ -8,6 +8,8 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
+import './auth.css'
+
 
 class LoginForm extends Component {
     constructor(props) {
@@ -45,7 +47,7 @@ class LoginForm extends Component {
         return (
             <Container as="main">
 
-                <Row>
+                <Row className="back-trans">
                     <Col md={{ offset: 2, span: 8 }}>
                         <h3>Inicio de sesión</h3>
 

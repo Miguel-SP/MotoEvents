@@ -2,7 +2,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(177, 193, 199);
     border: none;
 }
 .list-group-item:last-child, .list-group-item:first-child{
@@ -32,4 +31,24 @@ text-align: center;
 
 .usermotorbike-img{
     width: 300px;
+    display: block;
+    margin: auto;
+}
+
+.event-img{
+    
+    margin-right: 15px;
+    border-radius: 20px;
+}
+.events-col{
+    justify-content: center;
+    display: flex;
+}
+
+h3{
+    text-align: center;
+}
+
+h4{
+    justify-content: center;
 }

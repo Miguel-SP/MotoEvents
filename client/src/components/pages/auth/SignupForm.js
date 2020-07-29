@@ -57,7 +57,7 @@ class SignupForm extends Component {
             !this.state ? <h3>Cargando...</h3> :
 
 
-                (<Container as="main">
+                (<Container as="main" className="back-trans">
 
 
                     <Row>
