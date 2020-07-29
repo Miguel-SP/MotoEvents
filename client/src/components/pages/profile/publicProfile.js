@@ -11,6 +11,7 @@ import Col from 'react-bootstrap/esm/Col'
 import ListGroup from 'react-bootstrap/esm/ListGroup'
 import Modal from 'react-bootstrap/esm/Modal'
 import { Link } from 'react-router-dom'
+import Spinner from '../../UI/Spinner'
 
 
 class PublicProfile extends Component {
@@ -46,10 +47,9 @@ class PublicProfile extends Component {
     }
 
     render() {
-        console.log(this.props.loggedInUser)
         return (
 
-            !this.state.profile ? <h3>Cargando...</h3> :
+            !this.state.profile ? <Spinner/> :
 
 
                 (<Container as='main'>
@@ -76,7 +76,7 @@ class PublicProfile extends Component {
                             <h3>Comparar mi moto con la de {this.state.profile.username}</h3>
 
                             <Link onClick={() => this.handleModal(true)}><img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" /></Link>
-                            
+
                             <p>{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
 
                             <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>

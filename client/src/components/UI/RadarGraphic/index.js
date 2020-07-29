@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import { ResponsiveRadar } from '@nivo/radar'
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
+import Spinner from './../Spinner'
 
 import MotoService from './../../../service/MotoService'
 import UserService from './../../../service/UserService'
@@ -60,7 +56,7 @@ class Radar extends Component {
         console.log(this.props)
 
         return (
-            !this.state ? <h2>Cargando...</h2> :
+            !this.state ? <Spinner /> :
 
                 <ResponsiveRadar
                     data={[this.state.motorbike, this.state.friendmotorbike, {

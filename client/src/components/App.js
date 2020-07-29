@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import './App.css'
 
 import AuthService from './../service/AuthService'
@@ -18,6 +19,7 @@ import Profile from './pages/profile'
 import EditProfile from './pages/profile/editProfile'
 import PublicProfile from './pages/profile/publicProfile'
 import OurToast from './UI/Toast'
+import Spinner from './UI/Spinner'
 
 
 class App extends Component {
@@ -50,6 +52,9 @@ class App extends Component {
     this.fetchUser()
     
     return (
+
+      !this.state.loggedInUser ? <Spinner /> :
+
       <div className='background-style'>
         <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast} />
   

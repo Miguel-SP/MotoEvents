@@ -33,7 +33,10 @@ class Navigation extends Component {
 
         return (
             <Navbar bg="dark" variant="dark" expand="lg" sticky="top" className="navbar">
-                <Navbar.Brand><Link to="/">Moto Events</Link></Navbar.Brand>
+                
+                <Navbar.Brand>
+                    <Link to="/"><img src="/parafavicon.svg" alt='logomoto' class="filter-red" />{' '} MotoEvents</Link>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
