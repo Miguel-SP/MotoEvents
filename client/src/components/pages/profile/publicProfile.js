@@ -41,49 +41,53 @@ class PublicProfile extends Component {
         const id = this.props.match.params.id
         this.UserService
             .addFriend(id)
-            .then(response => console.log(response))
+            .then(() => this.props.handleToast("Amigo añadido"))
             .catch(err => console.log(err))
-        this.props.handleToast("Amigo añadido")
     }
 
     render() {
+        console.log(this.props.loggedInUser)
         return (
 
             !this.state.profile ? <h3>Cargando...</h3> :
 
 
                 (<Container as='main'>
-                                <h1>Perfil de {this.state.profile.username}</h1>
-                                <div className="edit-btn-div">
-                                    <Link className="create-btn btn btn-primary" onClick={() => this.addFriend()}>Añadir a amigos</Link>
-                                </div>
+                    <h1>Perfil de {this.state.profile.username}</h1>
 
-                                <Row>
+                    {this.props.loggedInUser.friends.some(friend => friend === this.state.profile._id) ? <h3 className="edit-btn-div">Sois amigos</h3> :
+                        (<div className="edit-btn-div">
+                            <Link className="create-btn btn btn-primary" onClick={() => this.addFriend()}>Añadir a amigos</Link>
+                        </div>)}
 
-                                    <Col className="events-col" md={{ span: 4 }}>
-                                        <h3>Eventos a los que está apuntado</h3>
+                    <Row>
 
-                                        <ListGroup>
-                                            {this.state.profile.events.map(event =>
-                                                <Link to={`/eventDetails/${event._id}`}><ListGroup.Item key={event._id}>{event.name}</ListGroup.Item></Link>)}
-                                        </ListGroup>
+                        <Col className="events-col" md={{ span: 4 }}>
+                            <h3>Eventos a los que está apuntado</h3>
 
-                                    </Col>
+                            <ListGroup>
+                                {this.state.profile.events.map(event =>
+                                    <Link to={`/eventDetails/${event._id}`}><ListGroup.Item key={event._id}>{event.name}</ListGroup.Item></Link>)}
+                            </ListGroup>
 
-                                    <Col md={{ span: 7, offset: 1 }}>
-                                        <h3>Moto de {this.state.profile.username}</h3>
+                        </Col>
 
-                                        <Link onClick={() => this.handleModal(true)}><img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" /></Link>
+                        <Col md={{ span: 7, offset: 1 }}>
+                            <h3>Comparar mi moto con la de {this.state.profile.username}</h3>
 
-                                        <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
-                                            <Modal.Body>
-                                                <Radar {...this.props} />
-                                            </Modal.Body>
-                                        </Modal>
+                            <Link onClick={() => this.handleModal(true)}><img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" /></Link>
+                            
+                            <p>{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
 
-                                    </Col>
+                            <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                                <Modal.Body>
+                                    <Radar {...this.props} />
+                                </Modal.Body>
+                            </Modal>
 
-                                </Row>
+                        </Col>
+
+                    </Row>
                 </Container>)
 
         )

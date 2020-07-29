@@ -108,10 +108,10 @@ class EventDetails extends Component {
                             <p><b>Detalles:</b> {this.state.eventDetails.description}</p>
                             <p><b>Fecha:</b> {this.state.eventDetails.date.slice(0, 10)}</p>
                             <p><b>Lugar:</b> {this.state.eventDetails.location.city}</p>
-                            <p>Usuarios que asistiran:</p>
+                            <p>Usuarios que asistirán:</p>
                             {this.state.eventDetails.joinedUsers.map(us => <p><b><Link to={`/profile/public/${us._id}`}>{us.username}</Link></b></p>)}
                             <hr></hr>
-                            <p>Creado por {this.state.eventDetails.ownerId.username}</p>
+                            <p>Creado por <b><Link to={`/profile/public/${this.state.eventDetails.ownerId._id}`}>{this.state.eventDetails.ownerId.username}</Link></b></p>
                             <hr></hr>
                             <div className="details-btn">
 
@@ -122,9 +122,8 @@ class EventDetails extends Component {
                                 {(this.props.loggedInUser._id === this.state.eventDetails.ownerId._id) &&
                                     <>
                                     <Button onClick={() => this.handleModal(true)} className="join-btn btn btn-light">Editar</Button>
-                                        <Link className="btn-danger btn" onClick={() => this.deletingEvent()} to='/eventList'>Borrar</Link>
-                                    </>
-                                }
+                                    <Link className="btn-danger btn" onClick={() => this.deletingEvent()} to='/eventList'>Borrar</Link>
+                                    </>}
 
                             </div>
                         </Col>

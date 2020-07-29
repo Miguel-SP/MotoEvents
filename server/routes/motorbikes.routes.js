@@ -20,5 +20,13 @@ router.get('/usermoto', (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.get('/friendmoto', (req, res, next) => {
+
+    const friendMoto = req.body
+
+    Moto.findById(req.body.userMotorbike)
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
 
 module.exports = router

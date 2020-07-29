@@ -11,6 +11,7 @@ class MotoService {
 
     getAllMotorbikes = () => this.service.get('/motorbikes')
     getMoto = () => this.service.get(`/usermoto`)
+    getFriendMoto = () => this.service.get(`/friendmoto`)
 
 }
 

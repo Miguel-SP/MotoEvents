@@ -7,16 +7,39 @@ import { ResponsiveRadar } from '@nivo/radar'
 // you'll often use just a few of them.
 
 import MotoService from './../../../service/MotoService'
+import UserService from './../../../service/UserService'
+
 
 class Radar extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            motorbike: ''
+            motorbike: {
+                brand: '',
+                model: '',
+                power: '',
+                torque: '',
+                displacement: '',
+                weight: '',
+                price: '',
+                image_url: ''
+            },
+            friendmotorbike: {
+                brand: '',
+                model: '',
+                power: '',
+                torque: '',
+                displacement: '',
+                weight: '',
+                price: '',
+                image_url: ''
+            }
         }
 
         this.MotoService = new MotoService()
+
+        this.UserService = new UserService()
     }
 
     componentDidMount = () => {
@@ -25,37 +48,31 @@ class Radar extends Component {
             .getMoto()
             .then(response => this.setState({ motorbike: response.data }))
             .catch(err => console.log(err))
+        
+        this.UserService
+            .getProfile(this.props.match.params.id)
+            .then(response => this.setState({ friendmotorbike: response.data.userMotorbike }))
+            .catch(err => console.log(err))
+        
     }
 
     render() {
+        console.log(this.props)
 
         return (
             !this.state ? <h2>Cargando...</h2> :
 
                 <ResponsiveRadar
-                    data={[
-                        {
-                            "brand": "HARLEY DAVIDSON",
-                            "model": "Sportster 883 Iron",
-                            "power": 52,
-                            "torque": 7,
-                            "displacement": 883,
-                            "weight": 260,
-                            "price": 9000,
-                            "image_url": "https://a.mcdn.es/mnet_ft//HARLEY_DAVIDSON/Sportster/4669/16614MG.jpg/660x/"
-                        },
-                        {
-                            "brand": "BMW ",
-                            "model": "R 1250 GS Adventure",
-                            "power": 136,
-                            "torque": 14.5,
-                            "displacement": 1254,
-                            "weight": 238,
-                            "price": 19950,
-                            "image_url": "https://a.mcdn.es/mnet_ft//BMW/R_1250_GS_Adventure/33787MG.jpg/660x/"
-                        },
-                        this.state.motorbike
-                    ]}
+                    data={[this.state.motorbike, this.state.friendmotorbike, {
+                        "brand": "Ducati",
+                        "model": "Panigale",
+                        "power": 214,
+                        "torque": 12.6,
+                        "displacement": 1100,
+                        "weight": 175,
+                        "price": 25500,
+                        "image_url": "https://a.mcdn.es/mnet_ft//DUCATI/Panigale_V4/32708MG.jpg/660x/"
+                    }]}
                     keys={['power', 'torque', 'displacement', 'weight']}
                     indexBy='model'
                     maxValue={200}
