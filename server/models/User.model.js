@@ -11,7 +11,11 @@ const userSchema = new Schema({
 
     userMotorbike: { type: Schema.Types.ObjectId, ref: 'Moto' },
 
+<<<<<<< HEAD
     friends: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+=======
+    friends:[{ type: Schema.Types.ObjectId, ref: 'User' }]
+>>>>>>> bbf8457279a77a12362bb74df617599e105e71d5
     
 }, {
     timestamps: true

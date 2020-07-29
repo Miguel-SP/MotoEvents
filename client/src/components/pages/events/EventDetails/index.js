@@ -95,9 +95,10 @@ class EventDetails extends Component {
 
 
     render() {
+        
         return (
-            !this.state.eventDetails ? <h3>Cargando...</h3> :
-
+            !this.state.eventDetails ? <h3>Cargando...</h3> : 
+                
                 (<Container as='main'>
                     <Row>
 
@@ -107,6 +108,7 @@ class EventDetails extends Component {
                             <p><b>Detalles:</b> {this.state.eventDetails.description}</p>
                             <p><b>Fecha:</b> {this.state.eventDetails.date.slice(0, 10)}</p>
                             <p><b>Lugar:</b> {this.state.eventDetails.location.city}</p>
+                            <p>Usuarios que asistiran:</p>
                             {this.state.eventDetails.joinedUsers.map(us => <p><b><Link to={`/profile/${us._id}`}>{us.username}</Link></b></p>)}
                             <hr></hr>
                             <p>Creado por {this.state.eventDetails.ownerId.username}</p>
