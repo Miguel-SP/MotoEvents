@@ -11,6 +11,8 @@ class UserService {
 
     getProfile = id => this.service.get(`/profile/${id}`)
 
+    getPublicProfile = id => this.service.get(`/profile/public/${id}`)
+
     editProfile = (id, credentials) => this.service.post(`/profile/edit/${id}`, credentials)
 
     joinEvent = id => this.service.post(`/eventDetails/addevent/${id}`)

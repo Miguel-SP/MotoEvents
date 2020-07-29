@@ -41,6 +41,18 @@ router.get('/profile/:id', checkAuthenticated, (req, res, next) => {
 
 })
 
+router.get('/profile/public/:id', checkAuthenticated, (req, res, next) => {
+
+    User
+        .findById(req.params.id)
+        .populate('events')
+        .populate('userMotorbike')
+        .populate('friends')
+        .then(response => res.json(response))
+        .catch(err => next(err))
+
+})
+
 router.post('/profile/edit/:id', checkAuthenticated, (req, res, next) => {
 
     const username = req.body.username

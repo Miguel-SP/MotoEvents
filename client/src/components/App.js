@@ -16,6 +16,7 @@ import SignupForm from './pages/auth/SignupForm'
 import LoginForm from './pages/auth/LoginForm'
 import Profile from './pages/profile'
 import EditProfile from './pages/profile/editProfile'
+import PublicProfile from './pages/profile/publicProfile'
 import OurToast from './UI/Toast'
 
 
@@ -64,6 +65,10 @@ class App extends Component {
           <Route path="/login" render={props => <LoginForm {...props} setTheUser={this.setTheUser} handleToast={this.handleToast}/>} />
           <Route path="/profile/edit/:id" render={props => this.state.loggedInUser
             ? (<EditProfile {...props} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast} fetchUser={this.fetchUser}/>)
+            : <Redirect to='/login' />}
+          />
+          <Route path="/profile/public/:id" render={props => this.state.loggedInUser
+            ? (<PublicProfile {...props} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast} fetchUser={this.fetchUser} />)
             : <Redirect to='/login' />}
           />
           <Route exact path="/profile/:id" render={props => this.state.loggedInUser 
