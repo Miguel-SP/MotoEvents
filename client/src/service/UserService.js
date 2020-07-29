@@ -13,7 +13,7 @@ class UserService {
 
     editProfile = (id, credentials) => this.service.post(`/profile/edit/${id}`, credentials)
 
-    joinEvent = id => this.service.post(`/eventDetails/${id}`)
+    joinEvent = id => this.service.post(`/eventDetails/addevent/${id}`)
 
     unjoinEvent = id => this.service.post(`/eventDetails/deletefromuser/${id}`)
 }

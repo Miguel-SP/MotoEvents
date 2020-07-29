@@ -15,14 +15,6 @@ router.get('/eventList', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get('/eventDetails/:id', checkAuthenticated, (req, res, next) => {
-
-    Event.findById(req.params.id)
-        .populate('ownerId')
-        .populate('joinedUsers')
-        .then(response => res.json(response))
-        .catch(err => next(err))
-})
 
 router.post('/newEvent', checkAuthenticated, (req, res, next) => {
 
@@ -41,6 +33,12 @@ router.post('/search', (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.post('/eventDetails/join/:id', checkAuthenticated, (req, res, next) => {
+
+    Event.findByIdAndUpdate(req.params.id, { $push: { joinedUsers: req.user._id } })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
 
 router.post('/eventDetails/delete/:id', checkAuthenticated, (req, res, next) => {
 
@@ -49,12 +47,6 @@ router.post('/eventDetails/delete/:id', checkAuthenticated, (req, res, next) => 
         .catch(err => next(err))
 })
 
-router.post('/eventDetails/join/:id', checkAuthenticated, (req, res, next) => {
-
-    Event.findByIdAndUpdate(req.params.id, { $push: { joinedUsers: req.user._id } }, { new: true })
-        .then(response => res.json(response))
-        .catch(err => next(err))
-})
 
 router.post('/eventDetails/update/:id', checkAuthenticated, (req, res, next) => {
 
@@ -80,6 +72,14 @@ router.post('/eventDetails/newcomment/:id', checkAuthenticated, (req, res, next)
         .catch(err => next(err))
 })
 
+router.get('/eventDetails/:id', checkAuthenticated, (req, res, next) => {
+
+    Event.findById(req.params.id)
+        .populate('ownerId')
+        .populate('joinedUsers')
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
 
 
 

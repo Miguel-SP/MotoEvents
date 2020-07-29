@@ -13,6 +13,22 @@ const User = require('../models/User.model')
 // Endpoints
 
 
+router.post('/eventDetails/addevent/:id', checkAuthenticated, (req, res, next) => {
+
+    User
+        .findByIdAndUpdate(req.user._id, { $push: { events: req.params.id } }, { new: true })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
+
+router.post('/eventDetails/deletefromuser/:id', checkAuthenticated, (req, res, next) => {
+
+    User
+        .findByIdAndUpdate(req.user._id, { $pull: { events: req.params.id } }, { new: true })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
+
 router.get('/profile/:id', checkAuthenticated, (req, res, next) => {           
 
     User                                                    
@@ -22,14 +38,6 @@ router.get('/profile/:id', checkAuthenticated, (req, res, next) => {
         .then(response => res.json(response))
         .catch(err => next(err))
 
-})
-
-router.post('/eventDetails/:id', checkAuthenticated, (req, res, next) => {
-
-    User
-        .findByIdAndUpdate(req.user._id, { $push: { events: req.params.id } }, { new: true })
-        .then(response => res.json(response))
-        .catch(err => next(err))
 })
 
 router.post('/profile/edit/:id', checkAuthenticated, (req, res, next) => {
@@ -53,15 +61,6 @@ router.post('/profile/edit/:id', checkAuthenticated, (req, res, next) => {
 
     User.
         findByIdAndUpdate(req.user._id, { username: username, password: hashPass, userMotorbike: userMotorbike }, { new: true })
-        .then(response => res.json(response))
-        .catch(err => next(err))
-})
-
-
-router.post('/eventDetails/deletefromuser/:id', checkAuthenticated, (req, res, next) => {
-
-    User
-        .findByIdAndUpdate(req.user._id, { $pull: { events: req.params.id } }, {new: true})
         .then(response => res.json(response))
         .catch(err => next(err))
 })

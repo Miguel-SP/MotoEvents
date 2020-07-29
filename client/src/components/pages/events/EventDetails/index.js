@@ -20,7 +20,7 @@ class EventDetails extends Component {
         this.state = {
             eventDetails: undefined,
             edit_id: this.props.match.params.id,
-            showModal: false
+            showModal: false,
         }
         this.EventService = new EventService()
         this.UserService = new UserService()
@@ -57,8 +57,9 @@ class EventDetails extends Component {
     joiningEvent = () => {
         let id = this.props.match.params.id
         let actualUser = this.props.loggedInUser
+        console.log(this.state.eventDetails)
 
-        if (!this.state.eventDetails.joinedUsers.some(us => us === actualUser._id)) {
+        if (!this.state.eventDetails.joinedUsers.some(ev => ev._id === actualUser._id)) {
 
             this.UserService
                 .joinEvent(id)
@@ -67,6 +68,8 @@ class EventDetails extends Component {
             this.EventService
                 .userJoined(id)
                 .catch(err => console.log(err))
+            
+            this.updateDetails()
 
             this.props.handleToast('Te has unido!')
         }
@@ -82,6 +85,8 @@ class EventDetails extends Component {
         this.EventService
             .userUnjoin(id)
             .catch(err => console.log(err))
+        
+        this.updateDetails()
 
         this.props.handleToast('Eliminado de tus eventos')
     }
@@ -108,7 +113,7 @@ class EventDetails extends Component {
                             <hr></hr>
                             <div className="details-btn">
 
-                                {this.state.eventDetails.joinedUsers.some(us => us === this.props.loggedInUser._id)
+                                {this.state.eventDetails.joinedUsers.some(ev => ev._id === this.props.loggedInUser._id)
                                     ? <Link className="join-btn btn btn-light" onClick={() => this.unjoinEvent()}>Dejar de ir</Link>
                                     : <Link className="join-btn btn btn-light" onClick={() => this.joiningEvent()}>Unirse</Link>}
 
