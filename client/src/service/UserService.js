@@ -16,6 +16,8 @@ class UserService {
     joinEvent = id => this.service.post(`/eventDetails/addevent/${id}`)
 
     unjoinEvent = id => this.service.post(`/eventDetails/deletefromuser/${id}`)
+
+    addFriend = id => this.service.post(`/profile/addfriend/${id}`)
 }
 
 export default UserService

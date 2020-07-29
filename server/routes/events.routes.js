@@ -15,14 +15,12 @@ router.get('/eventList', (req, res, next) => {
         .catch(err => next(err))
 })
 
-
 router.post('/newEvent', checkAuthenticated, (req, res, next) => {
 
     Event.create(req.body)
         .then(response => res.json(response))
         .catch(err => next(err))
 })
-
 
 router.post('/search', (req, res, next) => {
     const { name } = req.body
@@ -33,9 +31,18 @@ router.post('/search', (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.post('/eventDetails/update/:id', checkAuthenticated, (req, res, next) => {
+
+    let { name, description, location, image_url, date, ownerId } = req.body
+
+    Event.findByIdAndUpdate(req.params.id, { name, description, location, image_url, date, ownerId }, { new: true })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
+
 router.post('/eventDetails/join/:id', checkAuthenticated, (req, res, next) => {
 
-    Event.findByIdAndUpdate(req.params.id, { $push: { joinedUsers: req.user._id } })
+    Event.findByIdAndUpdate(req.params.id, { $push: { joinedUsers: req.user._id } }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 })
@@ -45,14 +52,6 @@ router.post('/eventDetails/delete/:id', checkAuthenticated, (req, res, next) => 
     Event.findByIdAndRemove(req.params.id)
         .then(response => res.json(response))
         .catch(err => next(err))
-})
-
-
-router.post('/eventDetails/update/:id', checkAuthenticated, (req, res, next) => {
-
-    const { name, description, location, image_url, date, ownerId } = req.body
-
-    Event.findByIdAndUpdate(req.params.id, { name, description, location, image_url, date, ownerId }, {new: true})
 })
 
 router.post('/eventDetails/deletefromevent/:id', checkAuthenticated, (req, res, next) => {

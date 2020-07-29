@@ -47,8 +47,9 @@ class EventForm extends Component {
         e.preventDefault()
 
         if (this.props.edit_id) {
+
             this.EventService
-                .updateEvent(this.props.edit_id, { ...this.state })
+                .updateEvent(this.props.edit_id, this.state )
                 .then(() => {
                     this.props.updateDetails()
                     this.props.handleToast('Evento modificado!')

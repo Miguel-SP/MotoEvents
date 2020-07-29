@@ -87,7 +87,6 @@ class EditProfile extends Component {
                                     </select>
                                 </Form.Group>
 
-
                                 {this.state.errorMessage && <p style={{ color: 'red' }}>{this.state.errorMessage}</p>}
 
                                 <Button variant="dark" type="submit">Confirmar</Button>

@@ -35,6 +35,7 @@ router.get('/profile/:id', checkAuthenticated, (req, res, next) => {
         .findById(req.params.id)
         .populate('events')
         .populate('userMotorbike')
+        .populate('friends')
         .then(response => res.json(response))
         .catch(err => next(err))
 
@@ -65,5 +66,11 @@ router.post('/profile/edit/:id', checkAuthenticated, (req, res, next) => {
         .catch(err => next(err))
 })
 
+
+router.post('/profile/addfriend/:id', checkAuthenticated, (req, res, next) => {
+    User.findByIdAndUpdate(req.user._id, { $push: { friends: req.params.id } }, { new: true })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
 
 module.exports = router

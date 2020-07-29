@@ -9,7 +9,9 @@ const userSchema = new Schema({
 
     events: [{ type: Schema.Types.ObjectId, ref: 'Event' }],
 
-    userMotorbike: { type: Schema.Types.ObjectId, ref: 'Moto' }
+    userMotorbike: { type: Schema.Types.ObjectId, ref: 'Moto' },
+
+    friends: [{ type: Schema.Types.ObjectId, ref: 'User' }]
     
 }, {
     timestamps: true
