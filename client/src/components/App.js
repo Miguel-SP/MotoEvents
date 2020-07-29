@@ -67,7 +67,7 @@ class App extends Component {
             : <Redirect to='/login' />}
           />
           <Route path="/profile/:id" render={props => this.state.loggedInUser 
-            ? (<Profile {...props} loggedInUser={this.state.loggedInUser} fetchUser={this.fetchUser}/>)
+            ? (<Profile {...props} loggedInUser={this.state.loggedInUser} fetchUser={this.fetchUser} handleToast={this.handleToast}/>)
             : <Redirect to='/login' />} 
           />
           

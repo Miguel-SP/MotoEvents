@@ -18,7 +18,7 @@ class Profile extends Component {
         super(props)
         this.state = {
             profile: undefined,
-            showModal: false
+            showModal: false,
         }
 
         this.UserService = new UserService()
@@ -37,8 +37,17 @@ class Profile extends Component {
 
     handleModal = status => this.setState({ showModal: status })
 
+    addFriend = () => {
+        const id = this.props.match.params.id
+        this.UserService
+            .addFriend(id)
+            
+        this.props.handleToast("Amigo añadido")
+    }
 
-    render() {
+
+    render() { 
+
         return (
 
             !this.state.profile ? <h3>Cargando...</h3> :
@@ -46,11 +55,21 @@ class Profile extends Component {
 
                 (<Container as='main'>
                     
-                    <h1>¡Hola, {this.props.loggedInUser.username}!</h1>
+                    {(this.props.loggedInUser._id === this.props.match.params.id) ?
+                        <h1>¡Hola, {this.props.loggedInUser.username}!</h1>
+                    :
+                        <h1>Perfil de {this.props.match.params.username}!</h1>
+                    }
 
+                    {(this.props.loggedInUser._id === this.props.match.params.id) ?
                     <div className="edit-btn-div">
                         <Link className="create-btn btn btn-primary" to={`/profile/edit/${this.props.loggedInUser._id}`}>Editar mi perfil</Link>
                     </div>
+                    :
+                    <div className="edit-btn-div">
+                        <Link className="create-btn btn btn-primary" onClick={() => this.addFriend()} >Añadir a amigos</Link>
+                    </div>
+                    }
                     
 
                     <Row>
@@ -65,7 +84,7 @@ class Profile extends Component {
 
                         </Col>
 
-                        <Col md={{ span: 7, offset: 1 }}>
+                        <Col md={{ span: 5, offset: 1 }}>
                             <h3>Mi moto</h3>
 
                             
@@ -78,6 +97,10 @@ class Profile extends Component {
                                 </Modal.Body>
                             </Modal>
 
+                        </Col>
+                        <Col md={{span: 2}}>
+                            <h3>Mis amigos</h3>
+                            {this.state.profile.friends.map(friend => <p><Link to={`/profile/${friend._id}`}>{friend.username}</Link></p>)}
                         </Col>
 
                     </Row>
