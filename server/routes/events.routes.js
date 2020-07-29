@@ -56,6 +56,13 @@ router.post('/eventDetails/join/:id', checkAuthenticated, (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.post('/eventDetails/update/:id', checkAuthenticated, (req, res, next) => {
+
+    const { name, description, location, image_url, date, ownerId } = req.body
+
+    Event.findByIdAndUpdate(req.params.id, { name, description, location, image_url, date, ownerId }, {new: true})
+})
+
 router.post('/eventDetails/deletefromevent/:id', checkAuthenticated, (req, res, next) => {
 
     Event.findByIdAndUpdate(req.params.id, { $pull: { joinedUsers: req.user._id } }, { new: true })
@@ -65,13 +72,13 @@ router.post('/eventDetails/deletefromevent/:id', checkAuthenticated, (req, res, 
 
 router.post('/eventDetails/newcomment/:id', checkAuthenticated, (req, res, next) => {
 
-    const {user, date, text} = req.body
+    const { user, date, text } = req.body
+   
 
-    Event.findByIdAndUpdate(req.params.id, { $push: { comments: {user, date, text} } }, { new: true })
+    Event.findByIdAndUpdate(req.params.id, { $push: { comments: { user, date, text } } }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 })
-
 
 
 

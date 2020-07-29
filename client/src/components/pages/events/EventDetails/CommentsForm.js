@@ -8,7 +8,7 @@ class CommentsForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            user: this.props.loggedInUser._id,
+            user: this.props.loggedInUser.username,
             date: Date.now,
             text: '',
             comments: undefined
@@ -22,14 +22,15 @@ class CommentsForm extends Component {
         this.setState({ [name]: value })
     }
 
-    handleFormSubmit = e => {                       // hacer un post con push a los comentarios del evento.
+    handleFormSubmit = e => {
         e.preventDefault()
 
         const id = this.props.match.params.id
         this.EventService
             .createComment(id, this.state)
             .then(response => {
-                this.setState({comments : response.data.comments})
+                this.setState({ comments: response.data.comments })
+                this.props.updateDetails()
                 this.props.handleToast('Comentario enviado!')
             })
             .catch(err => console.log(err))
@@ -45,8 +46,6 @@ class CommentsForm extends Component {
                         <Form.Control onChange={this.handleInputChange} value={this.state.text} name="text" type="text" />
                         <Form.Text className="text-muted">Máximo 200 caracteres</Form.Text>
                     </Form.Group>
-
-                    <Button variant="dark" type="submit">Enviar</Button>
                 </Form>
             </>
         )

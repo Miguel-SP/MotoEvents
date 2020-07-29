@@ -9,19 +9,26 @@ class EventForm extends Component {
     constructor (props){
         super (props)
         this.state = {
-            name: '',
-            description: '',
-            location: {
-                city: '',
-                coordinates: []
-            },
-            image_url: '',
-            date: '',
-            ownerId: this.props.loggedInUser._id
+                name: '',
+                description: '',
+                location: {
+                    city: '',
+                    coordinates: []
+                },
+                image_url: '',
+                date: '',
+                ownerId: this.props.loggedInUser._id
         }
         this.EventService = new EventService()
     }
 
+    componentDidMount = () => {
+        this.props.edit_id &&
+            this.EventService
+                .getEventDetails(this.props.edit_id)
+                .then(response => this.setState(response.data))
+                .catch(err => console.log(err))
+    }
 
     getTheCity = (theCity) => this.setState({
             ...this.state,
@@ -33,24 +40,39 @@ class EventForm extends Component {
 
     handleInputChange = e => {
         const { name, value } = e.target
-        this.setState({ [name]: value })
+        this.setState({ ...this.state, [name]: value  })
     }
 
     handleFormSubmit = e => {
         e.preventDefault()
-        this.EventService
-            .createEvent(this.state)
-            .then(() => {
-                this.props.handleEventSubmit()
-                this.props.handleToast('Evento creado!')
-            })
-            .catch(err => console.log(err))
+
+        if (this.props.edit_id) {
+            this.EventService
+                .updateEvent(this.props.edit_id, { ...this.state })
+                .then(() => {
+                    this.props.updateDetails()
+                    this.props.handleToast('Evento modificado!')
+                })
+                .catch(err => console.log(err))
+            
+
+        } else {
+
+            this.EventService
+                .createEvent(this.state)
+                .then(() => {
+                    this.props.handleEventSubmit()
+                    this.props.handleToast('Evento creado!')
+                })
+                .catch(err => console.log(err))
+        }
+
     }
 
     render () {
         return (
             <>
-                <h3>Crea un nuevo evento</h3>
+                <h3>{this.props.edit_id ? 'Editar evento' : 'Crea un nuevo evento'}</h3>
                 <hr></hr>
                 <Form onSubmit={this.handleFormSubmit}>
                     <Form.Group>
@@ -79,7 +101,7 @@ class EventForm extends Component {
                         <Form.Control onChange={this.handleInputChange} value={this.state.image_url} name="image_url" type="text" />
                     </Form.Group>
 
-                    <Button variant="dark" type="submit">Crear</Button>
+                    <Button variant="dark" type="submit">{this.props.edit_id ? 'Editar' : 'Crear'}</Button>
                 </Form>
             </>
         )

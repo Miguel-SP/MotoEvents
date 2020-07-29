@@ -13,6 +13,7 @@ class EventService {
     createEvent = event => this.service.post('/newEvent', event)
     searchEvents = name => this.service.post('/search', name)
     getAllEvents = () => this.service.get('/eventList')
+    updateEvent = (id, event) => this.service.post(`/eventDetails/update/${id}`, event)
     deleteEvent = id => this.service.post(`eventDetails/delete/${id}`)
     userJoined = id => this.service.post(`/eventDetails/join/${id}`)
     userUnjoin = id => this.service.post(`/eventDetails/deletefromevent/${id}`)

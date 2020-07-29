@@ -13,7 +13,9 @@ class Navigation extends Component {
 
     constructor(props) {
         super(props)
+        
         this.AuthService = new AuthService()
+        console.log(this.props)
     }
 
     logout = () => {
@@ -27,6 +29,7 @@ class Navigation extends Component {
     }
 
     render() {
+        
 
         return (
             <Navbar bg="dark" variant="dark" expand="lg" sticky="top" className="navbar">

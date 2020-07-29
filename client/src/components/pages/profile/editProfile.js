@@ -46,7 +46,7 @@ class EditProfile extends Component {
             .then(response => {
                 this.setState({ loggedInUser: response.data })
                 this.props.handleToast(`Perfil actualizado!`)
-                this.props.history.push('/eventList')
+                this.props.history.push(`/profile/${this.state.loggedInUser._id}`)
             })
             .catch(err => {
                 console.log(err.response.data.message)
