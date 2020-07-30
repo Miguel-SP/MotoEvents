@@ -3,3 +3,44 @@
     height: 100vh;
     margin: 0;
 }
+
+.text-lightblue{
+color: #42AB9E;
+}
+
+#welcome-title{
+    font-size: 4rem;
+    padding: 0px;
+}
+
+.home-title {
+    justify-content: flex-end;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.home-description{
+    font-size: 2.7rem;
+    margin-bottom: 100px;
+
+}
+
+.home-text-row{
+    justify-content: center;
+}
+
+#home-btn{
+    margin: 20px
+}
+
+.page-bg {
+     background: url('https://pictures.topspeed.com/IMG/crop/201811/2019-scrambler-1200-xe-22_1600x0w.jpg');
+     background-size: cover;
+     filter: opacity(0.3);
+     position: fixed;
+     width: 100%;
+     height: 100%;
+     top: 0;
+     left: 0;
+     z-index: -1;
+}        

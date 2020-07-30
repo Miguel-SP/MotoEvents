@@ -3,7 +3,8 @@
 }
 
 .filter-red{
-        filter: invert(11%) sepia(87%) saturate(6275%) hue-rotate(358deg) brightness(100%) contrast(111%);
+        filter: invert(54%) sepia(94%) saturate(242%) hue-rotate(123deg) brightness(90%) contrast(94%);
         width: 50px;
         vertical-align: text-bottom;
     }
+

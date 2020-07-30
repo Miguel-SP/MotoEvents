@@ -41,10 +41,10 @@ class Navigation extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
                         <Nav.Link as="span">
-                            <NavLink to="/" exact activeStyle={{ color: 'white' }}>Inicio</NavLink>
+                            <NavLink to="/" exact activeStyle={{ color: '#E8E5E2' }}>Inicio</NavLink>
                         </Nav.Link>
                         <Nav.Link as="span">
-                            <NavLink to="/eventList" exact activeStyle={{ color: 'white' }}>Eventos</NavLink>
+                            <NavLink to="/eventList" exact activeStyle={{ color: '#E8E5E2' }}>Eventos</NavLink>
                         </Nav.Link>
 
                         {this.props.loggedInUser ?
@@ -54,16 +54,16 @@ class Navigation extends Component {
                                         <span onClick={this.logout}>Cerrar sesión</span>
                                     </Nav.Link>
                                     <Nav.Link as="span">
-                                        <NavLink to={`/profile/${this.props.loggedInUser._id}`} activeStyle={{ color: 'white' }}>Perfil de {this.props.loggedInUser.username}</NavLink>
+                                        <NavLink to={`/profile/${this.props.loggedInUser._id}`} activeStyle={{ color: '#E8E5E2' }}>Perfil de {this.props.loggedInUser.username}</NavLink>
                                     </Nav.Link>
                                 </>
                             ) : (
                                 <>
                                     <Nav.Link as="span">
-                                        <NavLink to="/signup" activeStyle={{ color: 'white' }}>Registro</NavLink>
+                                        <NavLink to="/signup" activeStyle={{ color: '#E8E5E2' }}>Registro</NavLink>
                                     </Nav.Link>
                                     <Nav.Link as="span">
-                                        <NavLink to="/login" activeStyle={{ color: 'white' }}>Inicio sesión</NavLink>
+                                        <NavLink to="/login" activeStyle={{ color: '#E8E5E2' }}>Inicio sesión</NavLink>
                                     </Nav.Link>
                                 </>
                             )
