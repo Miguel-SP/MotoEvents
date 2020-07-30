@@ -32,3 +32,15 @@
     align-items: center;
     margin: 30px auto;
 }
+
+.active-events-col{
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+.create-event-col{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+}

@@ -32,7 +32,7 @@ class CityAutocomplete extends React.Component {
                 <PlacesAutocomplete value={this.state.city} onChange={this.handleChange} onSelect={this.handleSelect}>
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                         <div>
-                            <input {...getInputProps({ placeholder: 'Busca una dirección' })}/>
+                            <input className="form-control" {...getInputProps({ placeholder: 'Busca una dirección' })}/>
                             <div >
                                 {loading && <span>Loading...</span>}
                                 {suggestions.map(suggestion => {

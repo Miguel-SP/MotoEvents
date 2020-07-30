@@ -58,7 +58,7 @@ class PublicProfile extends Component {
                         
                         <Row className="profile-1">
                         <Col xs={{span: 6}}>
-                        <h1 className="style-friend">Perfil de <span className="text-lightblue">{this.state.profile.username}</span><img className="friend-motorbike" src={this.state.profile.userMotorbike.image_url} alt="your friend's motorbike" /></h1>
+                            <h1 className="style-friend">Perfil de <span className="text-lightblue">{this.state.profile.username}</span><img className="friend-motorbike" src={this.state.profile.userMotorbike.image_url} alt="your friend's motorbike" /></h1>
                         </Col>
                         <Col xs={{span: 6}}>
                         {this.props.loggedInUser.friends.some(friend => friend === this.state.profile._id) ? <h3 className="edit-btn-div">Sois amigos <img src="/corazon_negro.svg" alt="corazon negro" className="heart" /></h3> :
@@ -78,7 +78,7 @@ class PublicProfile extends Component {
 
                                 <p className="style-p name-moto text-lightblue">{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
 
-                                <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                                <Modal size="lg" centered show={this.state.showModal} onHide={() => this.handleModal(false)}>
                                     <Modal.Body>
                                         <Radar {...this.props} />
                                     </Modal.Body>
