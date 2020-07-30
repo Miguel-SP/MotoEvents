@@ -45,53 +45,64 @@ class Profile extends Component {
             !this.state.profile ? <div className="spinner"><Spinner /></div> :
 
 
-                (<Container as='main'>
+                (<>
+                    <div class="page-bg"></div>
+                    <Container as='main'>
 
-                    <Row>
-                        <Col>
-                        <h1>¡Hola, {this.props.loggedInUser.username}!</h1>
-                        </Col>
-                        <Col>
-                            <div className="edit-btn-div">
-                        <Link className="create-btn btn btn-primary" to={`/profile/edit/${this.props.loggedInUser._id}`}>Editar mi perfil</Link>
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row>
+                        <Row className="profile-1">
+                            <Col md={{span: 6}}>
+                            <h1>¡Hola, <span className="text-lightblue">{this.props.loggedInUser.username}</span>!</h1>
+                            </Col>
+                            <Col md={{span: 6}}>
+                                <div className="edit-btn-div">
+                                <Link  to={`/profile/edit/${this.props.loggedInUser._id}`}>
+                                    <button className="button-login-signup"><span>Editar mi perfil</span></button>
+                                </Link>
+                                </div>
+                            </Col>
+                        </Row>
+                        <Row className="profile-1">
 
-                        <Col className="card-motorbike" md={{ span: 5, offset: 1 }}>
-                            <h3>Mi moto</h3>
+                            <Col className="card-motorbike" md={{ span: 5, offset: 1 }}>
+                                <h3 className="style-events name-moto">Mi moto</h3>
 
-                            <img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" />
-                            <p className="style-p" >{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
+                                <img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" />
+                                <p className="style-p name-moto text-lightblue" >{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
 
-                        </Col>
+                            </Col>
 
-                        <Col md={{ span: 5, offset: 1 }} >
-                            <h3>Mis amigos</h3>
+                            <Col md={{ span: 5, offset: 1 }} >
+                                <h3 className="style-events">Mis amigos</h3>
 
-                            <ListGroup>
-                                {this.state.profile.friends.map(friend =>
-                                    <Link to={`/profile/public/${friend._id}`}><ListGroup.Item key={friend.id} className="center transparent style-friend">{friend.username}</ListGroup.Item></Link>)}
-                            </ListGroup>
-                        </Col>
+                                <ListGroup>
+                                    {this.state.profile.friends.map(friend =>
+                                        <Link to={`/profile/public/${friend._id}`}><ListGroup.Item key={friend.id} className="center transparent style-friend">{friend.username}</ListGroup.Item></Link>)}
+                                </ListGroup>
+                            </Col>
 
-                    </Row>
-                    
-                    <h3 className="style-events">Eventos a los que voy</h3>
-                    <ListGroup horizontal className="scroll-x">
-                        {this.state.profile.events.map(event =>
-                            <ListGroup.Item className="transparent">
-                            <Link to={`/eventDetails/${event._id}`}>
-                                                                           
-                                <img variant="top" className="event-img" src={event.image_url} alt={event.name} />
-                                <p>{event.name}</p>
-                                    
-                            </Link>
-                            </ListGroup.Item>
-                            )}
-                    </ListGroup>
-                </Container>)
+                        </Row>
+                        <hr />
+                        <h3 className="style-events">Eventos a los que voy</h3>
+                        <Row className="profile-1">
+                        <ListGroup horizontal className="scroll-x">
+                            {this.state.profile.events.map(event =>
+                                <ListGroup.Item className="transparent">
+                                <Link to={`/eventDetails/${event._id}`}>
+                                    <Col xs={{span: 12}} >
+                                    <Col className="height-img">                                  
+                                    <img variant="top" className="event-img" src={event.image_url} alt={event.name} />
+                                    </Col>
+                                    <Col className="name-event">
+                                    <p className="style-p">{event.name}</p>
+                                    </Col>
+                                    </Col>  
+                                </Link>
+                                </ListGroup.Item>
+                                )}
+                        </ListGroup>
+                        </Row>
+                    </Container>
+                </>)
         )
     }
 }

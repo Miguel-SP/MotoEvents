@@ -20,12 +20,6 @@ text-align: center;
     justify-content: flex-end;
 
 }
-img.heart{
-    display: none;
-}
-
-
-
 .modal-body {
     height: 650px;
 }
@@ -34,17 +28,6 @@ img.heart{
     opacity: 0.9;
 }
 
-.usermotorbike-img{
-    width: 300px;
-    display: block;
-    margin: auto;
-}
-
-.event-img{
-    width: 300px;
-    border-radius: 20px;
-    
-}
 .events-col{
     justify-content: center;
     display: flex;
@@ -54,36 +37,59 @@ h3{
     text-align: center;
 }
 
-.center{
-    justify-content: center;
+.height-img{
+    height: 200px;
+}
+.name-event{
+    margin-top: 10px;
+}
+.name-moto{
+    margin: 20px 0;
 }
 
-.scroll-x{
-    overflow-x: auto;
-    overflow-y: hidden;
-}
-
-.scroll-y{
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 400px;
-}
+/* Col */
 
 .card-motorbike > p{
     text-align: center;
 }
 
-.aaa{
-    overflow: scroll;
-    height: 150px;
+/* List */
+
+.scroll-x{
+    overflow-x: auto;
+    overflow-y: hidden;
     height: 300px;
 }
-
 .transparent{
     background: transparent;
 }
-.img-event{
+.center{
+    justify-content: center;
+}
+
+/* ROW */
+
+.profile-1{
+    margin-top: 50px;
+}
+
+/* Imagenes */
+img.heart{
+    display: none;
+}
+
+.usermotorbike-img{
     width: 200px;
+    display: block;
+    margin: auto;
+}
+
+.event-img{
+    width: 300px;
+}
+
+.img-event{
+    width: 150px;
     text-align: center;
 }
 .friend-motorbike{
@@ -92,28 +98,40 @@ h3{
     display: none;
 }
 
+/* Tamaños de letras */
+
 .style-friend{
     font-size: 24px;
-    color: darkred;
     text-shadow: #444 2px 2px 3px;
 }
 
 .style-events{
-    text-shadow: #444 2px 2px 3px;
-    font-size: 40px;
-    color: darkgoldenrod;
+    font-size: 22px;
 }
 
 .style-p{
-    font-size: 24px;
-    text-shadow: #555 2px 2px 3px;
+    font-size: 18px;
+    font-weight: bold
 }
+
 
 @media (min-width: 800px){
     h3:hover > .heart{
         display: block;
-        width: 40px; 
+        width: 30px; 
       }
+      .usermotorbike-img{
+        width: 250px;
+    }
+    .style-events{
+        font-size: 40px;
+    }
+    .style-p{
+        font-size: 26px;
+    }
+    .style-friend{
+        font-size: 30px;
+    }
 }
 
 
@@ -125,7 +143,10 @@ h3{
 
     h3:hover > .heart{
         display: block;
-        width: 50px; 
+        width: 30px; 
       }
+      .usermotorbike-img{
+        width: 300px;
+    }
 }
 

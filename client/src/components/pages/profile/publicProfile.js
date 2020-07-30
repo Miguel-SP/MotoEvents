@@ -52,61 +52,64 @@ class PublicProfile extends Component {
             !this.state.profile ? <div className="spinner"><Spinner /></div> :
 
 
-                (<Container as='main'>
-                    
-                    <Row>
-                    <Col xs={{span: 4, offset: 1}}>
-                    <h1 className="style-friend">Perfil de {this.state.profile.username}<img className="friend-motorbike" src={this.state.profile.userMotorbike.image_url} alt="your friend's motorbike" /></h1>
-                    </Col>
-                    <Col xs={{span: 3, offset: 4}}>
-                    {this.props.loggedInUser.friends.some(friend => friend === this.state.profile._id) ? <h3 className="edit-btn-div">Sois amigos <img src="/corazon.png" alt="corazon" className="heart" /></h3> :
-                        (<div className="edit-btn-div">
-                            <Link className="create-btn btn btn-primary" onClick={() => this.addFriend()}>Añadir a amigos</Link>
-                        </div>)}
-                    </Col>
-                    </Row>
-                    <Row>
-
-                        <Col md={{span:6, order: 2}}>
-                        <h3>Comparar mi moto con la de {this.state.profile.username}</h3>
+                (<>
+                    <div class="page-bg"></div>
+                    <Container as='main'>
                         
-                        <Col md={{ span: 7, offset: 2 }} className="card-motorbike">
-                        
-                            <Link onClick={() => this.handleModal(true)}><img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" /></Link>
-
-                            <p className="style-p">{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
-
-                            <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
-                                <Modal.Body>
-                                    <Radar {...this.props} />
-                                </Modal.Body>
-                            </Modal>
-
+                        <Row className="profile-1">
+                        <Col xs={{span: 6}}>
+                        <h1 className="style-friend">Perfil de <span className="text-lightblue">{this.state.profile.username}</span><img className="friend-motorbike" src={this.state.profile.userMotorbike.image_url} alt="your friend's motorbike" /></h1>
                         </Col>
+                        <Col xs={{span: 6}}>
+                        {this.props.loggedInUser.friends.some(friend => friend === this.state.profile._id) ? <h3 className="edit-btn-div">Sois amigos <img src="/corazon_negro.svg" alt="corazon negro" className="heart" /></h3> :
+                            (<div className="edit-btn-div">
+                                <Link className="create-btn btn btn-primary" onClick={() => this.addFriend()}>Añadir a amigos</Link>
+                            </div>)}
                         </Col>
+                        </Row>
+                        <Row className="profile-1">
 
-                        <Col md={{span:6, order: 1}} >
-                        <h3 className="style-events">Eventos a los que está apuntado</h3>
-                        
-                        <Col className="events-col" md={{ span: 8, offset: 2 }}>
+                            <Col md={{span:6, offset: 3}}>
+                            <h3 className="style-events name-moto">Comparar mi moto con la de {this.state.profile.username}</h3>
+                            
+                            <Col md={{ span: 10, offset: 1 }} className="card-motorbike">
+                            
+                                <Link onClick={() => this.handleModal(true)}><img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" /></Link>
 
-                            <ListGroup className="scroll-y">
-                                {this.state.profile.events.map(event =>
-                                    <Link to={`/eventDetails/${event._id}`}>
-                                        <ListGroup.Item key={event._id} className="transparent">
-                                            <Col xs={{span: 12}} >                                              
-                                                <img src={event.image_url} alt={event.name} className="img-event" />
-                                                <p>{event.name}</p>
-                                            </Col>
-                                        </ListGroup.Item>
-                                    </Link>)}
-                            </ListGroup>
+                                <p className="style-p name-moto text-lightblue">{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
 
-                        </Col>
-                        </Col>
+                                <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                                    <Modal.Body>
+                                        <Radar {...this.props} />
+                                    </Modal.Body>
+                                </Modal>
 
-                    </Row>
-                </Container>)
+                            </Col>
+                            </Col>
+                        </Row>
+                            <hr />
+                            <h3 className="style-events">Eventos a los que está apuntado</h3>
+                        <Row className="profile-1">
+
+                                <ListGroup horizontal className="scroll-x">
+                                    {this.state.profile.events.map(event =>
+                                        <Link to={`/eventDetails/${event._id}`}>
+                                            <ListGroup.Item key={event._id} className="transparent">
+                                                <Col xs={{span: 12}} >
+                                                    <Col className="height-img">
+                                                    <img src={event.image_url} alt={event.name} className="event-img" />
+                                                    </Col>                                             
+                                                    <Col className="name-event">
+                                                    <p className="style-p">{event.name}</p>
+                                                    </Col> 
+                                                </Col>
+                                            </ListGroup.Item>
+                                        </Link>)}
+                                </ListGroup>
+
+                        </Row>
+                    </Container>
+                </>)
 
         )
     }
