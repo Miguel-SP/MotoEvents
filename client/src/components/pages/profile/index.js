@@ -67,7 +67,7 @@ class Profile extends Component {
                                 <h3 className="style-events name-moto">Mi moto</h3>
 
                                 <img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" />
-                                <p className="style-p name-moto text-lightblue" >{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
+                                <p className="style-p name-moto " >{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
 
                             </Col>
 
@@ -76,7 +76,7 @@ class Profile extends Component {
 
                                 <ListGroup>
                                     {this.state.profile.friends.map(friend =>
-                                        <Link to={`/profile/public/${friend._id}`}><ListGroup.Item key={friend.id} className="center transparent style-friend">{friend.username}</ListGroup.Item></Link>)}
+                                        <Link to={`/profile/public/${friend._id}`}><ListGroup.Item action variant="light" key={friend.id} className="center transparent style-friend">{friend.username}</ListGroup.Item></Link>)}
                                 </ListGroup>
                             </Col>
 
@@ -86,14 +86,14 @@ class Profile extends Component {
                         <Row className="profile-1">
                         <ListGroup horizontal className="scroll-x">
                             {this.state.profile.events.map(event =>
-                                <ListGroup.Item className="transparent">
+                                <ListGroup.Item className="transparent friend">
                                 <Link to={`/eventDetails/${event._id}`}>
                                     <Col xs={{span: 12}} >
                                     <Col className="height-img">                                  
-                                    <img variant="top" className="event-img" src={event.image_url} alt={event.name} />
+                                        <img variant="top" className="event-img" src={event.image_url} alt={event.name} />
                                     </Col>
                                     <Col className="name-event">
-                                    <p className="style-p">{event.name}</p>
+                                        <p className="style-p">{event.name}</p>
                                     </Col>
                                     </Col>  
                                 </Link>
