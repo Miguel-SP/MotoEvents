@@ -41,9 +41,6 @@ h3{
     text-align: center;
 }
 
-.height-img{
-    height: 200px;
-}
 .name-event{
     margin-top: 10px;
 }
@@ -89,13 +86,19 @@ img.heart{
 }
 
 .event-img{
-    width: 300px;
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
 }
 
+.height-img{
+    height: 100px;
+}
 .img-event{
     width: 150px;
     text-align: center;
 }
+
 .friend-motorbike{
     width: 40px;
     margin-left: 5px;
@@ -106,16 +109,21 @@ img.heart{
 
 .style-friend{
     font-size: 24px;
-    text-shadow: #444 2px 2px 3px;
 }
 
 .style-events{
     font-size: 22px;
+    
 }
 
 .style-p{
-    font-size: 18px;
-    font-weight: bold
+    font-size: 24px;
+    color: #293133;
+    
+}
+
+.friend{
+    color:inherit
 }
 
 
@@ -131,7 +139,7 @@ img.heart{
         font-size: 40px;
     }
     .style-p{
-        font-size: 26px;
+        font-size: 32px;
     }
     .style-friend{
         font-size: 30px;
