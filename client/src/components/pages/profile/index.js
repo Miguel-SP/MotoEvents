@@ -47,18 +47,23 @@ class Profile extends Component {
 
                 (<Container as='main'>
 
-                    <h1>¡Hola, {this.props.loggedInUser.username}!</h1>
-                    <div className="edit-btn-div">
+                    <Row>
+                        <Col>
+                        <h1>¡Hola, {this.props.loggedInUser.username}!</h1>
+                        </Col>
+                        <Col>
+                            <div className="edit-btn-div">
                         <Link className="create-btn btn btn-primary" to={`/profile/edit/${this.props.loggedInUser._id}`}>Editar mi perfil</Link>
-                    </div>
-                    
+                            </div>
+                        </Col>
+                    </Row>
                     <Row>
 
                         <Col className="card-motorbike" md={{ span: 5, offset: 1 }}>
                             <h3>Mi moto</h3>
 
                             <img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" />
-                            <p>{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
+                            <p className="style-p" >{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
 
                         </Col>
 
@@ -67,14 +72,14 @@ class Profile extends Component {
 
                             <ListGroup>
                                 {this.state.profile.friends.map(friend =>
-                                    <Link to={`/profile/public/${friend._id}`}><ListGroup.Item key={friend.id} className="center transparent">{friend.username}</ListGroup.Item></Link>)}
+                                    <Link to={`/profile/public/${friend._id}`}><ListGroup.Item key={friend.id} className="center transparent style-friend">{friend.username}</ListGroup.Item></Link>)}
                             </ListGroup>
                         </Col>
 
                     </Row>
                     
-                    <h3>Eventos a los que voy</h3>
-                    <ListGroup horizontal className="scroll">
+                    <h3 className="style-events">Eventos a los que voy</h3>
+                    <ListGroup horizontal className="scroll-x">
                         {this.state.profile.events.map(event =>
                             <ListGroup.Item className="transparent">
                             <Link to={`/eventDetails/${event._id}`}>

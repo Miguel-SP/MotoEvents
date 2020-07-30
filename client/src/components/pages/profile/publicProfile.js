@@ -56,10 +56,10 @@ class PublicProfile extends Component {
                     
                     <Row>
                     <Col xs={{span: 4, offset: 1}}>
-                    <h1>Perfil de {this.state.profile.username}</h1>
+                    <h1 className="style-friend">Perfil de {this.state.profile.username}<img className="friend-motorbike" src={this.state.profile.userMotorbike.image_url} alt="your friend's motorbike" /></h1>
                     </Col>
                     <Col xs={{span: 3, offset: 4}}>
-                    {this.props.loggedInUser.friends.some(friend => friend === this.state.profile._id) ? <h3 className="edit-btn-div">Sois amigos</h3> :
+                    {this.props.loggedInUser.friends.some(friend => friend === this.state.profile._id) ? <h3 className="edit-btn-div">Sois amigos <img src="/corazon.png" alt="corazon" className="heart" /></h3> :
                         (<div className="edit-btn-div">
                             <Link className="create-btn btn btn-primary" onClick={() => this.addFriend()}>Añadir a amigos</Link>
                         </div>)}
@@ -67,14 +67,14 @@ class PublicProfile extends Component {
                     </Row>
                     <Row>
 
-                        <Col md={{span:6}} md={{order: 2}}>
+                        <Col md={{span:6, order: 2}} >
                         <h3>Comparar mi moto con la de {this.state.profile.username}</h3>
                         
                         <Col md={{ span: 7, offset: 2 }} className="card-motorbike">
                         
                             <Link onClick={() => this.handleModal(true)}><img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" /></Link>
 
-                            <p>{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
+                            <p className="style-p">{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
 
                             <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
                                 <Modal.Body>
@@ -85,17 +85,17 @@ class PublicProfile extends Component {
                         </Col>
                         </Col>
 
-                        <Col md={{span:6}} md={{order: 1}} >
-                        <h3>Eventos a los que está apuntado</h3>
+                        <Col md={{span:6, order: 1}} >
+                        <h3 className="style-events">Eventos a los que está apuntado</h3>
                         
-                        <Col className="events-col" md={{ span: 6, offset: 3 }}>
+                        <Col className="events-col" md={{ span: 8, offset: 2 }}>
 
-                            <ListGroup>
+                            <ListGroup className="scroll-y">
                                 {this.state.profile.events.map(event =>
                                     <Link to={`/eventDetails/${event._id}`}>
                                         <ListGroup.Item key={event._id} className="transparent">
-                                            <Col xs={{span: 12}} >
-                                                <img src={event.image_url} alt={event.name} className="event-img" />
+                                            <Col xs={{span: 12}} >                                              
+                                                <img src={event.image_url} alt={event.name} className="img-event" />
                                                 <p>{event.name}</p>
                                             </Col>
                                         </ListGroup.Item>
