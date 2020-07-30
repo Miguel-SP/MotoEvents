@@ -19,8 +19,6 @@ import Profile from './pages/profile'
 import EditProfile from './pages/profile/editProfile'
 import PublicProfile from './pages/profile/publicProfile'
 import OurToast from './UI/Toast'
-import Spinner from './UI/Spinner'
-
 
 class App extends Component {
 
@@ -52,8 +50,6 @@ class App extends Component {
     this.fetchUser()
     
     return (
-
-      this.state.loggedInUser ? <h1>yee</h1> :
 
       <div className='background-style'>
         <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast} />

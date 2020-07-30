@@ -28,7 +28,7 @@
 .event-card{
     width: 22rem;
     margin-bottom: 20px;
-    transition: width 1s;
+    transition: width 0.3s;
 }
 
 .card-col{
@@ -37,6 +37,6 @@
 }
 
 .card-col:hover .event-card{
-    width: 26rem;
-    transition-timing-function: linear;
+    width: 24rem;
+    transition-timing-function: ease-in-out;
 }
