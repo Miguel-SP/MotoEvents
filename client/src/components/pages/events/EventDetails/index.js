@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
-import './EventDetails.css'
 import CommentsForm from './CommentsForm'
 import CustomModal from './../EventList/CustomModal'
 import EventService from './../../../../service/EventService'
 import UserService from './../../../../service/UserService'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import Button from 'react-bootstrap/Button'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
 import MapWithAMarker from '../../../UI/Map'
 import Spinner from '../../../UI/Spinner'
+import './arrowback.scss'
+import './EventDetails.css'
 
 
 
@@ -48,7 +48,7 @@ class EventDetails extends Component {
         this.EventService
             .deleteEvent(id)
             .catch(err => console.log(err))
-        
+
         this.updateDetails()
 
         this.props.handleToast('Evento eliminado')
@@ -69,7 +69,7 @@ class EventDetails extends Component {
             this.EventService
                 .userJoined(id)
                 .catch(err => console.log(err))
-            
+
             this.updateDetails()
 
             this.props.handleToast('Te has unido!')
@@ -86,7 +86,7 @@ class EventDetails extends Component {
         this.EventService
             .userUnjoin(id)
             .catch(err => console.log(err))
-        
+
         this.updateDetails()
 
         this.props.handleToast('Eliminado de tus eventos')
@@ -96,64 +96,67 @@ class EventDetails extends Component {
 
 
     render() {
-        
+
         return (
-            !this.state.eventDetails ? <div className="spinner"><Spinner /></div> : 
-                
-                (<Container as='main'>
-                    <Row>
+            <>
+                <div class="page-bg"></div>
 
-                        <Col className="col-details" md={{ span: 6, offset: 1 }}>
-                            <h3> {this.state.eventDetails.name}</h3>
-                            <hr></hr>
-                            <p><b>Detalles:</b> {this.state.eventDetails.description}</p>
-                            <p><b>Fecha:</b> {this.state.eventDetails.date.slice(0, 10)}</p>
-                            <p><b>Lugar:</b> {this.state.eventDetails.location.city}</p>
-                            <p>Usuarios que asistirán:</p>
-                            {this.state.eventDetails.joinedUsers.map(us => <p><b><Link to={`/profile/public/${us._id}`}>{us.username}</Link></b></p>)}
-                            <hr></hr>
-                            <p>Creado por <b><Link to={`/profile/public/${this.state.eventDetails.ownerId._id}`}>{this.state.eventDetails.ownerId.username}</Link></b></p>
-                            <hr></hr>
-                            <div className="details-btn">
+                {!this.state.eventDetails ? <div className="spinner"><Spinner /></div> :
 
-                                {this.state.eventDetails.joinedUsers.some(ev => ev._id === this.props.loggedInUser._id)
-                                    ? <Link className="join-btn btn btn-light" onClick={() => this.unjoinEvent()}>Dejar de ir</Link>
-                                    : <Link className="join-btn btn btn-light" onClick={() => this.joiningEvent()}>Unirse</Link>}
+                    <Container as='main'>
+                        <Row>
 
-                                {(this.props.loggedInUser._id === this.state.eventDetails.ownerId._id) &&
-                                    <>
-                                    <Button onClick={() => this.handleModal(true)} className="join-btn btn btn-light">Editar</Button>
-                                    <Link className="btn-danger btn" onClick={() => this.deletingEvent()} to='/eventList'>Borrar</Link>
-                                    </>}
+                            <Col className="col-details" md={{ span: 6, offset: 1 }}>
+                                <h3> {this.state.eventDetails.name}</h3>
+                                <hr></hr>
+                                <p><b>Detalles:</b> {this.state.eventDetails.description}</p>
+                                <p><b>Fecha:</b> {this.state.eventDetails.date.slice(0, 10)}</p>
+                                <p><b>Lugar:</b> {this.state.eventDetails.location.city}</p>
+                                <p>Usuarios que asistirán:</p>
+                                {this.state.eventDetails.joinedUsers.map(us => <p><b><Link to={`/profile/public/${us._id}`}>{us.username}</Link></b></p>)}
+                                <hr></hr>
+                                <p>Creado por <b><Link to={`/profile/public/${this.state.eventDetails.ownerId._id}`}>{this.state.eventDetails.ownerId.username}</Link></b></p>
+                                <hr></hr>
+                                <div className="details-btn">
 
-                            </div>
-                        </Col>
-                        <Col className="col-details col-img" md={{ span: 6, offset: 1 }}>
-                            <img src={this.state.eventDetails.image_url} alt={this.state.eventDetails.name} />
-                        </Col>
-                    </Row>
+                                    {this.state.eventDetails.joinedUsers.some(ev => ev._id === this.props.loggedInUser._id)
+                                        ? <button class="button-login-signup" onClick={() => this.unjoinEvent()}><span>Dejar de ir</span></button>
+                                        : <button class="button-login-signup" onClick={() => this.joiningEvent()}><span>Unirse</span></button>}
 
-                    <MapWithAMarker location={this.state.eventDetails.location} googleMapURL={`${process.env.MAPS_API_URL}`}
-                        loadingElement={<div style={{ height: `30vh` }} />}
-                        containerElement={<div style={{ height: `30vh` }} />}
-                        mapElement={<div style={{ height: `30vh` }} />} />
+                                    {(this.props.loggedInUser._id === this.state.eventDetails.ownerId._id) &&
+                                        <>
+                                        <button class="btn-edit btn-edit-details" onClick={() => this.handleModal(true)}><span>Editar</span></button>
+                                        <Link to='/eventList'><button class="btn-edit btn-edit-details" onClick={() => this.deletingEvent()} ><span>Borrar</span></button></Link>
+                                        </>}
 
-                    <ListGroup variant="flush">
-                        {this.state.eventDetails.comments.map(comment =>
-                            <ListGroup.Item key={comment._id}>
-                                <div> Por <span style={{color: 'red'}}>{comment.user}</span>  el {comment.date.slice(0,10)}</div>
-                                <div>{comment.text}</div>
-                            </ListGroup.Item>)}
-                    </ListGroup>
+                                </div>
+                            </Col>
+                            <Col className="col-details col-img" md={{ span: 6, offset: 1 }}>
+                                <img src={this.state.eventDetails.image_url} alt={this.state.eventDetails.name} />
+                            </Col>
+                        </Row>
 
-                    <CommentsForm {...this.props} updateDetails={this.updateDetails} />
+                        <MapWithAMarker location={this.state.eventDetails.location} googleMapURL={`${process.env.MAPS_API_URL}`}
+                            loadingElement={<div style={{ height: `30vh` }} />}
+                            containerElement={<div style={{ height: `30vh` }} />}
+                            mapElement={<div style={{ height: `30vh` }} />} />
 
-                    <CustomModal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)} updateDetails={this.updateDetails} edit_id={this.props.match.params.id} {...this.props} />
+                        <ListGroup variant="flush">
+                            {this.state.eventDetails.comments.map(comment =>
+                                <ListGroup.Item key={comment._id}>
+                                    <div> Por <span style={{ color: 'red' }}>{comment.user}</span>  el {comment.date.slice(0, 10)}</div>
+                                    <div>{comment.text}</div>
+                                </ListGroup.Item>)}
+                        </ListGroup>
 
-                    <Link className="btn btn-dark btn-md btn-back" to='/eventList'>Volver</Link>
-                </Container>
-                )
+                        <CommentsForm {...this.props} updateDetails={this.updateDetails} />
 
+                        <CustomModal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)} updateDetails={this.updateDetails} edit_id={this.props.match.params.id} {...this.props} />
+
+                        <Link to='/eventList'><span class="arrowback left"></span></Link>
+                    </Container>
+                }
+            </>
         )
     }
 }

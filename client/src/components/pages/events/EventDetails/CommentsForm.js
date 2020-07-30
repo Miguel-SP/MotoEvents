@@ -41,8 +41,8 @@ class CommentsForm extends Component {
                 <hr></hr>
                 <Form onSubmit={this.handleFormSubmit}>
                     <Form.Group>
-                        <Form.Label>Comentario</Form.Label>
-                        <Form.Control onChange={this.handleInputChange} value={this.state.text} name="text" type="text" />
+                        <Form.Label>Deja un comentario</Form.Label>
+                        <Form.Control onChange={this.handleInputChange} value={this.state.text} name="text" type="text" className="form-transp"/>
                         <Form.Text className="text-muted">Máximo 200 caracteres</Form.Text>
                     </Form.Group>
                 </Form>

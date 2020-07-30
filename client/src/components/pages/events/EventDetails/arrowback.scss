@@ -1,0 +1,31 @@
+.arrowback {
+	position: fixed;
+    top: 50%;
+    left: 15px;
+	width: 3vmin;
+	height: 3vmin;
+	background: transparent;
+	border-top: 1vmin solid #003049;
+	border-right: 1vmin solid #003049;
+	box-shadow: 0 0 0 lightgray;
+	transition: all 200ms ease;
+	
+	&.left {
+		transform: translate3d(0,-50%,0) rotate(-135deg);
+	}
+	
+	&:hover {
+		border-color: #42AB9E;
+		box-shadow: 0.5vmin -0.5vmin 0 #003049;
+	}
+	
+	&:before { // for better hit area
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-40%,-60%) rotate(45deg);
+		width: 200%;
+		height: 200%;
+	}
+}
