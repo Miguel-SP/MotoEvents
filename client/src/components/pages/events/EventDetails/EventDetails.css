@@ -70,3 +70,13 @@ main{
   transform: scale(1, .1);
   opacity: 0;
 }
+
+.comments-list{
+  background-color: #E8E5E2;
+  margin-top: 5px;
+  opacity: 0.8;
+}
+
+.comments-group{
+  margin-top: 20px;
+}

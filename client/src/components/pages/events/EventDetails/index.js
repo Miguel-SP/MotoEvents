@@ -141,11 +141,11 @@ class EventDetails extends Component {
                             containerElement={<div style={{ height: `30vh` }} />}
                             mapElement={<div style={{ height: `30vh` }} />} />
 
-                        <ListGroup variant="flush">
+                        <ListGroup variant="flush" className="comments-group">
                             {this.state.eventDetails.comments.map(comment =>
-                                <ListGroup.Item key={comment._id}>
-                                    <div> Por <span style={{ color: 'red' }}>{comment.user}</span>  el {comment.date.slice(0, 10)}</div>
+                                <ListGroup.Item className="comments-list" key={comment._id}>
                                     <div>{comment.text}</div>
+                                    <div>Por <span style={{ color: '#42AB9E' }}><Link to={`/profile/public/${this.state.eventDetails.ownerId._id}`}>{comment.user}</Link></span> el {comment.date.slice(0, 10)}</div>
                                 </ListGroup.Item>)}
                         </ListGroup>
 

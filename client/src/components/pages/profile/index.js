@@ -42,11 +42,11 @@ class Profile extends Component {
         
         return (
 
-            !this.state.profile ? <div className="spinner"><Spinner /></div> :
+            <>
+                <div class="page-bg"></div>
 
-
-                (<>
-                    <div class="page-bg"></div>
+                {!this.state.profile ? <div className="spinner"><Spinner /></div> :
+                    
                     <Container as='main'>
 
                         <Row className="profile-1">
@@ -102,7 +102,8 @@ class Profile extends Component {
                         </ListGroup>
                         </Row>
                     </Container>
-                </>)
+                }
+            </>
         )
     }
 }

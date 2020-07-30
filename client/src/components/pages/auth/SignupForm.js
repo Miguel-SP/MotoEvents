@@ -6,6 +6,8 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Spinner from '../../UI/Spinner'
+
 
 
 class SignupForm extends Component {
@@ -52,9 +54,10 @@ class SignupForm extends Component {
 
     render() {
         return (
-            !this.state ? <h3>Cargando...</h3> :
-                <>
-                    <div class="page-bg"></div>
+            <>
+                <div class="page-bg"></div>
+
+                {!this.state ? <div className="spinner"><Spinner /></div> :
 
                 <Container as="main" className="login-cont">
 
@@ -97,7 +100,8 @@ class SignupForm extends Component {
 
 
                     </Container>
-                </>
+                }
+            </>
         )
     }
 }

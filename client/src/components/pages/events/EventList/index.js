@@ -53,28 +53,29 @@ class EventList extends Component {
             <>
                 <div class="page-bg"></div>
 
-                <Container as='main' className='events-page'>
+                {this.state.events.length === 0 ? <div className="spinner"><Spinner /></div> :
 
-                    <Row className="eventlist-top-row">
-                        <Col xs={{ span: 6 }} className="active-events-col">
+                    <Container as='main' className='events-page'>
+
+                        <Row className="eventlist-top-row">
+                            <Col xs={{ span: 6 }} className="active-events-col">
                                 <h1>Eventos activos</h1>
                             </Col>
                             
-                        <Col xs={{ span: 6 }} className="create-event-col">
+                            <Col xs={{ span: 6 }} className="create-event-col">
                                 {this.props.loggedInUser && <button class="button-login-signup" onClick={() => this.handleModal(true)}><span>Crear evento</span></button>}
                             </Col>
                            
-                    </Row>
+                        </Row>
 
-                    <SearchForm events={this.state.events} filterEventList={this.handleSearchSubmit}/>
+                        <SearchForm events={this.state.events} filterEventList={this.handleSearchSubmit} />
 
-                    {this.state.events.length === 0 ? <div className="spinner"><Spinner /></div> :
+                        <Row>{this.state.events.map(elm => <EventCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} />)}</Row>
 
-                    <Row>{this.state.events.map(elm => <EventCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} />)}</Row>}
-
-                </Container>
+                    </Container>}
 
                 <CustomModal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)} handleEventSubmit={this.handleEventSubmit} {...this.props} />
+     
             </>
         )
     }
