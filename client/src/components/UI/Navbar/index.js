@@ -13,10 +13,17 @@ class Navigation extends Component {
 
     constructor(props) {
         super(props)
+        this.state = {
+            navExpanded: false
+        }
         
         this.AuthService = new AuthService()
         console.log(this.props)
     }
+
+    setNavExpanded = expanded => this.setState({ navExpanded: expanded })
+
+    setNavClose = () => this.setState({ navExpanded: false })
 
     logout = () => {
         this.AuthService
@@ -32,14 +39,14 @@ class Navigation extends Component {
         
 
         return (
-            <Navbar bg="dark" variant="dark" expand="lg" sticky="top" className="navbar">
+            <Navbar bg="dark" variant="dark" expand="lg" sticky="top" className="navbar" onToggle={this.setNavExpanded} expanded={this.state.navExpanded}>
                 
                 <Navbar.Brand>
                     <Link to="/"><img src="/parafavicon.svg" alt='logomoto' class="filter-red" />{' '} MotoEvents</Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ml-auto">
+                    <Nav className="ml-auto" onClick={this.setNavClose}>
                         <Nav.Link as="span">
                             <NavLink to="/" exact activeStyle={{ color: '#E8E5E2' }}>Inicio</NavLink>
                         </Nav.Link>

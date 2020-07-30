@@ -56,17 +56,17 @@ class EventList extends Component {
                 <Container as='main' className='events-page'>
 
                     <Row className="eventlist-top-row">
-                        <Col xs={{ span: 6 }}>
+                        <Col xs={{ span: 6 }} className="active-events-col">
                                 <h1>Eventos activos</h1>
                             </Col>
                             
-                        <Col xs={{ span: 6 }}>
+                        <Col xs={{ span: 6 }} className="create-event-col">
                                 {this.props.loggedInUser && <button class="button-login-signup" onClick={() => this.handleModal(true)}><span>Crear evento</span></button>}
                             </Col>
                            
                     </Row>
 
-                    <SearchForm events={this.state.events} filterEventList={this.handleSearchSubmit} />
+                    <SearchForm events={this.state.events} filterEventList={this.handleSearchSubmit}/>
 
                     {this.state.events.length === 0 ? <div className="spinner"><Spinner /></div> :
 

@@ -32,7 +32,7 @@ class SearchForm extends Component {
 
                 <Form onSubmit={this.onSubmit} className="search-bar">
                     <Form.Group>
-                        <Form.Control onKeyUp={this.handleInputChange} value={this.props.name} name="name" type="text" placeholder="Buscar evento" />
+                        <Form.Control onKeyUp={this.handleInputChange} value={this.props.name} name="name" type="text" placeholder="Buscar evento" className="form-transp" />
                     </Form.Group>
                 </Form>
 
