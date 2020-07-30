@@ -42,7 +42,7 @@ class Profile extends Component {
         
         return (
 
-            !this.state.profile ? <Spinner/> :
+            !this.state.profile ? <div className="spinner"><Spinner /></div> :
 
 
                 (<Container as='main'>

@@ -7,11 +7,11 @@ export default class Spinner extends Component {
     render() {
         return (
             <Loader
-                type="Puff"
-                color="#00BFFF"
-                height={100}
-                width={100}
-                timeout={3000}
+                type="ThreeDots"
+                color="#42AB9E"
+                height={200}
+                width={200}
+                timeout={10000}
 
             />
         );

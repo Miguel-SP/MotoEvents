@@ -80,7 +80,7 @@ class SignupForm extends Component {
 
                                     <Form.Group controlId="exampleForm.ControlSelect1">
                                         <Form.Label>¿Qué moto tienes?</Form.Label>
-                                        <select onChange={this.handleInputChange} name="userMotorbike" className="form-transp">
+                                        <select onChange={this.handleInputChange} name="userMotorbike" className="form-transp form-control">
                                             {this.state.motorbikes.map(moto => <option key={moto._id} value={moto._id}>{moto.brand} {moto.model}</option>)}
                                         </select>
                                     </Form.Group>

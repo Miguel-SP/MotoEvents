@@ -15,6 +15,9 @@
   transition: all 0.5s;
 }
 
+.button-login-signup:focus{
+  outline: none;
+}
 
 .button-login-signup span {
   cursor: pointer;

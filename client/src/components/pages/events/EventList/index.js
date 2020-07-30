@@ -9,7 +9,7 @@ import CustomModal from './CustomModal'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col'
 import Spinner from '../../../UI/Spinner'
 
 
@@ -42,26 +42,35 @@ class EventList extends Component {
     }
 
     handleSearchSubmit = (filteredEvents) => {
-        this.setState({events: filteredEvents})
+        this.setState({ events: filteredEvents })
     }
 
 
 
 
     render() {
-        return (                
+        return (
             <>
+                <div class="page-bg"></div>
+
                 <Container as='main' className='events-page'>
-                    
-                    <SearchForm events={this.state.events} filterEventList={this.handleSearchSubmit}/>
-                    
-                    <h1>Eventos activos</h1>
 
-                    {this.props.loggedInUser && <Button onClick={() => this.handleModal(true)} className="create-btn">Crear nuevo evento</Button>}
+                    <Row className="eventlist-top-row">
+                        <Col xs={{ span: 6 }}>
+                                <h1>Eventos activos</h1>
+                            </Col>
+                            
+                        <Col xs={{ span: 6 }}>
+                                {this.props.loggedInUser && <button class="button-login-signup" onClick={() => this.handleModal(true)}><span>Crear evento</span></button>}
+                            </Col>
+                           
+                    </Row>
 
-                        {this.state.events.length === 0 ? <Spinner /> :
+                    <SearchForm events={this.state.events} filterEventList={this.handleSearchSubmit} />
 
-                        <Row>{this.state.events.map(elm => <EventCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} />)}</Row>}
+                    {this.state.events.length === 0 ? <div className="spinner"><Spinner /></div> :
+
+                    <Row>{this.state.events.map(elm => <EventCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} />)}</Row>}
 
                 </Container>
 
