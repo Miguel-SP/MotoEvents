@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 
 import AuthService from '../../../service/AuthService'
 import MotoService from '../../../service/MotoService'
-import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { Link } from 'react-router-dom'
 
 
 class SignupForm extends Component {
@@ -55,48 +53,51 @@ class SignupForm extends Component {
     render() {
         return (
             !this.state ? <h3>Cargando...</h3> :
+                <>
+                    <div class="page-bg"></div>
+
+                <Container as="main" className="login-cont">
 
 
-                (<Container as="main" className="back-trans Top">
+                        <Row>
+                            <Col md={{ offset: 3, span: 6 }}>
+                                <h3>Regístrate para ver los detalles de los eventos!</h3>
+
+                                <hr></hr>
+
+                                <Form onSubmit={this.handleFormSubmit}>
+
+                                    <Form.Group>
+                                        <Form.Label>Nombre de usuario</Form.Label>
+                                        <Form.Control onChange={this.handleInputChange} value={this.state.username} name="username" type="text" className="form-transp" />
+                                    </Form.Group>
+
+                                    <Form.Group>
+                                        <Form.Label>Contraseña</Form.Label>
+                                        <Form.Control onChange={this.handleInputChange} value={this.state.password} name="password" type="password" className="form-transp"/>
+                                        <Form.Text className="text-muted">Mínimo cuatro caracteres.</Form.Text>
+                                    </Form.Group>
+
+                                    <Form.Group controlId="exampleForm.ControlSelect1">
+                                        <Form.Label>¿Qué moto tienes?</Form.Label>
+                                        <select onChange={this.handleInputChange} name="userMotorbike" className="form-transp form-control">
+                                            {this.state.motorbikes.map(moto => <option key={moto._id} value={moto._id}>{moto.brand} {moto.model}</option>)}
+                                        </select>
+                                    </Form.Group>
 
 
-                    <Row>
-                        <Col md={{ offset: 2, span: 8 }}>
-                            <h3>Regístrate para ver los detalles de los eventos!</h3>
+                                    {this.state.errorMessage && <p style={{ color: 'red' }}>{this.state.errorMessage}</p>}
 
-                            <hr></hr>
+                                    <button type="submit" class="button-login-signup"><span>Registrarme</span></button>
+                                
+                                </Form>
 
-                            <Form onSubmit={this.handleFormSubmit} className="space">
-
-                                <Form.Group>
-                                    <Form.Label>Nombre de usuario</Form.Label>
-                                    <Form.Control onChange={this.handleInputChange} value={this.state.username} name="username" type="text" />
-                                </Form.Group>
-
-                                <Form.Group>
-                                    <Form.Label>Contraseña</Form.Label>
-                                    <Form.Control onChange={this.handleInputChange} value={this.state.password} name="password" type="password" />
-                                    <Form.Text className="text-muted">Mínimo cuatro caracteres.</Form.Text>
-                                </Form.Group>
-
-                                <Form.Group controlId="exampleForm.ControlSelect1">
-                                    <Form.Label>¿Qué moto tienes?</Form.Label>
-                                    <select onChange={this.handleInputChange}  name="userMotorbike">
-                                        {this.state.motorbikes.map(moto => <option key={moto._id} value={moto._id}>{moto.brand} {moto.model}</option>)}
-                                    </select>
-                                </Form.Group>
+                            </Col>
+                        </Row>
 
 
-                                {this.state.errorMessage && <p style={{ color: 'red' }}>{this.state.errorMessage}</p>}
-
-                                <Button variant="dark" type="submit">Registrarme</Button> <span style={{ color: '#003049'}}><Link to={'/login'}>Ya tienes cuenta?</Link></span>
-                            </Form>
-
-                        </Col>
-                    </Row>
-
-
-                </Container>)
+                    </Container>
+                </>
         )
     }
 }

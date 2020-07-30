@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 import AuthService from './../../../service/AuthService'
 
-import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -40,44 +39,49 @@ class LoginForm extends Component {
             .catch(err => {
                 console.log(err.response.data.message)
                 err && this.setState({ errorMessage: err.response.data.message })
-            } )
+            })
     }
 
     render() {
         return (
-            <Container as="main" className="Top">
+            <>
+                <div class="page-bg"></div>
 
-                <Row className="back-trans">
-                    <Col md={{ offset: 2, span: 8 }}>
-                        <h3>Inicio de sesión</h3>
+                <Container as="main" className="login-cont">
 
-                        <hr></hr>
+                    <Row className="login-row">
+                        <Col md={{ offset: 3, span: 6 }}>
+                            <h3>Inicio de sesión</h3>
 
-                        <Form onSubmit={this.handleFormSubmit} className="space">
+                            <hr></hr>
 
-                            <Form.Group>
-                                <Form.Label>Nombre de usuario</Form.Label>
-                                <Form.Control onChange={this.handleInputChange} value={this.state.username} name="username" type="text" />
-                            </Form.Group>
-                            <Form.Control.Feedback type="invalid">
-                                Please choose a username.
+                            <Form onSubmit={this.handleFormSubmit}>
+
+                                <Form.Group>
+                                    <Form.Label>Nombre de usuario</Form.Label>
+                                    <Form.Control onChange={this.handleInputChange} value={this.state.username} name="username" type="text" className="form-transp"/>
+                                </Form.Group>
+                                <Form.Control.Feedback type="invalid">
+                                    Please choose a username.
                             </Form.Control.Feedback>
 
-                            <Form.Group>
-                                <Form.Label>Contraseña</Form.Label>
-                                <Form.Control onChange={this.handleInputChange} value={this.state.password} name="password" type="password" />
-                            </Form.Group>
-                            
-                            {this.state.errorMessage && <p style={{ color: 'red' }}>{this.state.errorMessage}</p>}
+                                <Form.Group>
+                                    <Form.Label>Contraseña</Form.Label>
+                                    <Form.Control onChange={this.handleInputChange} value={this.state.password} name="password" type="password" className="form-transp"/>
+                                </Form.Group>
 
-                            <Button variant="dark" type="submit">Iniciar sesión</Button>
-                        </Form>
+                                {this.state.errorMessage && <p style={{ color: 'red' }}>{this.state.errorMessage}</p>}
 
-                    </Col>
-                </Row>
+                                <button type="submit" class="button-login-signup"><span>Iniciar sesión</span></button>
+
+                            </Form>
+
+                        </Col>
+                    </Row>
 
 
-            </Container>
+                </Container>
+            </>
         )
     }
 }

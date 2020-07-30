@@ -20,3 +20,15 @@
 .search-bar {
     margin-top: 2rem;
 }
+
+.spinner{
+    position: fixed;
+    top: 50%;
+    left: 45%;
+}
+
+.eventlist-top-row{
+    display: flex;
+    align-items: center;
+    margin: 30px auto;
+}

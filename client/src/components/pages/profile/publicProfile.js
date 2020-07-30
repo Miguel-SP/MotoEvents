@@ -49,7 +49,7 @@ class PublicProfile extends Component {
     render() {
         return (
 
-            !this.state.profile ? <Spinner/> :
+            !this.state.profile ? <div className="spinner"><Spinner /></div> :
 
 
                 (<Container as='main'>
@@ -67,7 +67,7 @@ class PublicProfile extends Component {
                     </Row>
                     <Row>
 
-                        <Col md={{span:6, order: 2}} >
+                        <Col md={{span:6, order: 2}}>
                         <h3>Comparar mi moto con la de {this.state.profile.username}</h3>
                         
                         <Col md={{ span: 7, offset: 2 }} className="card-motorbike">
