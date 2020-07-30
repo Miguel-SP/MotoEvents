@@ -5,7 +5,6 @@ import UserService from './../../../service/UserService'
 import Container from 'react-bootstrap/esm/Container'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
-import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/esm/ListGroup'
 import { Link } from 'react-router-dom'
 import './profile.css'
@@ -54,7 +53,7 @@ class Profile extends Component {
                     
                     <Row>
 
-                        <Col md={{ span: 5, offset: 1 }}>
+                        <Col className="card-motorbike" md={{ span: 5, offset: 1 }}>
                             <h3>Mi moto</h3>
 
                             <img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" />
@@ -62,36 +61,34 @@ class Profile extends Component {
 
                         </Col>
 
-                        <Col md={{ span: 2 }}>
+                        <Col md={{ span: 5, offset: 1 }}>
                             <h3>Mis amigos</h3>
 
                             <ListGroup>
                                 {this.state.profile.friends.map(friend =>
-                                    <Link to={`/profile/public/${friend._id}`}><ListGroup.Item key={friend.id}>{friend.username}</ListGroup.Item></Link>)}
+                                    <Link to={`/profile/public/${friend._id}`}><ListGroup.Item key={friend.id} className="center">{friend.username}</ListGroup.Item></Link>)}
                             </ListGroup>
                         </Col>
 
                     </Row>
                     <h3>Eventos a los que voy</h3>
-                    <Row className="aaa">
-
+                    
+                        <ListGroup horizontal className="scroll">
                         {this.state.profile.events.map(event =>
-                            <Col className="events-col" md={{ span: 3, offset: 1 }}>
+                            <ListGroup.Item>
                             <Link to={`/eventDetails/${event._id}`}>
-                                <Card border="light" className="event-card" >                                              
-                                    <Card.Img variant="top" className="event-img" src={event.image_url} alt={event.name} />
-                                    <Card.Title>{event.name}</Card.Title>
-                                </Card>
+                                                                           
+                                <img variant="top" className="event-img" src={event.image_url} alt={event.name} />
+                                <p>{event.name}</p>
+                                    
                             </Link>
-                            </Col>)}
-                            
-                    </Row>
-
+                            </ListGroup.Item>
+                            )}
+                        </ListGroup>
+                    
                 </Container>)
-
         )
     }
-
 }
 
 export default Profile

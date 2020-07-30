@@ -28,9 +28,15 @@
 .event-card{
     width: 22rem;
     margin-bottom: 20px;
+    transition: width 1s;
 }
 
 .card-col{
     display: flex;
     justify-content: center;
+}
+
+.card-col:hover .event-card{
+    width: 26rem;
+    transition-timing-function: linear;
 }

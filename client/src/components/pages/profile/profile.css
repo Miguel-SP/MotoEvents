@@ -36,9 +36,9 @@ text-align: center;
 }
 
 .event-img{
-    
-    margin-right: 15px;
+    width: 300px;
     border-radius: 20px;
+    
 }
 .events-col{
     justify-content: center;
@@ -49,10 +49,15 @@ h3{
     text-align: center;
 }
 
-h4{
+.center{
     justify-content: center;
 }
-.aaa{
-    overflow: scroll;
-    height: 150px;
+
+.scroll{
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.card-motorbike > p{
+    text-align: center;
 }

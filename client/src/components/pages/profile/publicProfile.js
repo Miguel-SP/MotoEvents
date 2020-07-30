@@ -67,12 +67,12 @@ class PublicProfile extends Component {
 
                             <ListGroup>
                                 {this.state.profile.events.map(event =>
-                                    <Link to={`/eventDetails/${event._id}`}><ListGroup.Item key={event._id}>{event.name}</ListGroup.Item></Link>)}
+                                    <Link to={`/eventDetails/${event._id}`}><ListGroup.Item key={event._id}><img src={event.image_url} alt={event.name} /><p>{event.name}</p></ListGroup.Item></Link>)}
                             </ListGroup>
 
                         </Col>
 
-                        <Col md={{ span: 7, offset: 1 }}>
+                        <Col md={{ span: 7, offset: 1 }} className="card-motorbike">
                             <h3>Comparar mi moto con la de {this.state.profile.username}</h3>
 
                             <Link onClick={() => this.handleModal(true)}><img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" /></Link>
