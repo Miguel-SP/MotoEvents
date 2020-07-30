@@ -1,5 +1,12 @@
 .back-trans{
-    background-color: rgba(128, 139, 150, 0.4);
+    background-color: rgba(128, 139, 150, 0.2);
     padding: 20px;
     border-radius: 10px;
   }
+.Top{
+  margin-top: 50px;
+}
+
+.space{
+  padding-bottom: 20px;
+}

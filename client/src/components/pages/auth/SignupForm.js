@@ -57,7 +57,7 @@ class SignupForm extends Component {
             !this.state ? <h3>Cargando...</h3> :
 
 
-                (<Container as="main" className="back-trans">
+                (<Container as="main" className="back-trans Top">
 
 
                     <Row>
@@ -66,7 +66,7 @@ class SignupForm extends Component {
 
                             <hr></hr>
 
-                            <Form onSubmit={this.handleFormSubmit}>
+                            <Form onSubmit={this.handleFormSubmit} className="space">
 
                                 <Form.Group>
                                     <Form.Label>Nombre de usuario</Form.Label>

@@ -62,21 +62,21 @@ class Profile extends Component {
 
                         </Col>
 
-                        <Col md={{ span: 5, offset: 1 }}>
+                        <Col md={{ span: 5, offset: 1 }} >
                             <h3>Mis amigos</h3>
 
                             <ListGroup>
                                 {this.state.profile.friends.map(friend =>
-                                    <Link to={`/profile/public/${friend._id}`}><ListGroup.Item key={friend.id} className="center">{friend.username}</ListGroup.Item></Link>)}
+                                    <Link to={`/profile/public/${friend._id}`}><ListGroup.Item key={friend.id} className="center transparent">{friend.username}</ListGroup.Item></Link>)}
                             </ListGroup>
                         </Col>
 
                     </Row>
-                    <h3>Eventos a los que voy</h3>
                     
-                        <ListGroup horizontal className="scroll">
+                    <h3>Eventos a los que voy</h3>
+                    <ListGroup horizontal className="scroll">
                         {this.state.profile.events.map(event =>
-                            <ListGroup.Item>
+                            <ListGroup.Item className="transparent">
                             <Link to={`/eventDetails/${event._id}`}>
                                                                            
                                 <img variant="top" className="event-img" src={event.image_url} alt={event.name} />
@@ -85,8 +85,7 @@ class Profile extends Component {
                             </Link>
                             </ListGroup.Item>
                             )}
-                        </ListGroup>
-                    
+                    </ListGroup>
                 </Container>)
         )
     }

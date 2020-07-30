@@ -45,7 +45,7 @@ class LoginForm extends Component {
 
     render() {
         return (
-            <Container as="main">
+            <Container as="main" className="Top">
 
                 <Row className="back-trans">
                     <Col md={{ offset: 2, span: 8 }}>
@@ -53,7 +53,7 @@ class LoginForm extends Component {
 
                         <hr></hr>
 
-                        <Form onSubmit={this.handleFormSubmit}>
+                        <Form onSubmit={this.handleFormSubmit} className="space">
 
                             <Form.Group>
                                 <Form.Label>Nombre de usuario</Form.Label>

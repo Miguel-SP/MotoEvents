@@ -53,28 +53,25 @@ class PublicProfile extends Component {
 
 
                 (<Container as='main'>
+                    
+                    <Row>
+                    <Col xs={{span: 4, offset: 1}}>
                     <h1>Perfil de {this.state.profile.username}</h1>
-
+                    </Col>
+                    <Col xs={{span: 3, offset: 4}}>
                     {this.props.loggedInUser.friends.some(friend => friend === this.state.profile._id) ? <h3 className="edit-btn-div">Sois amigos</h3> :
                         (<div className="edit-btn-div">
                             <Link className="create-btn btn btn-primary" onClick={() => this.addFriend()}>Añadir a amigos</Link>
                         </div>)}
-
+                    </Col>
+                    </Row>
                     <Row>
 
-                        <Col className="events-col" md={{ span: 4 }}>
-                            <h3>Eventos a los que está apuntado</h3>
-
-                            <ListGroup>
-                                {this.state.profile.events.map(event =>
-                                    <Link to={`/eventDetails/${event._id}`}><ListGroup.Item key={event._id}><img src={event.image_url} alt={event.name} /><p>{event.name}</p></ListGroup.Item></Link>)}
-                            </ListGroup>
-
-                        </Col>
-
-                        <Col md={{ span: 7, offset: 1 }} className="card-motorbike">
-                            <h3>Comparar mi moto con la de {this.state.profile.username}</h3>
-
+                        <Col md={{span:6}} md={{order: 2}}>
+                        <h3>Comparar mi moto con la de {this.state.profile.username}</h3>
+                        
+                        <Col md={{ span: 7, offset: 2 }} className="card-motorbike">
+                        
                             <Link onClick={() => this.handleModal(true)}><img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" /></Link>
 
                             <p>{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
@@ -85,6 +82,27 @@ class PublicProfile extends Component {
                                 </Modal.Body>
                             </Modal>
 
+                        </Col>
+                        </Col>
+
+                        <Col md={{span:6}} md={{order: 1}} >
+                        <h3>Eventos a los que está apuntado</h3>
+                        
+                        <Col className="events-col" md={{ span: 6, offset: 3 }}>
+
+                            <ListGroup>
+                                {this.state.profile.events.map(event =>
+                                    <Link to={`/eventDetails/${event._id}`}>
+                                        <ListGroup.Item key={event._id} className="transparent">
+                                            <Col xs={{span: 12}} >
+                                                <img src={event.image_url} alt={event.name} className="event-img" />
+                                                <p>{event.name}</p>
+                                            </Col>
+                                        </ListGroup.Item>
+                                    </Link>)}
+                            </ListGroup>
+
+                        </Col>
                         </Col>
 
                     </Row>
