@@ -98,7 +98,7 @@ class EventDetails extends Component {
     render() {
         
         return (
-            !this.state.eventDetails ? <Spinner/> : 
+            !this.state.eventDetails ? <div className="spinner"><Spinner /></div> : 
                 
                 (<Container as='main'>
                     <Row>

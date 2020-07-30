@@ -3,7 +3,7 @@ import EventService from '../../../../../service/EventService'
 import CityAutocomplete from './../../../../UI/Map/CityAutocomplete'
 
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+
 
 class EventForm extends Component {
     constructor (props){
@@ -55,7 +55,6 @@ class EventForm extends Component {
                     this.props.handleToast('Evento modificado!')
                 })
                 .catch(err => console.log(err))
-            
 
         } else {
 
@@ -79,11 +78,10 @@ class EventForm extends Component {
                     <Form.Group>
                         <Form.Label>Nombre</Form.Label>
                         <Form.Control onChange={this.handleInputChange} value={this.state.name} name="name" type="text" />
-                        <Form.Text className="text-muted">Sin faltas de ortografía.</Form.Text>
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Descripción</Form.Label>
+                        <Form.Label>Detalles del evento</Form.Label>
                         <Form.Control onChange={this.handleInputChange} value={this.state.description} name="description" type="text" />
                     </Form.Group>
 
@@ -102,7 +100,7 @@ class EventForm extends Component {
                         <Form.Control onChange={this.handleInputChange} value={this.state.image_url} name="image_url" type="text" />
                     </Form.Group>
 
-                    <Button variant="dark" type="submit">{this.props.edit_id ? 'Editar' : 'Crear'}</Button>
+                    <button type="submit" class="button-login-signup"><span>{this.props.edit_id ? 'Editar' : 'Crear'}</span></button>
                 </Form>
             </>
         )

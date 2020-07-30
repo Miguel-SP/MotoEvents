@@ -76,7 +76,7 @@ class PublicProfile extends Component {
 
                             <p className="style-p">{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
 
-                            <Modal size="lg" show={this.state.showModal} onHide={() => this.handleModal(false)}>
+                            <Modal size="lg" centered show={this.state.showModal} onHide={() => this.handleModal(false)}>
                                 <Modal.Body>
                                     <Radar {...this.props} />
                                 </Modal.Body>
