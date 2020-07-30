@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import UserService from './../../../service/UserService'
 
+import Spinner from './../../UI/Spinner'
 import Container from 'react-bootstrap/esm/Container'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
@@ -41,7 +42,7 @@ class Profile extends Component {
         
         return (
 
-            !this.state.profile ? <h3>Cargando...</h3> :
+            !this.state.profile ? <Spinner/> :
 
 
                 (<Container as='main'>

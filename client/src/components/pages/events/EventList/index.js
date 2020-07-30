@@ -10,6 +10,7 @@ import CustomModal from './CustomModal'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
+import Spinner from '../../../UI/Spinner'
 
 
 class EventList extends Component {
@@ -48,7 +49,7 @@ class EventList extends Component {
 
 
     render() {
-        return (
+        return (                
             <>
                 <Container as='main' className='events-page'>
                     
@@ -58,7 +59,7 @@ class EventList extends Component {
 
                     {this.props.loggedInUser && <Button onClick={() => this.handleModal(true)} className="create-btn">Crear nuevo evento</Button>}
 
-                    {this.state.events.length === 0 ? <h3>No hay eventos activos en este momento, crea uno!</h3> :
+                        {this.state.events.length === 0 ? <Spinner /> :
 
                         <Row>{this.state.events.map(elm => <EventCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} />)}</Row>}
 

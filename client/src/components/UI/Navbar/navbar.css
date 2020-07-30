@@ -1,4 +1,9 @@
 .bg-dark{
     background-color: #003049!important;
-    margin-bottom: 50px;
 }
+
+.filter-red{
+        filter: invert(11%) sepia(87%) saturate(6275%) hue-rotate(358deg) brightness(100%) contrast(111%);
+        width: 50px;
+        vertical-align: text-bottom;
+    }

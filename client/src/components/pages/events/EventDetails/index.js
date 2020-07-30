@@ -11,6 +11,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
 import MapWithAMarker from '../../../UI/Map'
+import Spinner from '../../../UI/Spinner'
 
 
 
@@ -97,7 +98,7 @@ class EventDetails extends Component {
     render() {
         
         return (
-            !this.state.eventDetails ? <h3>Cargando...</h3> : 
+            !this.state.eventDetails ? <Spinner/> : 
                 
                 (<Container as='main'>
                     <Row>

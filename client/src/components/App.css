@@ -3,11 +3,12 @@
 body{
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
+  background-color: #E8E5E2;
 }
 
 h1, h2, h3, h4, h5{
   font-weight: 300;
-  margin: 30px 0;
+  padding: 30px 0;
 }
 
 img{
