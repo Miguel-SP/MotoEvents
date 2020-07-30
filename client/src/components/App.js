@@ -53,7 +53,7 @@ class App extends Component {
     
     return (
 
-      !this.state.loggedInUser ? <Spinner /> :
+      this.state.loggedInUser ? <h1>yee</h1> :
 
       <div className='background-style'>
         <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} handleToast={this.handleToast} />
