@@ -66,7 +66,6 @@ h3{
     
 }
 
-
 .center{
     justify-content: center;
     padding: 0;
@@ -95,15 +94,15 @@ img.heart{
     display: block;
     margin: auto;
     position: relative;
-    /* left: -200%; */
+    left: -300%;
 
 }
 
-/* .special:hover .usermotorbike-img{
+.special:hover .usermotorbike-img{
     left: 0;
     transition-duration: 3s;
     transition-timing-function: ease-out;
-} */
+}
 
 .event-img{
     width: 180px;

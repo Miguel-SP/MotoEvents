@@ -52,7 +52,7 @@ class PublicProfile extends Component {
             !this.state.profile ? <div className="spinner"><Spinner /></div> :
 
 
-                (<>
+                (<div className="special">
                     <div class="page-bg"></div>
                     <Container as='main'>
                         
@@ -109,7 +109,7 @@ class PublicProfile extends Component {
 
                         </Row>
                     </Container>
-                </>)
+                </div>)
 
         )
     }
