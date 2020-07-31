@@ -59,10 +59,13 @@ class EditProfile extends Component {
         return (
             !this.state ? <h3>Cargando...</h3> :
 
-                (<Container as="main">
+                <>
+                <div class="page-bg"></div>
+
+                (<Container as="main" className="login-cont">
 
                     <Row>
-                        <Col md={{ offset: 2, span: 8 }}>
+                        <Col md={{ offset: 3, span: 6 }}>
                             <h3>Editar información de usuario</h3>
 
                             <hr></hr>
@@ -71,31 +74,32 @@ class EditProfile extends Component {
 
                                 <Form.Group>
                                     <Form.Label>Nombre de usuario</Form.Label>
-                                    <Form.Control onChange={this.handleInputChange} value={this.state.username} name="username" type="text" />
+                                    <Form.Control onChange={this.handleInputChange} value={this.state.username} name="username" type="text" className="form-transp" />
                                 </Form.Group>
 
                                 <Form.Group>
                                     <Form.Label>Contraseña</Form.Label>
-                                    <Form.Control onChange={this.handleInputChange} value={this.state.password} name="password" type="password" />
+                                    <Form.Control onChange={this.handleInputChange} value={this.state.password} name="password" type="password" className="form-transp" />
                                     <Form.Text className="text-muted">Mínimo cuatro caracteres.</Form.Text>
                                 </Form.Group>
 
                                 <Form.Group controlId="exampleForm.ControlSelect1">
                                     <Form.Label>¿Qué moto tienes?</Form.Label>
-                                    <select onChange={this.handleInputChange} name="userMotorbike">
+                                    <select onChange={this.handleInputChange} name="userMotorbike" className="form-transp form-control">
                                         {this.state.motorbikes.map(moto => <option key={moto._id} value={moto._id}>{moto.brand} {moto.model}</option>)}
                                     </select>
                                 </Form.Group>
 
                                 {this.state.errorMessage && <p style={{ color: 'red' }}>{this.state.errorMessage}</p>}
 
-                                <Button variant="dark" type="submit">Confirmar</Button>
+                                <button type="submit" class="button-login-signup"><span>Confirmar</span></button>
                             </Form>
 
                         </Col>
                     </Row>
 
                 </Container>)
+                </>
         )
     }
 }
