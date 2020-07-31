@@ -64,9 +64,19 @@ h3{
 }
 .transparent{
     background: transparent;
+    
 }
+
 .center{
     justify-content: center;
+    padding: 0;
+    margin: 10px auto;
+    opacity: 0.5;
+    width: 40%;
+}
+
+.center:hover{
+    background-color: rgba(255, 255, 255, 0.4);
 }
 
 /* ROW */
@@ -84,17 +94,23 @@ img.heart{
     width: 200px;
     display: block;
     margin: auto;
+    position: relative;
+    left: -300%;
+
+}
+
+.special:hover .usermotorbike-img{
+    left: 0;
+    transition-duration: 3s;
+    transition-timing-function: ease-out;
 }
 
 .event-img{
-    width: 200px;
-    height: 150px;
+    width: 180px;
+    height: 120px;
     object-fit: cover;
 }
 
-.height-img{
-    height: 100px;
-}
 .img-event{
     width: 150px;
     text-align: center;
@@ -120,11 +136,7 @@ img.heart{
 .style-p{
     font-size: 24px;
     color: #293133;
-    
-}
-
-.friend{
-    color:inherit
+    margin-top: 20px
 }
 
 

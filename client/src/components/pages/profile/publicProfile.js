@@ -52,7 +52,7 @@ class PublicProfile extends Component {
             !this.state.profile ? <div className="spinner"><Spinner /></div> :
 
 
-                (<>
+                (<div className="special">
                     <div class="page-bg"></div>
                     <Container as='main'>
                         
@@ -70,13 +70,13 @@ class PublicProfile extends Component {
                         <Row className="profile-1">
 
                             <Col md={{span:6, offset: 3}}>
-                            <h3 className="style-events name-moto">Comparar mi moto con la de {this.state.profile.username}</h3>
+                            <h3 className="style-events name-moto">Comparar mi moto con la de <span className="text-lightblue">{this.state.profile.username}</span></h3>
                             
                             <Col md={{ span: 10, offset: 1 }} className="card-motorbike">
                             
                                 <Link onClick={() => this.handleModal(true)}><img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" /></Link>
 
-                                <p className="style-p name-moto text-lightblue">{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
+                                <p className="style-p name-moto">{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
 
                                 <Modal size="lg" centered show={this.state.showModal} onHide={() => this.handleModal(false)}>
                                     <Modal.Body>
@@ -96,7 +96,7 @@ class PublicProfile extends Component {
                                         <Link to={`/eventDetails/${event._id}`}>
                                             <ListGroup.Item key={event._id} className="transparent">
                                                 <Col xs={{span: 12}} >
-                                                    <Col className="height-img">
+                                                    <Col>
                                                     <img src={event.image_url} alt={event.name} className="event-img" />
                                                     </Col>                                             
                                                     <Col className="name-event">
@@ -109,7 +109,7 @@ class PublicProfile extends Component {
 
                         </Row>
                     </Container>
-                </>)
+                </div>)
 
         )
     }

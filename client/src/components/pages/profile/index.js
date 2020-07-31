@@ -43,10 +43,12 @@ class Profile extends Component {
         return (
 
             <>
-                <div class="page-bg"></div>
 
                 {!this.state.profile ? <div className="spinner"><Spinner /></div> :
                     
+
+                (<div className="special">
+                    <div class="page-bg"></div>
                     <Container as='main'>
 
                         <Row className="profile-1">
@@ -65,14 +67,14 @@ class Profile extends Component {
 
                             <Col className="card-motorbike" md={{ span: 5, offset: 1 }}>
                                 <h3 className="style-events name-moto">Mi moto</h3>
-
+    
                                 <img className="usermotorbike-img" src={this.state.profile.userMotorbike.image_url} alt="userMotorbike" />
                                 <p className="style-p name-moto " >{this.state.profile.userMotorbike.brand} {this.state.profile.userMotorbike.model}</p>
 
                             </Col>
 
                             <Col md={{ span: 5, offset: 1 }} >
-                                <h3 className="style-events">Mis amigos</h3>
+                                <h3 className="style-events name-moto">Mis amigos</h3>
 
                                 <ListGroup>
                                     {this.state.profile.friends.map(friend =>
@@ -86,10 +88,10 @@ class Profile extends Component {
                         <Row className="profile-1">
                         <ListGroup horizontal className="scroll-x">
                             {this.state.profile.events.map(event =>
-                                <ListGroup.Item className="transparent friend">
+                                <ListGroup.Item className="transparent">
                                 <Link to={`/eventDetails/${event._id}`}>
                                     <Col xs={{span: 12}} >
-                                    <Col className="height-img">                                  
+                                    <Col>                                  
                                         <img variant="top" className="event-img" src={event.image_url} alt={event.name} />
                                     </Col>
                                     <Col className="name-event">
@@ -102,8 +104,9 @@ class Profile extends Component {
                         </ListGroup>
                         </Row>
                     </Container>
+                    </div>)
                 }
-            </>
+                </>  
         )
     }
 }
