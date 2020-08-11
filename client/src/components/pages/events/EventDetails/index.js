@@ -21,7 +21,7 @@ class EventDetails extends Component {
         this.state = {
             eventDetails: undefined,
             edit_id: this.props.match.params.id,
-            showModal: false,
+            showModal: false
         }
         this.EventService = new EventService()
         this.UserService = new UserService()
@@ -58,7 +58,6 @@ class EventDetails extends Component {
     joiningEvent = () => {
         let id = this.props.match.params.id
         let actualUser = this.props.loggedInUser
-        console.log(this.state.eventDetails)
 
         if (!this.state.eventDetails.joinedUsers.some(ev => ev._id === actualUser._id)) {
 

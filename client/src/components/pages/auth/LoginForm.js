@@ -45,7 +45,7 @@ class LoginForm extends Component {
     render() {
         return (
             <>
-                <div class="page-bg"></div>
+                <div className="page-bg"></div>
 
                 <Container as="main" className="login-cont">
 
@@ -69,7 +69,7 @@ class LoginForm extends Component {
 
                                 {this.state.errorMessage && <p style={{ color: 'red' }}>{this.state.errorMessage}</p>}
 
-                                <button type="submit" class="button-login-signup"><span>Iniciar sesión</span></button>
+                                <button type="submit" className="button-login-signup"><span>Iniciar sesión</span></button>
 
                             </Form>
 

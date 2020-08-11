@@ -42,7 +42,7 @@ class Navigation extends Component {
             <Navbar bg="dark" variant="dark" expand="lg" sticky="top" className="navbar" onToggle={this.setNavExpanded} expanded={this.state.navExpanded}>
                 
                 <Navbar.Brand>
-                    <Link to="/"><img src="/parafavicon.svg" alt='logomoto' class="filter-red" />{' '} MotoEvents</Link>
+                    <Link to="/"><img src="/parafavicon.svg" alt='logomoto' className="filter-red" />{' '} MotoEvents</Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

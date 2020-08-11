@@ -1,27 +1,30 @@
 .list-group-item{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
     border: none;
 }
-.list-group-item:last-child, .list-group-item:first-child{
-    border-radius: unset;
+
+.list-group-item-light{
+    color: #003049;
+    background-color: transparent;
 }
 
+.list-group-item-light:hover{
+    background-color: transparent !important;
+}
+
+
 .col {
-display: flex;
-flex-direction: column;
-justify-content: center;
-text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 .edit-btn-div {
     display: flex;
     justify-content: flex-end;
 
-}
-img.heart{
-    display: none;
 }
 
 .modal-body {
@@ -38,83 +41,64 @@ img.heart{
     display: flex;
 }
 
-h3{
-    text-align: center;
-}
 
 .name-event{
     margin-top: 10px;
-}
-.name-moto{
-    margin: 20px 0;
+    font-size: 18px;
 }
 
 /* Col */
 
-.card-motorbike > p{
+.card-motorbike {
     text-align: center;
 }
 
 /* List */
 
 .scroll-x{
-    overflow-x: auto;
-    overflow-y: hidden;
-    height: 300px;
+    overflow-x: scroll;
+    height: 260px;
 }
 .transparent{
-    background: transparent;
-    
+    background: transparent;  
 }
 
 .center{
     justify-content: center;
     padding: 0;
     margin: 10px auto;
-    opacity: 0.5;
-    width: 40%;
+    opacity: 0.8;
+    width: 50%;
 }
 
-.center:hover{
-    background-color: rgba(255, 255, 255, 0.4);
-}
 
 /* ROW */
 
-.profile-1{
-    margin-top: 50px;
+.profile-row {
+    margin-top: 30px;
 }
 
 /* Imagenes */
-img.heart{
-    display: none;
-}
 
 .usermotorbike-img{
-    width: 200px;
+    width: 300px;
     display: block;
     margin: auto;
     position: relative;
-    left: -300%;
+    border-radius: 10px;
+    opacity: 0.8;
 
-}
-
-.special:hover .usermotorbike-img{
-    left: 0;
-    transition-duration: 3s;
-    transition-timing-function: ease-out;
 }
 
 .event-img{
-    width: 180px;
-    height: 120px;
+    width: 200px;
+    height: 140px;
     object-fit: cover;
+    border-radius: 10px;
+    filter: drop-shadow(2px 4px 6px black);
 }
 
-.img-event{
-    width: 150px;
-    text-align: center;
-}
+
 
 .friend-motorbike{
     width: 40px;
@@ -125,53 +109,27 @@ img.heart{
 /* Tamaños de letras */
 
 .style-friend{
-    font-size: 24px;
+    font-size: 23px;
 }
 
-.style-events{
+.compare-title{
     font-size: 22px;
-    
+    text-align: center;
 }
 
 .style-p{
-    font-size: 24px;
+    font-size: 17px;
     color: #293133;
     margin-top: 20px
 }
 
 
 @media (min-width: 800px){
-    h3:hover > .heart{
-        display: block;
-        width: 30px; 
-      }
-      .usermotorbike-img{
-        width: 250px;
-    }
-    .style-events{
-        font-size: 40px;
+
+    .compare-title{
+        font-size: 25px;
     }
     .style-p{
-        font-size: 32px;
-    }
-    .style-friend{
-        font-size: 30px;
+        font-size: 24px;
     }
 }
-
-
-@media (min-width: 1000px){
-
-    .img-event{
-        width: 300px;
-    }
-
-    h3:hover > .heart{
-        display: block;
-        width: 30px; 
-      }
-      .usermotorbike-img{
-        width: 300px;
-    }
-}
-

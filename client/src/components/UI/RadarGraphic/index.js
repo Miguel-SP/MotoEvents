@@ -53,7 +53,6 @@ class Radar extends Component {
     }
 
     render() {
-        console.log(this.props)
 
         return (
             !this.state ? <Spinner /> :

@@ -14,7 +14,7 @@ const Home = () => {
 
     return (
         <>
-            <div class="page-bg"></div>
+            <div className="page-bg"></div>
             <main className="home-main">
                 <Container>
                     <Row className='home-title'>
@@ -26,19 +26,19 @@ const Home = () => {
                             <p className="home-description">Únete y crea eventos para disfrutar de las dos ruedas!</p>
 
                             <div id="home-btn">
-                                <Link to="/login"><button class="learn-more">
-                                    <span class="circle" aria-hidden="true">
-                                        <span class="icon arrow"></span>
+                                <Link to="/login"><button className="learn-more">
+                                    <span className="circle" aria-hidden="true">
+                                        <span className="icon arrow"></span>
                                     </span>
-                                    <span class="button-text">Inicia sesión</span>
+                                    <span className="button-text">Inicia sesión</span>
                                 </button></Link>
                             </div>
                             <div id="home-btn">
-                                <Link to="/signup"><button class="learn-more">
-                                    <span class="circle" aria-hidden="true">
-                                        <span class="icon arrow"></span>
+                                <Link to="/signup"><button className="learn-more">
+                                    <span className="circle" aria-hidden="true">
+                                        <span className="icon arrow"></span>
                                     </span>
-                                    <span class="button-text">Regístrate</span>
+                                    <span className="button-text">Regístrate</span>
                                 </button></Link>
                             </div>
 
