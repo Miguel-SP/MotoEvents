@@ -51,7 +51,7 @@ class EventList extends Component {
     render() {
         return (
             <>
-                <div class="page-bg"></div>
+                <div className="page-bg"></div>
 
                 {this.state.events.length === 0 ? <div className="spinner"><Spinner /></div> :
 
@@ -63,7 +63,7 @@ class EventList extends Component {
                             </Col>
                             
                             <Col xs={{ span: 6 }} className="create-event-col">
-                                {this.props.loggedInUser && <button class="button-login-signup" onClick={() => this.handleModal(true)}><span>Crear evento</span></button>}
+                                {this.props.loggedInUser && <button className="button-login-signup" onClick={() => this.handleModal(true)}><span>Crear evento</span></button>}
                             </Col>
                            
                         </Row>

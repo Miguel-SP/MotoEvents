@@ -15,6 +15,7 @@ const eventSchema = new Schema({
     joinedUsers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
     comments: [{
         user: { type: String },
+        userId: { type: Schema.Types.ObjectId, ref: 'User' },
         date: { type: Date, default: Date.now },
         text: { type: String, maxlength: 200 }
     }]

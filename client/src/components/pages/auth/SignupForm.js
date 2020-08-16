@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import AuthService from '../../../service/AuthService'
 import MotoService from '../../../service/MotoService'
@@ -88,12 +89,13 @@ class SignupForm extends Component {
                                         </select>
                                     </Form.Group>
 
-
                                     {this.state.errorMessage && <p style={{ color: 'red' }}>{this.state.errorMessage}</p>}
 
-                                    <button type="submit" class="button-login-signup"><span>Registrarme</span></button>
-                                
+                                        <button type="submit" class="button-login-signup"><span>Registrarme</span></button>
+
                                 </Form>
+
+                                    <Link className="tologgin-btn" to="/login">Ya tengo cuenta</Link>
 
                             </Col>
                         </Row>

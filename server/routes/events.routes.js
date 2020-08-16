@@ -25,7 +25,7 @@ router.post('/newEvent', checkAuthenticated, (req, res, next) => {
 router.post('/search', (req, res, next) => {
     const { name } = req.body
     const regex = new RegExp('^[a-zA-Z0-9 \',]*' + name + '[a-zA-Z0-9 \',]*', 'i')
-    
+
     Event.find({ name: { $regex: regex } })
         .then(response => res.json(response))
         .catch(err => next(err))
@@ -63,10 +63,10 @@ router.post('/eventDetails/deletefromevent/:id', checkAuthenticated, (req, res, 
 
 router.post('/eventDetails/newcomment/:id', checkAuthenticated, (req, res, next) => {
 
-    const { user, date, text } = req.body
-   
+    const { user, userId, date, text } = req.body
 
-    Event.findByIdAndUpdate(req.params.id, { $push: { comments: { user, date, text } } }, { new: true })
+
+    Event.findByIdAndUpdate(req.params.id, { $push: { comments: { user, userId, date, text } } }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 })

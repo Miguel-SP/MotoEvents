@@ -43,3 +43,13 @@
   opacity: 1;
   right: 0;
 }
+
+.tologgin-btn{
+  color: #003049;
+  display: flex;
+  margin-top: 1rem;
+}
+
+.tologgin-btn:hover{
+  color: #42AB9E;
+}

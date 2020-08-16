@@ -8,6 +8,7 @@ class CommentsForm extends Component {
         super(props)
         this.state = {
             user: this.props.loggedInUser.username,
+            userId: this.props.loggedInUser._id,
             date: Date.now,
             text: '',
             comments: undefined

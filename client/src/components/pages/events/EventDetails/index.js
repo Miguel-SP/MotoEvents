@@ -3,6 +3,7 @@ import CommentsForm from './CommentsForm'
 import CustomModal from './../EventList/CustomModal'
 import EventService from './../../../../service/EventService'
 import UserService from './../../../../service/UserService'
+
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import ListGroup from 'react-bootstrap/ListGroup'
@@ -10,6 +11,7 @@ import Col from 'react-bootstrap/Col'
 import { Link } from 'react-router-dom'
 import MapWithAMarker from '../../../UI/Map'
 import Spinner from '../../../UI/Spinner'
+
 import './arrowback.scss'
 import './EventDetails.css'
 
@@ -140,11 +142,11 @@ class EventDetails extends Component {
                             containerElement={<div style={{ height: `30vh` }} />}
                             mapElement={<div style={{ height: `30vh` }} />} />
 
-                        <ListGroup variant="flush" className="comments-group">
+                        <ListGroup className="comments-group">
                             {this.state.eventDetails.comments.map(comment =>
                                 <ListGroup.Item className="comments-list" key={comment._id}>
                                     <div>{comment.text}</div>
-                                    <div>Por <span style={{ color: '#42AB9E' }}><Link to={`/profile/public/${this.state.eventDetails.ownerId._id}`}>{comment.user}</Link></span> el {comment.date.slice(0, 10)}</div>
+                                    <div><span style={{ color: '#42AB9E' }}><Link to={`/profile/public/${comment.userId}`}>{comment.user}</Link></span> el {comment.date.slice(0, 10)}</div>
                                 </ListGroup.Item>)}
                         </ListGroup>
 
