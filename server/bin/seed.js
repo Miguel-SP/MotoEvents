@@ -6,8 +6,7 @@ const Moto = require('./../models/Moto.model');
 
  
 
-mongoose
-    .connect(`${process.env.DB_REMOTE}`, { useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.DB_REMOTE, { useNewUrlParser: true, useUnifiedTopology: true})
  
 const motorbikes = [
     {   "brand": "Ducati",
